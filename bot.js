@@ -509,6 +509,7 @@ bot.on("message", function(message) {
 });
 
 bot.on('message', async msg => {
+    if (!msg.content.startsWith(prefix)) return;
     var arg = msg.content.substring(prefix.length).split(" ");
     const searchString = arg.slice(1).join(' ');
     const url = arg[1] ? arg[1].replace(/<(.+)>/g, '$1') : '';
