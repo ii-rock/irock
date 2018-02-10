@@ -714,7 +714,7 @@ function playit(guild, song) {
                 .addField("Video Name", `${song.title}`)
                 .addField("Duration", `(${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds})`)
                 .addField("Uploader", `${song.channel.title}`)
-                .addField("Voice Channel", `${serverQueue.voiceChannel}`)
+                .addField("Voice Channel", `${serverQueue.voiceChannel.name}`)
                 .setFooter(`Queued by ${serverQueue.authorName}#${serverQueue.authorDisc}`, serverQueue.authorAvatar)
                 .setColor("#36ADA9")
                 .setTimestamp()
