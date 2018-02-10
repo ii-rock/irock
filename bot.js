@@ -712,7 +712,7 @@ function playit(guild, song) {
                 .setAuthor("Now Playing", bot.user.displayAvatarURL)
                 .setDescription(`The player is now playing.`)
                 .addField("Video Name", `${song.title}`)
-                .addField("Duration", `(${song.duration.minutes}:${song.duration.seconds})`)
+                .addField("Duration", `(${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds})`)
                 .addField("Uploader", `${song.channel.title}`)
                 .addField("Voice Channel", `${serverQueue.voiceChannel}`)
                 .setFooter(`Queued by ${serverQueue.authorName}#${serverQueue.authorDisc}`, serverQueue.authorAvatar)
