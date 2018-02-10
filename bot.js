@@ -594,7 +594,7 @@ bot.on('message', async msg => {
                 .setAuthor("Volume Updated", bot.user.displayAvatarURL)
                 .setDescription(`The player's volume has been updated.`)
                 .addField("Old Volume", `**${serverQueue.volume}%**`, inline = true)
-                .addField("New Volume", `args[1]%`, inline = true)
+                .addField("New Volume", `**${arg[1]}%**`, inline = true)
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
                 .setTimestamp()
                 .setColor("#FF0000")
