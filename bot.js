@@ -285,7 +285,7 @@ bot.on("message", function(message) {
     .addField("You Joined At", message.member.joinedAt, inline = true)
     .addField("Total Members", message.guild.memberCount, inline = true);
 
-     message.channel.send({serverembed});
+     message.channel.sendEmbed(serverembed);
      break;
         case "invite":
            var embeed = new Discord.RichEmbed()
