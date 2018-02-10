@@ -345,7 +345,7 @@ bot.on("message", function(message) {
             bot.channels.get("406182116712513537").send(embeed2);
             break;
          case "about":
-            var owner = bot.users.get(`${config.owner}`).username + "#" + bot.users.get(`${config.owner}`).discriminator
+            var owner = bot.users.get(`405530402024062987`).username + "#" + bot.users.get(`405530402024062987`).discriminator
             var embeed = new Discord.RichEmbed()
                 .setAuthor("About Me", bot.user.displayAvatarURL)
                 .setDescription("A few information about me and my owner.")
@@ -574,7 +574,6 @@ bot.on('message', async msg => {
         if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
         if (!serverQueue) return msg.channel.send('There is nothing playing that I could skip for you.');
         serverQueue.connection.dispatcher.end();
-        serverQueue.songs.shift();
         return undefined;
         break;
         case "stop":
@@ -586,15 +585,24 @@ bot.on('message', async msg => {
         case "volume":
         if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
         if (!serverQueue) return msg.channel.send('There is nothing playing.');
-        if (!args[1]) return msg.channel.send(`The current volume is: **${serverQueue.volume}**`);
-        serverQueue.volume = args[1];
+        if (!args[1]) return msg.channel.send(`The current volume is: **${serverQueue.volume}%**`);
+        
         serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 100);
-        return msg.channel.send(`I set the volume to: **${args[1]}**`);
+            var embed = new Discord.RichEmbed()
+                .setAuthor("Volume Updated", bot.user.displayAvatarURL)
+                .setDescription(`The player's volume has been updated.`)
+                .addField("Old Volume", `**${serverQueue.volume}%**`, inline = true)
+                .addField("New Volume", `args[1]%`, inline = true)
+                .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
+                .setTimestamp()
+                .setColor("#FF0000")
+                msg.channel.send({embed});
+            serverQueue.volume = args[1];
         break;
         case "np":
         if (!serverQueue) return msg.channel.send('There is nothing playing.');
         var embed = new Discord.RichEmbed()
-                .setAuthor("🎶 Now Playing", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/YouTube_icon.png/640px-YouTube_icon.png")
+                .setAuthor("Now Playing", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/YouTube_icon.png/640px-YouTube_icon.png")
                 .setDescription(`I am currently playing **${serverQueue.songs[0].title}**`)
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
                 .setTimestamp()
@@ -652,7 +660,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
             authorAvatar: msg.author.displayAvatarURL,
             connection: null,
             songs: [],
-            volume: 100,
+            volume: 70,
             playing: true
         };
         queue.set(msg.guild.id, queueConstruct);
