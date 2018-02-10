@@ -1,0 +1,25 @@
+{
+  "name": "rock",
+  "description": ".",
+  "version": "1.0.0",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "engines": {
+    "node": "8.9.4"
+  },
+  "dependencies": {
+    "discord.js": "^11.3.0",
+    "goo.gl": "^0.1.4",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0",
+    "querystring": "^0.2.0",
+    "request": "^2.81.0",
+    "snekfetch": "^3.6.4",
+    "ytdl-core": "^0.20.1",
+    "cleverbot-node": "^0.3.11",
+    "opusscript": "^0.0.6",
+    "simple-youtube-api": "^5.0.1"
+  }
+}
