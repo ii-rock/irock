@@ -15,7 +15,8 @@ var googl = require('goo.gl');
 googl.setKey(process.env.google_Key);
 
 var bot = new Client({
-    autoReconnect: true
+    autoReconnect: true,
+    disableEveryone: true
 });
 
 const { stringify } = require('querystring');
@@ -345,7 +346,7 @@ bot.on("message", function(message) {
             bot.channels.get("406182116712513537").send(embeed2);
             break;
          case "about":
-            var owner = bot.users.get(`405530402024062987`).username + "#" + bot.users.get(`405530402024062987`).discriminator
+            var owner = bot.users.get(`295233686893232129`).username + "#" + bot.users.get(`295233686893232129`).discriminator
             var embeed = new Discord.RichEmbed()
                 .setAuthor("About Me", bot.user.displayAvatarURL)
                 .setDescription("A few information about me and my owner.")
@@ -688,16 +689,10 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 function playit(guild, song) {
     const serverQueue = queue.get(guild.id);
 
-    if (!song) {
-        serverQueue.voiceChannel.leave();
-        queue.delete(guild.id);
-        return;
-    }
     console.log(serverQueue.songs);
  
  
-    const dispatcher = serverQueue.connection.playStream(YTDL(song.url))
-        
+    const dispatcher = serverQueue.connection.playStream(YTDL(song.url)) 
         .on('end', reason => {
             if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
             else console.log(reason);
