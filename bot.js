@@ -38,7 +38,7 @@ const update = () => {
   req.end();
 };
 
-var prefix = "."; 
+const prefix = "."; 
 const admins = config.admins;
 const queue = new Map();
 var upSecs = 0;
@@ -509,12 +509,12 @@ bot.on("message", function(message) {
 });
 
 bot.on('message', async msg => {
-    var args = msg.content.substring(prefix.length).split(" ");
-    const searchString = args.slice(1).join(' ');
-    const url = args[1] ? args[1].replace(/<(.+)>/g, '$1') : '';
+    var arg = msg.content.substring(prefix.length).split(" ");
+    const searchString = arg.slice(1).join(' ');
+    const url = arg[1] ? arg[1].replace(/<(.+)>/g, '$1') : '';
     const serverQueue = queue.get(msg.guild.id);
    
-    switch (args[0].toLowerCase()) {
+    switch (arg[0].toLowerCase()) {
         case "play":
         const voiceChannel = msg.member.voiceChannel;
         if (!voiceChannel) return msg.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
@@ -586,9 +586,9 @@ bot.on('message', async msg => {
         case "volume":
         if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
         if (!serverQueue) return msg.channel.send('There is nothing playing.');
-        if (!args[1]) return msg.channel.send(`The current volume is: **${serverQueue.volume}%**`);
+        if (!arg[1]) return msg.channel.send(`The current volume is: **${serverQueue.volume}%**`);
         
-        serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 100);
+        serverQueue.connection.dispatcher.setVolumeLogarithmic(arg[1] / 100);
             var embed = new Discord.RichEmbed()
                 .setAuthor("Volume Updated", bot.user.displayAvatarURL)
                 .setDescription(`The player's volume has been updated.`)
@@ -598,7 +598,7 @@ bot.on('message', async msg => {
                 .setTimestamp()
                 .setColor("#FF0000")
                 msg.channel.send({embed});
-            serverQueue.volume = args[1];
+            serverQueue.volume = arg[1];
         break;
         case "np":
         if (!serverQueue) return msg.channel.send('There is nothing playing.');
