@@ -691,7 +691,12 @@ function playit(guild, song) {
 
     console.log(serverQueue.songs);
  
- 
+    if (!song) {
+        serverQueue.voiceChannel.leave();
+        queue.delete(guild.id);
+        return;
+    }
+    
     const dispatcher = serverQueue.connection.playStream(YTDL(song.url)) 
         .on('end', reason => {
             if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
@@ -708,6 +713,7 @@ function playit(guild, song) {
                 .addField("Video Name", `${song.title}`)
                 .addField("Duration", `(${song.duration.minutes}:${song.duration.seconds})`)
                 .addField("Uploader", `${song.channel.title}`)
+                .addField("Voice Channel", `${serverQueue.voiceChannel}`)
                 .setFooter(`Queued by ${serverQueue.authorName}#${serverQueue.authorDisc}`, serverQueue.authorAvatar)
                 .setColor("#36ADA9")
                 .setTimestamp()
