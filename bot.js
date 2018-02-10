@@ -652,7 +652,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
             authorAvatar: msg.author.displayAvatarURL,
             connection: null,
             songs: [],
-            volume: 5,
+            volume: 100,
             playing: true
         };
         queue.set(msg.guild.id, queueConstruct);
