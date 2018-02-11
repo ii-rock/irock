@@ -699,13 +699,9 @@ function playit(guild, song) {
     const serverQueue = queue.get(guild.id);
 
     console.log(serverQueue.songs);
-    if (!song) {
-	    serverQueue.voiceChannel.leave();
-            queue.delete(guild.id);
-	    return;
-    }
+   
     
-    const dispatcher = serverQueue.connection.playStream(YTDL(song.url)) 
+    const dispatcher = serverQueue.connection.playStream(YTDL(song.url, {filter: "audioonly"})) 
     serverQueue.songs.shift()
         dispatcher.on('end', reason => {
             if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
@@ -728,5 +724,10 @@ function playit(guild, song) {
                 .setTimestamp()
             serverQueue.textChannel.send({embed});
 }
+if (!song) {
+	    serverQueue.voiceChannel.leave();
+            queue.delete(guild.id);
+	    return;
+    }
 
 bot.login(process.env.TOKEN);
