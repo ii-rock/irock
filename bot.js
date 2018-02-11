@@ -700,8 +700,13 @@ function playit(guild, song) {
 
     console.log(serverQueue.songs);
    
-    
-    const dispatcher = serverQueue.connection.playStream(YTDL(song.url)) 
+    if (!song) {
+	    serverQueue.voiceChannel.leave();
+            queue.delete(guild.id);
+	    return;
+        }
+	
+    const dispatcher = serverQueue.connection.playStream(YTDL(song.url, {filter: 'audioonly'})) 
     serverQueue.songs.shift()
         dispatcher.on('end', reason => {
             if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
@@ -723,11 +728,7 @@ function playit(guild, song) {
                 .setColor("#36ADA9")
                 .setTimestamp()
             serverQueue.textChannel.send({embed});
-	if (!song) {
-	    serverQueue.voiceChannel.leave();
-            queue.delete(guild.id);
-	    return;
-    }
+	
 }
 
 
