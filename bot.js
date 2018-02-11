@@ -560,8 +560,8 @@ bot.on('message', async msg => {
                         theMessage.delete();
 			    var embedd = new Discord.RichEmbed()
                 .setAuthor("Request Canceled", "http://icons.iconarchive.com/icons/paomedia/small-n-flat/128/sign-warning-icon.png")
-                .setDescription(`No or invalid value recieved, cancelling video request.`)
-                .setFooter(`This was requested by ${msg.author.username}#${msg.author.discriminator}`)
+                .setDescription(`No or invalid value were recieved, cancelling video request.`)
+                .setFooter(`This was requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
                 .setColor("#FF0000")
                         return msg.channel.sendEmbed(embedd);
                     }
@@ -580,6 +580,7 @@ bot.on('message', async msg => {
         if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
         if (!serverQueue) return msg.channel.send('There is nothing playing that I could skip for you.');
         serverQueue.connection.dispatcher.end();
+	handleVideo(video, msg, voiceChannel);
         return undefined;
         break;
         case "stop":
@@ -698,19 +699,18 @@ function playit(guild, song) {
     const serverQueue = queue.get(guild.id);
 
     console.log(serverQueue.songs);
-
+    if (!song) {
+	    serverQueue.voiceChannel.leave();
+            queue.delete(guild.id);
+	    return;
+    }
     
     const dispatcher = serverQueue.connection.playStream(YTDL(song.url)) 
     serverQueue.songs.shift()
         dispatcher.on('end', reason => {
             if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
             else console.log(reason);
-            if (song) {
-		    playit(guild, serverQueue.songs[0]);
-	    } else {
-		    serverQueue.voiceChannel.leave();
-                    queue.delete(guild.id);
-	    }
+	    playit(guild, serverQueue.songs[0]);
             
         })
         dispatcher.on('error', error => console.error(error));
