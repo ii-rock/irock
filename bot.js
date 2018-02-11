@@ -595,8 +595,8 @@ bot.on('message', async msg => {
         case "volume":
         if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
         if (!serverQueue) return msg.channel.send('There is nothing playing.');
-	if (isNaN(arg[1])) return m.send(":x: Please provide a value between `[1-100]`");
-        if (arg[1] > 100) return m.send(":x: Please provide a value between `[1-100]`");
+	if (isNaN(arg[1])) return msg.channel.send(":x: Please provide a value between `[1-100]`");
+        if (arg[1] > 100) return msg.channel.send(":x: Please provide a value between `[1-100]`");
         if (!arg[1]) return msg.channel.send(`The current volume is: **${serverQueue.volume}%**`);
         
         serverQueue.connection.dispatcher.setVolumeLogarithmic(arg[1] / 100);
