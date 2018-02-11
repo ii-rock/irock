@@ -519,7 +519,7 @@ bot.on('message', async msg => {
         case "play":
         const voiceChannel = msg.member.voiceChannel;
         if (!voiceChannel) return msg.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
-        const permissions = voiceChannel.permissionsFor(msg.bot.user);
+        const permissions = voiceChannel.permissionsFor(msg.client.user);
         if (!permissions.has('CONNECT')) {
             return msg.channel.send('I cannot connect to your voice channel, make sure I have the proper permissions!');
         }
