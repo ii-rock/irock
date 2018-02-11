@@ -723,11 +723,12 @@ function playit(guild, song) {
                 .setColor("#36ADA9")
                 .setTimestamp()
             serverQueue.textChannel.send({embed});
-}
-if (!song) {
+	if (!song) {
 	    serverQueue.voiceChannel.leave();
             queue.delete(guild.id);
 	    return;
     }
+}
+
 
 bot.login(process.env.TOKEN);
