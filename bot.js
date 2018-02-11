@@ -519,7 +519,7 @@ bot.on('message', async msg => {
         case "play":
         const voiceChannel = msg.member.voiceChannel;
         if (!voiceChannel) return msg.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
-        const permissions = voiceChannel.permissionsFor(msg.client.user);
+        const permissions = voiceChannel.permissionsFor(msg.bot.user);
         if (!permissions.has('CONNECT')) {
             return msg.channel.send('I cannot connect to your voice channel, make sure I have the proper permissions!');
         }
@@ -544,7 +544,7 @@ bot.on('message', async msg => {
                     let index = 0;
                     var embed = new Discord.RichEmbed()
                 .setAuthor("Result Selection", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/YouTube_icon.png/640px-YouTube_icon.png")
-                .setDescription(`${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}`)
+                .setDescription(`${videos.map(video2 => `**${++index} -** [${video2.title}](${video2.url})}`).join('\n')}`)
                 .setFooter(`Please provide a value to select one of the search results ranging from 1-5, this expires after 15 seconds.`)
                 .setColor("#FF0000")
                     var theMessage = await msg.channel.send({embed});
