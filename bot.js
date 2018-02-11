@@ -581,7 +581,10 @@ bot.on('message', async msg => {
         case "stop":
         if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
         if (!serverQueue) return msg.channel.send('There is nothing playing that I could stop for you.');
-        if (msg.guild.voiceConnection) msg.guild.voiceConnection.disconnect();
+        if (msg.guild.voiceConnection) {
+            serverQueue.songs = [];
+		    serverQueue.connection.dispatcher.end();
+        }
         return undefined;
         break;
         case "volume":
@@ -703,7 +706,8 @@ function playit(guild, song) {
             if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
             else console.log(reason);
             serverQueue.songs.shift();
-            playit(guild, serverQueue.songs[0]);
+            if (serverQueue) playit(guild, serverQueue.songs[0]);
+            
         })
         .on('error', error => console.error(error));
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 100);
