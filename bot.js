@@ -555,11 +555,15 @@ bot.on('message', async msg => {
                             time: 15000,
                             errors: ['time']
                         });
-                        theMessage.delete();
                     } catch (err) {
                         console.error(err);
                         theMessage.delete();
-                        return msg.channel.send('No or invalid value entered, cancelling video selection.');
+			    var embedd = new Discord.RichEmbed()
+                .setAuthor("Request Canceled", "http://icons.iconarchive.com/icons/paomedia/small-n-flat/128/sign-warning-icon.png")
+                .setDescription(`No or invalid value recieved, cancelling video request.`)
+                .setFooter(`This was requested by ${msg.author.username}#${msg.author.discriminator}`)
+                .setColor("#FF0000")
+                        return msg.channel.sendEmbed(embedd);
                     }
                     const videoIndex = parseInt(response.first().content);
                     var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
@@ -694,22 +698,22 @@ function playit(guild, song) {
     const serverQueue = queue.get(guild.id);
 
     console.log(serverQueue.songs);
- 
-    if (!song) {
-        serverQueue.voiceChannel.leave();
-        queue.delete(guild.id);
-        return;
-    }
+
     
     const dispatcher = serverQueue.connection.playStream(YTDL(song.url)) 
-        .on('end', reason => {
+    serverQueue.songs.shift()
+        dispatcher.on('end', reason => {
             if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
             else console.log(reason);
-            serverQueue.songs.shift();
-            if (serverQueue) playit(guild, serverQueue.songs[0]);
+            if (song) {
+		    playit(guild, serverQueue.songs[0]);
+	    } else {
+		    serverQueue.voiceChannel.leave();
+                    queue.delete(guild.id);
+	    }
             
         })
-        .on('error', error => console.error(error));
+        dispatcher.on('error', error => console.error(error));
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 100);
 
     var embed = new Discord.RichEmbed()
