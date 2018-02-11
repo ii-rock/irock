@@ -727,7 +727,7 @@ function playit(guild, song) {
                 .addField("Uploader", `${song.channel.title}`)
                 .addField("Voice Channel", `${serverQueue.voiceChannel.name}`)
                 .setFooter(`Queued by ${serverQueue.authorName}#${serverQueue.authorDisc}`, serverQueue.authorAvatar)
-                .setColor("#36ADA9")
+                .setColor("#FCBD06")
                 .setTimestamp()
             serverQueue.textChannel.send({embed});
 	
