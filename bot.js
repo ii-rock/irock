@@ -701,7 +701,7 @@ function playit(guild, song) {
     console.log(serverQueue.songs);
    
     
-    const dispatcher = serverQueue.connection.playStream(YTDL(song.url, {filter: "audioonly"})) 
+    const dispatcher = serverQueue.connection.playStream(YTDL(song.url)) 
     serverQueue.songs.shift()
         dispatcher.on('end', reason => {
             if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
