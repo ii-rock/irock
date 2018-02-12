@@ -204,7 +204,7 @@ bot.on("message", function(message) {
     .setAuthor("Topic Changed")
     .setDescription(`${message.channel}'s topic has been changed.`)
     .setColor("#166338")
-    if (message.channel.topic.length = 0) {
+    if (message.channel.topic == "") {
 	    embed.addField("Old Topic", "`NOT SET`")
     } else {
 	    embed.addField("Old Topic", message.channel.topic)
@@ -224,7 +224,7 @@ bot.on("message", function(message) {
     .setAuthor("Topic Changed")
     .setDescription(`${channels}'s topic has been changed.`)
     .setColor("#166338")
-    if (channels.topic.length = 0) {
+    if (channels.topic === "") {
 	    embed.addField("Old Topic", "`NOT SET`")
     } else {
 	    embed.addField("Old Topic", channels.topic)
