@@ -739,9 +739,6 @@ function playit(guild, song) {
                 .setColor("#FCBD06")
                 .setTimestamp()
             serverQueue.textChannel.send({embed});
-
-
-        })
 }
 
 
