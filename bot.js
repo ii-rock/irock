@@ -195,9 +195,11 @@ bot.on("message", function(message) {
     	case "settopic":
 	
     	if (!message.guild.me.hasPermission('MANAGE_CHANNELS')) return m.send("Permission `MANAGE_CHANNELS` is missing!")
-    	if (!channels) {
-    	if (message.channel.topic === theMsg) return m.send("That topic is already set!");
+    	
+    	
+	if (!channels) {
     	if (!theMsg) return m.send(`Topic cannot be empty\nUsage: \`${prefix}settopic <channel> <new topic>\``)
+	if (message.channel.topic === theMsg) return m.send("That topic is already set!");
             let embed = new Discord.RichEmbed()
     .setAuthor("Topic Changed")
     .setDescription(`${message.channel}'s topic has been changed.`)
@@ -229,9 +231,9 @@ bot.on("message", function(message) {
     }
     embed.addField("New Topic", theMsg.replace(channels, ""), inline = true)
         m.send({embed});
-    	
+    	channels.edit({ topic: `${theMsg.replace(channels, "")}` }, `Changed by ${author.username}#${author.discriminator}`)
     }
-	 channels.edit({ topic: `${theMsg.replace(channels, "")}` }, `Changed by ${author.username}#${author.discriminator}`)
+	 
     	break;
     	case "google":
     	if (theMsg.length < 1) {
