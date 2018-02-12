@@ -202,10 +202,10 @@ bot.on("message", function(message) {
     .setAuthor("Topic Changed")
     .setDescription(`${message.channel}'s topic has been changed.`)
     .setColor("#166338")
-    if (message.channel.topic) {
-	    embed.addField("Old Topic", message.channel.topic, inline = true)
-    } else if (!message.channel.topic) {
+    if (message.channel.topic.length = 0) {
 	    embed.addField("Old Topic", `Empty`, inline = true)
+    } else {
+	    embed.addField("Old Topic", message.channel.topic, inline = true)
     }
     embed.addField("New Topic", theMsg, inline = true)
     .setFooter(`Requested by ${author.username}#${author.discriminator}`, author.displayAvatarURL)
@@ -222,10 +222,10 @@ bot.on("message", function(message) {
     .setAuthor("Topic Changed")
     .setDescription(`${channels}'s topic has been changed.`)
     .setColor("#166338")
-    if (channels.topic) {
-	    embed.addField("Old Topic", channels.topic, inline = true)
-    } else if (!channels.topic) {
+    if (channels.topic.length = 0) {
 	    embed.addField("Old Topic", `Empty`, inline = true)
+    } else {
+	    embed.addField("Old Topic", channels.topic, inline = true)
     }
     embed.addField("New Topic", theMsg.replace(channels, ""), inline = true)
         m.send({embed});
