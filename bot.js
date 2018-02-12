@@ -505,6 +505,13 @@ bot.on("message", function(message) {
                message.channel.sendMessage("You do not have permissions to perform this action.")
            }
            break;
+	case "move":
+        if (!message.guild.voiceConnection) return m.send(":warning: I am not connected to any voice channel")
+        if (!message.member.voiceChannel) return m.send(":warning: You are not connected to any voice channel.")
+        if (message.member.voiceChannel == message.guild.me.voiceChannel) return m.send(":warning: Cannot move to the same voice channel, please enter another one first.")
+            message.member.voiceChannel.join()
+            m.send(`:white_check_mark: Successfully moved to **${message.member.voiceChannel.name}**.`)
+        break;
     }
 });
 
@@ -697,7 +704,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
     return undefined;
 }
 
-function playit(guild, song) {
+function playit(guild, song, msg) {
     const serverQueue = queue.get(guild.id);
 
     console.log(serverQueue.songs);
@@ -731,6 +738,30 @@ function playit(guild, song) {
                 .setTimestamp()
             serverQueue.textChannel.send({embed});
 	
+     var me = msg.guild.me
+     bot.on('voiceStateUpdate', (oldMember, newMember) => {
+        if (me.serverMute) {
+
+            try {
+
+            serverQueue.connection.dispatcher.pause();
+            
+            } catch (error) {
+                return;
+            }
+
+        } else if (!me.serverMute) {
+
+            try {
+           serverQueue.connection.dispatcher.resume();
+            } catch (error) {
+                return;
+            }
+        } else if (!me.serverDeaf || me.serverDeaf) {
+            return;
+        }
+
+        })
 }
 
 
