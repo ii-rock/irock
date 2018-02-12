@@ -215,8 +215,8 @@ bot.on("message", function(message) {
 	    embed.addField("New Topic", theMsg)
     }
     
-    .setFooter(`Requested by ${author.username}#${author.discriminator}`, author.displayAvatarURL)
-    .setTimestamp()
+    embed.setFooter(`Requested by ${author.username}#${author.discriminator}`, author.displayAvatarURL)
+    embed.setTimestamp()
         m.send({embed});
 	if (theMsg === 'empty') message.channel.edit({ topic: "" }, `Changed by ${author.username}#${author.discriminator}`)
 	message.channel.edit({ topic: `${theMsg}` }, `Changed by ${author.username}#${author.discriminator}`)
@@ -239,6 +239,8 @@ bot.on("message", function(message) {
     } else {
 	    embed.addField("New Topic", theMsg.replace(channels, ""))
     }
+    embed.setFooter(`Requested by ${author.username}#${author.discriminator}`, author.displayAvatarURL)
+    embed.setTimestamp()
     
         m.send({embed});
 	if (theMsg.replace(channels, "") === 'empty') message.channel.edit({ topic: "" }, `Changed by ${author.username}#${author.discriminator}`)
