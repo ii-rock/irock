@@ -63,6 +63,7 @@ bot.on('guildMemberAdd', member => {
   
 });
 
+var servers = bot.guilds.size
 
 var eightBall = [
     "It is certain",
@@ -88,7 +89,7 @@ var eightBall = [
 ];
 
 
-states = ["YouTube", "Twitch", "Dota TV", "NOTHING AT ALL", `.help`];
+states = ["YouTube", "Twitch", "Dota TV", "NOTHING AT ALL", `${prefix}help | ${servers} Guilds`];
 
 bot.on("guildCreate", update);
     
