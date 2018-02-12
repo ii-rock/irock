@@ -202,9 +202,9 @@ bot.on("message", function(message) {
     .setAuthor("Topic Changed")
     .setDescription(`${message.channel}'s topic has been changed.`)
     .setColor("#166338")
-    if (!message.channel.topic == null) {
+    if (message.channel.topic) {
 	    embed.addField("Old Topic", message.channel.topic, inline = true)
-    } else {
+    } else if (!message.channel.topic) {
 	    embed.addField("Old Topic", `Empty`, inline = true)
     }
     embed.addField("New Topic", theMsg, inline = true)
@@ -222,9 +222,9 @@ bot.on("message", function(message) {
     .setAuthor("Topic Changed")
     .setDescription(`${channels}'s topic has been changed.`)
     .setColor("#166338")
-    if (!channels.topic == null) {
+    if (channels.topic) {
 	    embed.addField("Old Topic", channels.topic, inline = true)
-    } else {
+    } else if (!channels.topic) {
 	    embed.addField("Old Topic", `Empty`, inline = true)
     }
     embed.addField("New Topic", theMsg.replace(channels, ""), inline = true)
