@@ -218,8 +218,11 @@ bot.on("message", function(message) {
     embed.setFooter(`Requested by ${author.username}#${author.discriminator}`, author.displayAvatarURL)
     embed.setTimestamp()
         m.send({embed});
-	if (theMsg === 'empty') message.channel.edit({ topic: "" }, `Changed by ${author.username}#${author.discriminator}`)
+	if (theMsg === 'empty') {
+		message.channel.edit({ topic: "" }, `Changed by ${author.username}#${author.discriminator}`)
+	} else {
 	message.channel.edit({ topic: `${theMsg}` }, `Changed by ${author.username}#${author.discriminator}`)
+	}
        
     } else {
 	if (!theMsg.replace(channels, "")) return m.send(`:information_source: If you wanted to unset the topic, \nUse: \`${prefix}settopic <channel> empty\``)
@@ -243,8 +246,12 @@ bot.on("message", function(message) {
     embed.setTimestamp()
     
         m.send({embed});
-	if (theMsg.replace(channels, "") === 'empty') message.channel.edit({ topic: "" }, `Changed by ${author.username}#${author.discriminator}`)
+	if (theMsg.replace(channels, "") === 'empty') {
+		message.channel.edit({ topic: "" }, `Changed by ${author.username}#${author.discriminator}`)
+	} else {
+		
     	channels.edit({ topic: `${theMsg.replace(channels, "")}` }, `Changed by ${author.username}#${author.discriminator}`)
+	}
     }
 	 
     	break;
