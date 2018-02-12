@@ -739,29 +739,7 @@ function playit(guild, song) {
                 .setColor("#FCBD06")
                 .setTimestamp()
             serverQueue.textChannel.send({embed});
-	
-     var me = guild.me
-     bot.on('voiceStateUpdate', (oldMember, newMember) => {
-        if (me.serverMute) {
 
-            try {
-
-            serverQueue.connection.dispatcher.pause();
-            
-            } catch (error) {
-                return;
-            }
-
-        } else if (!me.serverMute) {
-
-            try {
-           serverQueue.connection.dispatcher.resume();
-            } catch (error) {
-                return;
-            }
-        } else if (!me.serverDeaf || me.serverDeaf) {
-            return;
-        }
 
         })
 }
