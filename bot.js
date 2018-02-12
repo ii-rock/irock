@@ -176,8 +176,8 @@ bot.on("message", function(message) {
     .setAuthor("URL Shortened", "https://cdn.pixabay.com/photo/2015/10/31/12/56/google-1015752_960_720.png")
     .setDescription(`Your URL has been shortened.`)
     .setColor("#166338")
-    .addField("Original URL", `${args[1]}`, inline = true)
-    .addField("Shortened URL", shortUrl, inline = true)
+    .addField("Original URL", `${args[1]}`)
+    .addField("Shortened URL", shortUrl)
     .setFooter(`Shortened by ${author.username}#${author.discriminator}`, author.displayAvatarURL)
     .setTimestamp()
 
@@ -205,11 +205,11 @@ bot.on("message", function(message) {
     .setDescription(`${message.channel}'s topic has been changed.`)
     .setColor("#166338")
     if (message.channel.topic.length = 0) {
-	    embed.addField("Old Topic", `Empty`, inline = true)
+	    embed.addField("Old Topic", `Empty`)
     } else {
-	    embed.addField("Old Topic", message.channel.topic, inline = true)
+	    embed.addField("Old Topic", message.channel.topic)
     }
-    embed.addField("New Topic", theMsg, inline = true)
+    embed.addField("New Topic", theMsg)
     .setFooter(`Requested by ${author.username}#${author.discriminator}`, author.displayAvatarURL)
     .setTimestamp()
         m.send({embed});
@@ -225,11 +225,11 @@ bot.on("message", function(message) {
     .setDescription(`${channels}'s topic has been changed.`)
     .setColor("#166338")
     if (channels.topic.length = 0) {
-	    embed.addField("Old Topic", `Empty`, inline = true)
+	    embed.addField("Old Topic", `Empty`)
     } else {
-	    embed.addField("Old Topic", channels.topic, inline = true)
+	    embed.addField("Old Topic", channels.topic)
     }
-    embed.addField("New Topic", theMsg.replace(channels, ""), inline = true)
+    embed.addField("New Topic", theMsg.replace(channels, ""))
         m.send({embed});
     	channels.edit({ topic: `${theMsg.replace(channels, "")}` }, `Changed by ${author.username}#${author.discriminator}`)
     }
