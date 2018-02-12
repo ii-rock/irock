@@ -198,26 +198,31 @@ bot.on("message", function(message) {
     	
     	
 	if (!channels) {
-    	if (!theMsg) return m.send(`Topic cannot be empty\nUsage: \`${prefix}settopic <channel> <new topic>\``)
+    	if (!theMsg) return m.send(`:information_source: If you wanted to unset the topic, \nUse: \`${prefix}settopic <channel> empty\``)
 	if (message.channel.topic === theMsg) return m.send("That topic is already set!");
             let embed = new Discord.RichEmbed()
     .setAuthor("Topic Changed")
     .setDescription(`${message.channel}'s topic has been changed.`)
     .setColor("#166338")
     if (message.channel.topic == "") {
-	    embed.addField("Old Topic", "`NOT SET`")
+	    embed.addField("Old Topic", "`EMPTY`")
     } else {
 	    embed.addField("Old Topic", message.channel.topic)
     }
-    embed.addField("New Topic", theMsg)
+    if (theMsg === 'empty') {
+	    embed.addField("New Topic", "`EMPTY`")
+    } else {
+	    embed.addField("New Topic", theMsg)
+    }
+    
     .setFooter(`Requested by ${author.username}#${author.discriminator}`, author.displayAvatarURL)
     .setTimestamp()
         m.send({embed});
-		
+	if (theMsg === 'empty') message.channel.edit({ topic: "" }, `Changed by ${author.username}#${author.discriminator}`)
 	message.channel.edit({ topic: `${theMsg}` }, `Changed by ${author.username}#${author.discriminator}`)
        
     } else {
-	if (!theMsg.replace(channels, "")) return m.send(`Topic cannot be empty\nUsage: \`${prefix}settopic <channel> <new topic>\``)
+	if (!theMsg.replace(channels, "")) return m.send(`:information_source: If you wanted to unset the topic, \nUse: \`${prefix}settopic <channel> empty\``)
     	if (channels.topic === theMsg.replace(channels, "")) return m.send(`:x: The same topic for ${channels} is already set!`);
     	
         let embed = new Discord.RichEmbed()
@@ -225,12 +230,18 @@ bot.on("message", function(message) {
     .setDescription(`${channels}'s topic has been changed.`)
     .setColor("#166338")
     if (channels.topic === "") {
-	    embed.addField("Old Topic", "`NOT SET`")
+	    embed.addField("Old Topic", "`EMPTY`")
     } else {
 	    embed.addField("Old Topic", channels.topic)
     }
-    embed.addField("New Topic", theMsg.replace(channels, ""))
+    if (theMsg === 'empty') {
+	    embed.addField("New Topic", "`EMPTY`")
+    } else {
+	    embed.addField("New Topic", theMsg.replace(channels, ""))
+    }
+    
         m.send({embed});
+	if (theMsg.replace(channels, "") === 'empty') message.channel.edit({ topic: "" }, `Changed by ${author.username}#${author.discriminator}`)
     	channels.edit({ topic: `${theMsg.replace(channels, "")}` }, `Changed by ${author.username}#${author.discriminator}`)
     }
 	 
