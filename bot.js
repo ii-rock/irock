@@ -618,14 +618,13 @@ bot.on('message', async msg => {
                     var videos = await youtube.searchVideos(searchString, 5);
                     let index = 0;
                     var embed = new Discord.RichEmbed()
-                .setAuthor("[Result selection. Type the result number to continue.](http://prntscr.com/ie8029)", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/YouTube_icon.png/640px-YouTube_icon.png")
+                .setTitle("[Result selection. Type the result number to continue.](http://prntscr.com/ie8029)")
                 .setDescription(`${videos.map(video2 => `**${++index}.** ${video2.title}`).join('\n')}`)
-                .setFooter(`Please provide a value to select one of the search results ranging from 1-5, this expires after 15 seconds.`)
+                .setFooter(`Please provide a value to select one of the search results ranging from 1-5, this timeouts in 15 seconds.`)
                 .setColor("#FF0000")
                     var theMessage = await msg.channel.send({embed});
                     // eslint-disable-next-line max-depth
                     try {
-			var resultNumber = ["1","2","3","4","5"];
                         var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 6, {
                             maxMatches: 1,
                             time: 15000,
