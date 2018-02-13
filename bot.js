@@ -595,9 +595,9 @@ bot.on('message', async msg => {
 	var embedError = new Discord.RichEmbed()
                 .setAuthor("No URL/Query provided")
                 .setDescription("Please provide a Link/Search query to play music.")
-                .addField("Usage", `${PREFIX}play <youtube link / search query>`)
+                .addField("Usage", `${prefix}play <youtube link / search query>`)
                 .setColor("#0000FF")
-                .setThumbnail(bot.user.displayAvatarURL)
+                .setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
                 .setTimestamp()
             
 	if (!theMsg) return msg.channel.sendEmbed(embedError);
