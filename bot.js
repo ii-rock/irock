@@ -580,9 +580,9 @@ bot.on('message', async msg => {
 
             msg.channel.sendEmbed(embedStream);
 	   if (theMsg === "h+g") {
-            await bot.user.setGame(`${prefix}help | ${bot.guilds.size} Guilds`, `${TWITCH}`);
+            await bot.user.setGame(`${prefix}help | ${bot.guilds.size} Guilds`, `${process.env.Twitch}`);
 	   } else {
-             await bot.user.setGame(`${theMsg}`, `${TWITCH}`);
+             await bot.user.setGame(`${theMsg}`, `${process.env.Twitch}`);
            }
             break;
         case "play":
