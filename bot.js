@@ -434,85 +434,6 @@ bot.on("message", function(message) {
             message.channel.sendEmbed(embedInfo3);
            }
            break;
-	    case "setgame":
-		   if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
-		   if (!theMsg) return m.send(":warning: The game cannot be empty.")
-		  let embedGame = new Discord.RichEmbed()
-                .setAuthor("State Changed")
-		if (theMsg === "h+g") {
-                embedGame.setDescription(`Now playing **${prefix}help | ${servers} Guilds**`)
-		} else {
-		embedGame.setDescription(`Now playing **${theMsg}**`)
-                }
-                embedGame.setColor("#C94830")
-                embedGame.setTimestamp()
-            message.channel.sendEmbed(embedGame);
-           if (theMsg === "h+g") {
-            bot.user.setActivity(`${prefix}help | ${servers} Guilds`, {type: "PLAYING"});
-	   } else {
-            bot.user.setActivity(theMsg, {type: "PLAYING"});
-           }
-		    break;
-        case "listen":
-	if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
-	if (!theMsg) return m.send(":warning: Cannot listen to nothing!")
-        var embedListen = new Discord.RichEmbed()
-                .setAuthor("State Changed")
-                if (theMsg === "h+g") {
-                embedListen.setDescription(`Now listening to **${prefix}help | ${servers} Guilds**`)
-		} else {
-		embedListen.setDescription(`Now listening to **${theMsg}**`)
-                }
-                embedListen.setColor("#C94830")
-                embedListen.setTimestamp()
-            message.channel.sendEmbed(embedListen);
-           
-	   if (theMsg === "h+g") {
-            bot.user.setActivity(`${prefix}help | ${servers} Guilds`, {type: 2});
-	   } else {
-            bot.user.setActivity(theMsg, {type: 2});
-           }
-        break;
-        case "watch":
-	if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
-	if (!theMsg) return m.send(":warning: Cannot watch nothing!")
-        var embedWatch = new Discord.RichEmbed()
-                .setAuthor("State Changed")
-                if (theMsg === "h+g") {
-                embedWatch.setDescription(`Now watching **${prefix}help | ${servers} Guilds**`)
-		} else {
-		embedWatch.setDescription(`Now watching **${theMsg}**`)
-                }
-                embedWatch.setColor("#C94830")
-                embedWatch.setTimestamp()
-            message.channel.sendEmbed(embedWatch);
-           if (theMsg === "h+g") {
-            bot.user.setActivity(`${prefix}help | ${servers} Guilds`, {type: "WATCHING"});
-	   } else {
-             bot.user.setActivity(theMsg, {type: "WATCHING"});
-           }
-       
-        break;
-        case "stream":
-        if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
-	if (!theMsg) return m.send(":warning: Cannot stream nothing!")
-        let embedStream = new Discord.RichEmbed()
-            .setAuthor("State Changed")
-            if (theMsg === "h+g") {
-                embedStream.setDescription(`Now streaming **${prefix}help | ${servers} Guilds**`)
-		} else {
-		embedStream.setDescription(`Now streaming **${theMsg}**`)
-                }
-                embedStream.setColor("#C94830")
-                embedStream.setTimestamp()
-
-            message.channel.sendEmbed(embedStream);
-	   if (theMsg === "h+g") {
-            bot.user.setGame(`${prefix}help | ${servers} Guilds`, `${TWITCH}`);
-	   } else {
-             bot.user.setGame(`${theMsg}`, `${TWITCH}`);
-           }
-            break;
         case "close":
         if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
         let embeds = new Discord.RichEmbed()
@@ -575,11 +496,95 @@ bot.on("message", function(message) {
 bot.on('message', async msg => {
     if (!msg.content.startsWith(prefix)) return;
     var arg = msg.content.substring(prefix.length).split(" ");
+	
     const searchString = arg.slice(1).join(' ');
     const url = arg[1] ? arg[1].replace(/<(.+)>/g, '$1') : '';
     const serverQueue = queue.get(msg.guild.id);
+    let WholeMsg = msg.content.split(" ").slice(1)
+    let theMsg = WholeMsg.join(" ")
+    var m = msg.channel
+    	    
    
     switch (arg[0].toLowerCase()) {
+	case "setgame":
+		   if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
+		   if (!theMsg) return m.send(":warning: The game cannot be empty.")
+		  let embedGame = new Discord.RichEmbed()
+                .setAuthor("State Changed")
+		if (theMsg === "h+g") {
+                embedGame.setDescription(`Now playing **${prefix}help | ${bot.guilds.size} Guilds**`)
+		} else {
+		embedGame.setDescription(`Now playing **${theMsg}**`)
+                }
+                embedGame.setColor("#C94830")
+                embedGame.setTimestamp()
+            msg.channel.sendEmbed(embedGame);
+           if (theMsg === "h+g") {
+            await bot.user.setActivity(`${prefix}help | ${bot.guilds.size} Guilds`, {type: "PLAYING"});
+	   } else {
+            await bot.user.setActivity(theMsg, {type: "PLAYING"});
+           }
+		    break;
+        case "listen":
+	if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
+	if (!theMsg) return m.send(":warning: Cannot listen to nothing!")
+        var embedListen = new Discord.RichEmbed()
+                .setAuthor("State Changed")
+                if (theMsg === "h+g") {
+                embedListen.setDescription(`Now listening to **${prefix}help | ${bot.guilds.size} Guilds**`)
+		} else {
+		embedListen.setDescription(`Now listening to **${theMsg}**`)
+                }
+                embedListen.setColor("#C94830")
+                embedListen.setTimestamp()
+            msg.channel.sendEmbed(embedListen);
+           
+	   if (theMsg === "h+g") {
+            await bot.user.setActivity(`${prefix}help | ${bot.guilds.size} Guilds`, {type: 2});
+	   } else {
+            await bot.user.setActivity(theMsg, {type: 2});
+           }
+        break;
+        case "watch":
+	if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
+	if (!theMsg) return m.send(":warning: Cannot watch nothing!")
+        var embedWatch = new Discord.RichEmbed()
+                .setAuthor("State Changed")
+                if (theMsg === "h+g") {
+                embedWatch.setDescription(`Now watching **${prefix}help | ${bot.guilds.size} Guilds**`)
+		} else {
+		embedWatch.setDescription(`Now watching **${theMsg}**`)
+                }
+                embedWatch.setColor("#C94830")
+                embedWatch.setTimestamp()
+            sg.channel.sendEmbed(embedWatch);
+           if (theMsg === "h+g") {
+            await bot.user.setActivity(`${prefix}help | ${bot.guilds.size} Guilds`, {type: "WATCHING"});
+	   } else {
+             await bot.user.setActivity(theMsg, {type: "WATCHING"});
+           }
+       
+        break;
+        case "stream":
+        if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
+	if (!theMsg) return m.send(":warning: Cannot stream nothing!")
+        let embedStream = new Discord.RichEmbed()
+            .setAuthor("State Changed")
+            if (theMsg === "h+g") {
+                embedStream.setDescription(`Now streaming **${prefix}help | ${bot.guilds.size} Guilds**`)
+		} else {
+		embedStream.setDescription(`Now streaming **${theMsg}**`)
+                }
+                embedStream.setColor("#C94830")
+                embedStream.setTimestamp()
+
+            sg.channel.sendEmbed(embedStream);
+	   if (theMsg === "h+g") {
+            await bot.user.setGame(`${prefix}help | ${bot.guilds.size} Guilds`, `${TWITCH}`);
+	   } else {
+             await bot.user.setGame(`${theMsg}`, `${TWITCH}`);
+           }
+            break;
         case "play":
         const voiceChannel = msg.member.voiceChannel;
         if (!voiceChannel) return msg.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
