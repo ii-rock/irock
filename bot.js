@@ -644,7 +644,7 @@ bot.on('message', async msg => {
                         console.error(err);
                         theMessage.delete();
 			    var embedd = new Discord.RichEmbed()
-                .setAuthor("Request Canceled", "https://vignette.wikia.nocookie.net/beauxbatons-academy-of-magic-roleplay/images/c/cb/Warning.png/revision/latest?cb=20130403005922")
+                .setAuthor("Request Canceled", "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678069-sign-error-256.png")
                 .setDescription(`No or invalid value were recieved, cancelling video request.`)
                 .setFooter(`This was requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
                 .setColor("#FF0000")
@@ -701,7 +701,7 @@ bot.on('message', async msg => {
         case "np":
         if (!serverQueue) return msg.channel.send('There is nothing playing.');
         var embed = new Discord.RichEmbed()
-                .setAuthor("Now Playing", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/YouTube_icon.png/640px-YouTube_icon.png")
+                .setAuthor("Now Playing", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
                 .setDescription(`I am currently playing **${serverQueue.songs[0].title}**`)
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
 	        .setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
@@ -711,11 +711,12 @@ bot.on('message', async msg => {
         break;
         case "queue":
         if (!serverQueue) return msg.channel.send('There is nothing playing.');
+		    let list = 0;
         var embed = new Discord.RichEmbed()
-                .setAuthor("Song Queue", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/YouTube_icon.png/640px-YouTube_icon.png")
+                .setAuthor("Song Queue", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
                 .setDescription(`The current songs queue`)
                 .addField("Now Playing", `**${serverQueue.songs[0].title}**`)
-                .addField("Queue", `${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}`)
+                .addField("Queue", `${serverQueue.songs.map(song => `**${++list} -** ${song.title}`).join('\n')}`)
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
 	        .setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
                 .setTimestamp()
