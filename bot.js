@@ -40,7 +40,7 @@ const update = () => {
 
 const prefix = "."; 
 const admins = config.admins;
-const queue = Map();
+const queue = new Map();
 var upSecs = 0;
 var upMins = 0;
 var upHours = 0;
