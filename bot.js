@@ -507,7 +507,7 @@ bot.on("message", function(message) {
 
             message.channel.sendEmbed(embeed);
 		if (theMsg === "h+g") {
-            bot.user.setGame(`${prefix}help | ${servers} Guilds`, ${TWITCH);
+            bot.user.setGame(`${prefix}help | ${servers} Guilds`, `${TWITCH}`);
 	   } else {
              bot.user.setGame(`${theMsg}`, `${TWITCH}`);
            }
