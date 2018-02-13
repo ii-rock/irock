@@ -306,7 +306,7 @@ bot.on("message", function(message) {
      message.channel.sendEmbed(serverembed);
      break;
         case "invite":
-           var embeed = new Discord.RichEmbed()
+           let embeed = new Discord.RichEmbed()
                 .setAuthor("My Invitation Link")
                 .setDescription(`[Click Here](${process.env.invite})`)
                 .setColor("#C94830")
@@ -315,7 +315,7 @@ bot.on("message", function(message) {
             message.channel.sendEmbed(embeed);
             break;
         case "help":
-           var embeed = new Discord.RichEmbed()
+           let embeed = new Discord.RichEmbed()
                 .setAuthor("Commands")
                 .setDescription(`${prefix}userinfo - shows a few information about the mentioned user.\n${prefix}8ball - ask a question and the bot will reply with a random answer.\n${prefix}serverinfo - shows a few information about the current guild.\n${prefix}say - says your message.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic <mention a channel> <new topic> - changes the current or mentioned channel's topic.`)
                 .addField("Music", `${prefix}play <youtube link/search query> - plays a song from youtube in your current voice channel.\n${prefix}stop - stops the player and leaves your current channel.\n${prefix}move - moves me to your current voice channel.\n${prefix}skip - skips your current song and plays the next one in the queue.\n${prefix}pause - pause current song, if any.\n${prefix}resume - resume current song, if any.\n${prefix}volume \`[1-100]\` - changes the volume of the player.\n${prefix}np - shows the current song, if any.\n${prefix}queue - shows the list of the queued songs, if any.`)
@@ -346,7 +346,7 @@ bot.on("message", function(message) {
             }
      break;
         case "reportbug":
-            var embeed = new Discord.RichEmbed()
+            let embeed = new Discord.RichEmbed()
                 .setAuthor("Bug Reported")
                 .setDescription("Your report has been sent to the owner.")
                 .addField("Your Report Message", `${theMsg}`)
@@ -437,16 +437,16 @@ bot.on("message", function(message) {
 	    case "setgame":
 		   if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
 		   if (!theMsg) return m.send(":warning: The game cannot be empty.")
-		  var embeed = new Discord.RichEmbed()
+		  let embedGame = new Discord.RichEmbed()
                 .setAuthor("State Changed")
 		if (theMsg === "h+g") {
-                embeed.setDescription(`Now playing **${prefix}help | ${servers} Guilds**`)
+                embedGame.setDescription(`Now playing **${prefix}help | ${servers} Guilds**`)
 		} else {
-		embeed.setDescription(`Now playing **${theMsg}**`)
+		embedGame.setDescription(`Now playing **${theMsg}**`)
                 }
-                embeed.setColor("#C94830")
-                embeed.setTimestamp()
-            message.channel.sendEmbed(embeed);
+                embedGame.setColor("#C94830")
+                embedGame.setTimestamp()
+            message.channel.sendEmbed(embedGame);
            if (theMsg === "h+g") {
             bot.user.setActivity(`${prefix}help | ${servers} Guilds`, {type: "PLAYING"});
 	   } else {
@@ -455,16 +455,16 @@ bot.on("message", function(message) {
         case "listen":
 	if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
 	if (!theMsg) return m.send(":warning: Cannot listen to nothing!")
-        var embeed = new Discord.RichEmbed()
+        var embedListen = new Discord.RichEmbed()
                 .setAuthor("State Changed")
                 if (theMsg === "h+g") {
-                embeed.setDescription(`Now listening to **${prefix}help | ${servers} Guilds**`)
+                embedListen.setDescription(`Now listening to **${prefix}help | ${servers} Guilds**`)
 		} else {
-		embeed.setDescription(`Now listening to **${theMsg}**`)
+		embedListen.setDescription(`Now listening to **${theMsg}**`)
                 }
-                embeed.setColor("#C94830")
-                embeed.setTimestamp()
-            message.channel.sendEmbed(embeed);
+                embedListen.setColor("#C94830")
+                embedListen.setTimestamp()
+            message.channel.sendEmbed(embedListen);
            
 	   if (theMsg === "h+g") {
             bot.user.setActivity(`${prefix}help | ${servers} Guilds`, {type: 2});
@@ -475,16 +475,16 @@ bot.on("message", function(message) {
         case "watch":
 	if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
 	if (!theMsg) return m.send(":warning: Cannot watch nothing!")
-        var embeed = new Discord.RichEmbed()
+        var embedWatch = new Discord.RichEmbed()
                 .setAuthor("State Changed")
                 if (theMsg === "h+g") {
-                embeed.setDescription(`Now watching **${prefix}help | ${servers} Guilds**`)
+                embedWatch.setDescription(`Now watching **${prefix}help | ${servers} Guilds**`)
 		} else {
-		embeed.setDescription(`Now watching **${theMsg}**`)
+		embedWatch.setDescription(`Now watching **${theMsg}**`)
                 }
-                embeed.setColor("#C94830")
-                embeed.setTimestamp()
-            message.channel.sendEmbed(embeed);
+                embedWatch.setColor("#C94830")
+                embedWatch.setTimestamp()
+            message.channel.sendEmbed(embedWatch);
            if (theMsg === "h+g") {
             bot.user.setActivity(`${prefix}help | ${servers} Guilds`, {type: "WATCHING"});
 	   } else {
@@ -495,17 +495,17 @@ bot.on("message", function(message) {
         case "stream":
         if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
 	if (!theMsg) return m.send(":warning: Cannot stream nothing!")
-        let embeed = new Discord.RichEmbed()
+        let embedStream = new Discord.RichEmbed()
             .setAuthor("State Changed")
             if (theMsg === "h+g") {
-                embeed.setDescription(`Now streaming **${prefix}help | ${servers} Guilds**`)
+                embedStream.setDescription(`Now streaming **${prefix}help | ${servers} Guilds**`)
 		} else {
-		embeed.setDescription(`Now streaming **${theMsg}**`)
+		embedStream.setDescription(`Now streaming **${theMsg}**`)
                 }
-                embeed.setColor("#C94830")
-                embeed.setTimestamp()
+                embedStream.setColor("#C94830")
+                embedStream.setTimestamp()
 
-            message.channel.sendEmbed(embeed);
+            message.channel.sendEmbed(embedStream);
 		if (theMsg === "h+g") {
             bot.user.setGame(`${prefix}help | ${servers} Guilds`, `${TWITCH}`);
 	   } else {
