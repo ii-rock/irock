@@ -495,7 +495,7 @@ bot.on("message", function(message) {
         case "stream":
         if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
 	if (!theMsg) return m.send(":warning: Cannot stream nothing!")
-        let embed = new Discord.RichEmbed()
+        let embeed = new Discord.RichEmbed()
             .setAuthor("State Changed")
             if (theMsg === "h+g") {
                 embeed.setDescription(`Now streaming **${prefix}help | ${servers} Guilds**`)
@@ -505,7 +505,7 @@ bot.on("message", function(message) {
                 embeed.setColor("#C94830")
                 embeed.setTimestamp()
 
-            message.channel.sendEmbed(embed);
+            message.channel.sendEmbed(embeed);
 		if (theMsg === "h+g") {
             bot.user.setGame(`${prefix}help | ${servers} Guilds`, ${TWITCH);
 	   } else {
