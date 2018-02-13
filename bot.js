@@ -507,7 +507,7 @@ bot.on('message', async msg => {
    
     switch (arg[0].toLowerCase()) {
 	case "setgame":
-		   if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
+		   if (!config.admins.includes(msg.author.id)) return m.send("You do not have permissions to perform this action.")
 		   if (!theMsg) return m.send(":warning: The game cannot be empty.")
 		  let embedGame = new Discord.RichEmbed()
                 .setAuthor("State Changed")
@@ -526,7 +526,7 @@ bot.on('message', async msg => {
            }
 		    break;
         case "listen":
-	if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
+	if (!config.admins.includes(msg.author.id)) return m.send("You do not have permissions to perform this action.")
 	if (!theMsg) return m.send(":warning: Cannot listen to nothing!")
         var embedListen = new Discord.RichEmbed()
                 .setAuthor("State Changed")
@@ -546,7 +546,7 @@ bot.on('message', async msg => {
            }
         break;
         case "watch":
-	if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
+	if (!config.admins.includes(msg.author.id)) return m.send("You do not have permissions to perform this action.")
 	if (!theMsg) return m.send(":warning: Cannot watch nothing!")
         var embedWatch = new Discord.RichEmbed()
                 .setAuthor("State Changed")
@@ -557,7 +557,7 @@ bot.on('message', async msg => {
                 }
                 embedWatch.setColor("#C94830")
                 embedWatch.setTimestamp()
-            sg.channel.sendEmbed(embedWatch);
+            msg.channel.sendEmbed(embedWatch);
            if (theMsg === "h+g") {
             await bot.user.setActivity(`${prefix}help | ${bot.guilds.size} Guilds`, {type: "WATCHING"});
 	   } else {
@@ -566,7 +566,7 @@ bot.on('message', async msg => {
        
         break;
         case "stream":
-        if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
+        if (!config.admins.includes(msg.author.id)) return m.send("You do not have permissions to perform this action.")
 	if (!theMsg) return m.send(":warning: Cannot stream nothing!")
         let embedStream = new Discord.RichEmbed()
             .setAuthor("State Changed")
@@ -578,7 +578,7 @@ bot.on('message', async msg => {
                 embedStream.setColor("#C94830")
                 embedStream.setTimestamp()
 
-            sg.channel.sendEmbed(embedStream);
+            msg.channel.sendEmbed(embedStream);
 	   if (theMsg === "h+g") {
             await bot.user.setGame(`${prefix}help | ${bot.guilds.size} Guilds`, `${TWITCH}`);
 	   } else {
