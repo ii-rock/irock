@@ -592,6 +592,15 @@ bot.on('message', async msg => {
            }
             break;
         case "play":
+	var embedError = new Discord.RichEmbed()
+                .setAuthor("No URL/Query provided")
+                .setDescription("Please provide a Link/Search query to play music.")
+                .addField("Usage", `${PREFIX}play <youtube link / search query>`)
+                .setColor("#0000FF")
+                .setThumbnail(bot.user.displayAvatarURL)
+                .setTimestamp()
+            
+	if (!theMsg) return msg.channel.sendEmbed(embedError);
         const voiceChannel = msg.member.voiceChannel;
         if (!voiceChannel) return msg.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
         const permissions = voiceChannel.permissionsFor(msg.client.user);
@@ -618,7 +627,7 @@ bot.on('message', async msg => {
                     var videos = await youtube.searchVideos(searchString, 6);
                     let index = 0;
                     var embed = new Discord.RichEmbed()
-                .setAuthor("Result selection. Type the result number to continue.", "https://trafficbuilders.us/wp-content/uploads/youtube-01.png")
+                .setAuthor("Result selection. Type the result number to continue.", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
 		.setDescription(`${videos.map(video2 => `**${++index}.** ${video2.title}`).join('\n')}`)
 		.setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
                 .setFooter(`Please provide a value to select one of the search results ranging from 1-6, this timeouts in 20 seconds.`)
@@ -635,7 +644,7 @@ bot.on('message', async msg => {
                         console.error(err);
                         theMessage.delete();
 			    var embedd = new Discord.RichEmbed()
-                .setAuthor("Request Canceled", "http://icons.iconarchive.com/icons/paomedia/small-n-flat/128/sign-warning-icon.png")
+                .setAuthor("Request Canceled", "https://vignette.wikia.nocookie.net/beauxbatons-academy-of-magic-roleplay/images/c/cb/Warning.png/revision/latest?cb=20130403005922")
                 .setDescription(`No or invalid value were recieved, cancelling video request.`)
                 .setFooter(`This was requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
                 .setColor("#FF0000")
@@ -683,6 +692,7 @@ bot.on('message', async msg => {
                 .addField("Old Volume", `**${serverQueue.volume}%**`, inline = true)
                 .addField("New Volume", `**${arg[1]}%**`, inline = true)
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
+	        .setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
                 .setTimestamp()
                 .setColor("#FF0000")
                 msg.channel.send({embed});
@@ -694,6 +704,7 @@ bot.on('message', async msg => {
                 .setAuthor("Now Playing", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/YouTube_icon.png/640px-YouTube_icon.png")
                 .setDescription(`I am currently playing **${serverQueue.songs[0].title}**`)
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
+	        .setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
                 .setTimestamp()
                 .setColor("#FF0000")
                 msg.channel.send({embed});
@@ -706,6 +717,7 @@ bot.on('message', async msg => {
                 .addField("Now Playing", `**${serverQueue.songs[0].title}**`)
                 .addField("Queue", `${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}`)
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
+	        .setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
                 .setTimestamp()
                 .setColor("#FF0000")
                 msg.channel.send({embed});
@@ -797,10 +809,10 @@ function playit(guild, song) {
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 100);
 
     var embed = new Discord.RichEmbed()
-                .setAuthor("Now Playing", bot.user.displayAvatarURL)
+                .setAuthor("Now Playing", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
                 .setDescription(`The player is now playing.`)
                 .addField("Video Name", `${song.title}`)
-                .addField("Duration", `(${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds})`)
+                .addField("Duration", `\`${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}\``)
                 .addField("Uploader", `${song.channel.title}`)
                 .addField("Voice Channel", `${serverQueue.voiceChannel.name}`)
                 .setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
