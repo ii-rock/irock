@@ -315,7 +315,7 @@ bot.on("message", function(message) {
             message.channel.sendEmbed(embeed);
             break;
         case "help":
-           let embeed = new Discord.RichEmbed()
+           var embedHelp = new Discord.RichEmbed()
                 .setAuthor("Commands")
                 .setDescription(`${prefix}userinfo - shows a few information about the mentioned user.\n${prefix}8ball - ask a question and the bot will reply with a random answer.\n${prefix}serverinfo - shows a few information about the current guild.\n${prefix}say - says your message.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic <mention a channel> <new topic> - changes the current or mentioned channel's topic.`)
                 .addField("Music", `${prefix}play <youtube link/search query> - plays a song from youtube in your current voice channel.\n${prefix}stop - stops the player and leaves your current channel.\n${prefix}move - moves me to your current voice channel.\n${prefix}skip - skips your current song and plays the next one in the queue.\n${prefix}pause - pause current song, if any.\n${prefix}resume - resume current song, if any.\n${prefix}volume \`[1-100]\` - changes the volume of the player.\n${prefix}np - shows the current song, if any.\n${prefix}queue - shows the list of the queued songs, if any.`)
@@ -325,7 +325,7 @@ bot.on("message", function(message) {
                 .setColor("#3C51C3")
                 .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
                 .setTimestamp()
-            message.channel.sendEmbed(embeed);
+            message.channel.sendEmbed(embedHelp);
 
             break;
         case "serverinfo":
@@ -346,13 +346,13 @@ bot.on("message", function(message) {
             }
      break;
         case "reportbug":
-            let embeed = new Discord.RichEmbed()
+            var embedRep = new Discord.RichEmbed()
                 .setAuthor("Bug Reported")
                 .setDescription("Your report has been sent to the owner.")
                 .addField("Your Report Message", `${theMsg}`)
                 .setColor("#C94830")
                 .setTimestamp()
-            message.channel.send(embeed);
+            message.channel.send(embedRep);
             var embeed2 = new Discord.RichEmbed()
                 .setAuthor("Bug Report")
                 .setDescription("A user has reported a bug, here is the information.")
@@ -452,6 +452,7 @@ bot.on("message", function(message) {
 	   } else {
             bot.user.setActivity(theMsg, {type: "PLAYING"});
            }
+		    break;
         case "listen":
 	if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
 	if (!theMsg) return m.send(":warning: Cannot listen to nothing!")
@@ -506,14 +507,14 @@ bot.on("message", function(message) {
                 embedStream.setTimestamp()
 
             message.channel.sendEmbed(embedStream);
-		if (theMsg === "h+g") {
+	   if (theMsg === "h+g") {
             bot.user.setGame(`${prefix}help | ${servers} Guilds`, `${TWITCH}`);
 	   } else {
              bot.user.setGame(`${theMsg}`, `${TWITCH}`);
            }
             break;
         case "close":
-        if (config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
+        if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
         let embeds = new Discord.RichEmbed()
             .setAuthor("Logging Out")
             .setDescription(`Logged out of servers.`)
