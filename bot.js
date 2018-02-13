@@ -19,9 +19,13 @@ var bot = new Client({
     disableEveryone: true
 });
 
+var TWITCH = "https://www.twitch.tv/drugowns";
 const { stringify } = require('querystring');
 const { request } = require('https');
 
+const streamGuilds = () => {
+await bot.user.setGame(`${prefix}help | ${bot.guilds.size} Guilds`, `${TWITCH}`);
+}
 const update = () => {
   const data = stringify({ server_count: bot.guilds.size });
   const req = request({
@@ -88,6 +92,9 @@ var eightBall = [
     "Very doubtful"
 ];
 
+bot.on("guildCreate", streamGuilds);
+bot.on('guildDelete', streamGuilds);
+
 bot.on("guildCreate", update);
     
 bot.on('ready', update);
@@ -116,8 +123,6 @@ bot.on("ready", function() {
 
         upSecs = upSecs + 1
         if (upSecs >= 60) {
-            var userdisplay = states[Math.floor(Math.random() * states.length)];
-            bot.user.setGame(userdisplay, `${process.env.Twitch}`)
             upSecs = 0
             upMins = upMins + 1
         }
@@ -476,7 +481,7 @@ bot.on("message", function(message) {
             else message.channel.sendMessage("Can't read that");
             break;
         case "restart":
-        if (config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
+        if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
            message.channel.sendMessage("Alright, i will restart asap...");
             bot.destroy()
             bot.login(process.env.TOKEN);
@@ -580,9 +585,9 @@ bot.on('message', async msg => {
 
             msg.channel.sendEmbed(embedStream);
 	   if (theMsg === "h+g") {
-            await bot.user.setGame(`${prefix}help | ${bot.guilds.size} Guilds`, `${process.env.Twitch}`);
+            await bot.user.setGame(`${prefix}help | ${bot.guilds.size} Guilds`, `${TWITCH}`);
 	   } else {
-             await bot.user.setGame(`${theMsg}`, `${process.env.Twitch}`);
+             await bot.user.setGame(`${theMsg}`, `${TWITCH}`);
            }
             break;
         case "play":
