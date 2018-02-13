@@ -23,9 +23,6 @@ var TWITCH = "https://www.twitch.tv/drugowns";
 const { stringify } = require('querystring');
 const { request } = require('https');
 
-const streamGuilds = () => {
-await bot.user.setGame(`${prefix}help | ${bot.guilds.size} Guilds`, `${TWITCH}`);
-}
 const update = () => {
   const data = stringify({ server_count: bot.guilds.size });
   const req = request({
@@ -92,8 +89,12 @@ var eightBall = [
     "Very doubtful"
 ];
 
-bot.on("guildCreate", streamGuilds);
-bot.on('guildDelete', streamGuilds);
+bot.on("guildCreate", async guild => {
+ await bot.user.setGame(`${prefix}help | ${bot.guilds.size} Guilds`, `${TWITCH}`);
+});
+bot.on("guildDelete", async guild => {
+ await bot.user.setGame(`${prefix}help | ${bot.guilds.size} Guilds`, `${TWITCH}`);
+});
 
 bot.on("guildCreate", update);
     
