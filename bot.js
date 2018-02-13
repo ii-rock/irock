@@ -618,17 +618,17 @@ bot.on('message', async msg => {
                     var videos = await youtube.searchVideos(searchString, 6);
                     let index = 0;
                     var embed = new Discord.RichEmbed()
-                .setAuthor("Result selection. Type the result number to continue.", "https://imgur.com/a/jN4bv")
+                .setAuthor("Result selection. Type the result number to continue.", "https://trafficbuilders.us/wp-content/uploads/youtube-01.png")
 		.setDescription(`${videos.map(video2 => `**${++index}.** ${video2.title}`).join('\n')}`)
 		.setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
-                .setFooter(`Please provide a value to select one of the search results ranging from 1-6, this timeouts in 15 seconds.`)
+                .setFooter(`Please provide a value to select one of the search results ranging from 1-6, this timeouts in 20 seconds.`)
                 .setColor("#FF0000")
                     var theMessage = await msg.channel.send({embed});
                     // eslint-disable-next-line max-depth
                     try {
                         var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 7 , {
                             maxMatches: 1,
-                            time: 15000,
+                            time: 20000,
                             errors: ['time']
                         });
                     } catch (err) {
@@ -803,6 +803,7 @@ function playit(guild, song) {
                 .addField("Duration", `(${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds})`)
                 .addField("Uploader", `${song.channel.title}`)
                 .addField("Voice Channel", `${serverQueue.voiceChannel.name}`)
+                .setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
                 .setFooter(`Queued by ${serverQueue.authorName}#${serverQueue.authorDisc}`, serverQueue.authorAvatar)
                 .setColor("#FCBD06")
                 .setTimestamp()
