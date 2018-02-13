@@ -306,7 +306,7 @@ bot.on("message", function(message) {
      message.channel.sendEmbed(serverembed);
      break;
         case "invite":
-           let embeed = new Discord.RichEmbed()
+		    var embeed = new Discord.RichEmbed()
                 .setAuthor("My Invitation Link")
                 .setDescription(`[Click Here](${process.env.invite})`)
                 .setColor("#C94830")
@@ -365,7 +365,7 @@ bot.on("message", function(message) {
             break;
          case "about":
             var owner = bot.users.get(`295233686893232129`).username + "#" + bot.users.get(`295233686893232129`).discriminator
-            var embeed = new Discord.RichEmbed()
+            var embedAbout = new Discord.RichEmbed()
                 .setAuthor("About Me", bot.user.displayAvatarURL)
                 .setDescription("A few information about me and my owner.")
                 .addField("My Owner", `${owner}`, inline = true)
@@ -373,7 +373,7 @@ bot.on("message", function(message) {
                 .setColor("#C94830")
                 .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
                 .setTimestamp()
-            message.channel.sendEmbed(embeed);
+            message.channel.sendEmbed(embedAbout);
                
             break;
 
@@ -382,13 +382,13 @@ bot.on("message", function(message) {
             m.sendMessage("The avatar cannot be empty!");
           } else {
             bot.user.setAvatar(args[1]);
-            var embeed = new Discord.RichEmbed()
+            var embedAv = new Discord.RichEmbed()
                 .setAuthor("Avatar Changed")
                 .setDescription(`My profile picture has been successfully changed.`)
                 .setImage(args[1])
                 .setColor("#C94830")
                 .setTimestamp()
-            message.channel.sendEmbed(embeed);
+            message.channel.sendEmbed(embedAv);
            }
         break;
         case "setname":
@@ -401,7 +401,7 @@ bot.on("message", function(message) {
            break;
         case "userinfo":
            if (!message.mentions.users.first()) {
-            var embeed = new Discord.RichEmbed()
+            var embedInfo = new Discord.RichEmbed()
                 .setAuthor("Your Information")
                 .setDescription(`Here is your account information`)
                 .addField("User ID", message.author.id)
@@ -409,11 +409,11 @@ bot.on("message", function(message) {
                 .setThumbnail(message.author.avatarURL)
                 .setColor("#C94830")
                 .setTimestamp()
-            message.channel.sendEmbed(embeed);
+            message.channel.sendEmbed(embedInfo);
            } else if (!message.guild) {
                m.reply("You can't use this command in private messages.")
            } else if (mentioned === message.author) {
-            var embeed = new Discord.RichEmbed()
+            var embedInfo2 = new Discord.RichEmbed()
                 .setAuthor("Your Information")
                 .setDescription(`Here is your account information`)
                 .addField("User ID", message.author.id)
@@ -421,9 +421,9 @@ bot.on("message", function(message) {
                 .setColor("#C94830")
                 .setThumbnail(message.author.avatarURL)
                 .setTimestamp()
-            message.channel.sendEmbed(embeed);
+            message.channel.sendEmbed(embedInfo2);
         } else {
-            var embeed = new Discord.RichEmbed()
+            var embedInfo3 = new Discord.RichEmbed()
                 .setAuthor(mentioned.username + "#" + mentioned.discriminator + "'s Information")
                 .setDescription(`Here is ${mentioned.username}#${mentioned.discriminator}'s information`)
                 .addField("User ID", message.mentions.users.first().id)
@@ -431,7 +431,7 @@ bot.on("message", function(message) {
                 .setColor("#C94830")
                 .setThumbnail(mentioned.avatarURL)
                 .setTimestamp()
-            message.channel.sendEmbed(embeed);
+            message.channel.sendEmbed(embedInfo3);
            }
            break;
 	    case "setgame":
