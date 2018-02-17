@@ -595,13 +595,6 @@ bot.on('message', async msg => {
              await bot.user.setGame(`${theMsg}`, `${TWITCH}`);
            }
             break;
-	    case "join":
-		    try {
-			    await msg.member.voiceChannel.join()
-		    } catch (error) {
-			    msg.channel.send(error)   
-			    }
-		    break;
         case "play":
 	var embedError = new Discord.RichEmbed()
                 .setAuthor("No URL/Query provided")
