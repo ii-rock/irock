@@ -598,7 +598,7 @@ bot.on('message', async msg => {
 	    case "join":
 		    try {
 			    await msg.member.voiceChannel.join()
-		catch (error) {
+		    } catch (error) {
 			    msg.channel.send(error)   
 			    }
 		    break;
