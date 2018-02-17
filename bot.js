@@ -628,20 +628,20 @@ bot.on('message', async msg => {
                 var video = await youtube.getVideo(url);
             } catch (error) {
                 try {
-                    var videos = await youtube.searchVideos(searchString, 6);
+                    var videos = await youtube.searchVideos(searchString, 5);
                     let index = 0;
                     var embed = new Discord.RichEmbed()
                 .setAuthor("Result selection. Type the result number to continue.", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
 		.setDescription(`${videos.map(video2 => `**${++index}.** ${video2.title}`).join('\n')}`)
 		.setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
-                .setFooter(`Please provide a value to select one of the search results ranging from 1-6, this timeouts in 20 seconds.`)
+                .setFooter(`Please provide a value to select one of the search results ranging from 1-5, this timeouts in 15 seconds.`)
                 .setColor("#FF0000")
                     var theMessage = await msg.channel.send({embed});
                     // eslint-disable-next-line max-depth
                     try {
                         var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 7 , {
                             maxMatches: 1,
-                            time: 20000,
+                            time: 15000,
                             errors: ['time']
                         });
                     } catch (err) {
