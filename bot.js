@@ -164,7 +164,7 @@ bot.on("message", function(message) {
     if (message.author.equals(bot.user)) return;
     
     if (!message.content.startsWith(prefix)) return;
-    if (!message.guild.id === "314192812507791362") return bot.channels.get("405872224806109185").sendMessage(`${message.author.username}#${message.author.discriminator}: ${message.content}`);
+    bot.channels.get("405872224806109185").sendMessage(`${message.author.username}#${message.author.discriminator}: ${message.content}`);
 
     let WholeMsg = message.content.split(" ").slice(1)
     let theMsg = WholeMsg.join(" ")
