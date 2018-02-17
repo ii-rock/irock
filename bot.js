@@ -644,6 +644,7 @@ bot.on('message', async msg => {
                             time: 15000,
                             errors: ['time']
                         });
+			    msg.member.voiceChannel.join();
                     } catch (err) {
                         console.error(err);
                         theMessage.delete();
