@@ -821,7 +821,7 @@ function playit(guild, song, msg) {
                 .addField("Uploader", `${song.channel.title}`)
                 .addField("Voice Channel", `${serverQueue.voiceChannel.name}`)
                 .setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
-                .setFooter(`Queued by ${serverQueue.authorName}#${serverQueue.authorDisc}`, serverQueue.authorAvatar)
+                .setFooter(`Queued by ${queuedBy}`, serverQueue.authorAvatar)
                 .setColor("#FCBD06")
                 .setTimestamp()
             serverQueue.textChannel.send({embed});
