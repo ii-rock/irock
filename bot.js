@@ -42,6 +42,7 @@ const update = () => {
 const prefix = "."; 
 const admins = config.admins;
 const queue = new Map();
+const queuedBy = {}
 var upSecs = 0;
 var upMins = 0;
 var upHours = 0;
@@ -745,6 +746,7 @@ bot.on('message', async msg => {
 
 async function handleVideo(video, msg, voiceChannel, playlist = false) {
     const serverQueue = queue.get(msg.guild.id);
+    
     console.log(video);
     const song = {
         id: video.id,
@@ -788,9 +790,10 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
     return undefined;
 }
 
-function playit(guild, song) {
+function playit(guild, song, msg) {
     const serverQueue = queue.get(guild.id);
-
+    const queuedBy = msg.author.username + "#" + msg.author.discriminator
+    
     console.log(serverQueue.songs);
    
     if (!song) {
