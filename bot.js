@@ -42,7 +42,7 @@ const update = () => {
 const prefix = "."; 
 const admins = config.admins;
 const queue = new Map();
-const queuedBy = {}
+
 var upSecs = 0;
 var upMins = 0;
 var upHours = 0;
@@ -792,7 +792,6 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 
 function playit(guild, song, msg) {
     const serverQueue = queue.get(guild.id);
-    const queuedBy = msg.author.username + "#" + msg.author.discriminator
     
     console.log(serverQueue.songs);
    
@@ -821,9 +820,8 @@ function playit(guild, song, msg) {
                 .addField("Uploader", `${song.channel.title}`)
                 .addField("Voice Channel", `${serverQueue.voiceChannel.name}`)
                 .setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
-                .setFooter(`Queued by ${queuedBy}`, serverQueue.authorAvatar)
                 .setColor("#FCBD06")
-                .setTimestamp()
+
             serverQueue.textChannel.send({embed});
 }
 
