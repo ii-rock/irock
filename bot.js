@@ -536,19 +536,19 @@ bot.on('message', async msg => {
             .setTimestamp()
             .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
 		    if (theMsg === 'online') {
-			    bot.user.setStatus(online)
+			    await bot.user.setStatus('online')
 			    embedNewState.setDescription("My status has been set to `Online`")
 			    m.sendEmbed(embedNewState)
 		    } else if (theMsg === 'busy') {
-			     bot.user.setStatus(dnd)
+			     await bot.user.setStatus('dnd')
 			    embedNewState.setDescription("My status has been set to `Do Not Disturb`")
 			    m.sendEmbed(embedNewState)
 		    } else if (theMsg === 'idle') {
-			     bot.user.setStatus(idle)
+			     await bot.user.setStatus('idle')
 			    embedNewState.setDescription("My status has been set to `Idle`")
 			    m.sendEmbed(embedNewState)
 		    } else if (theMsg === 'offline') {
-			     bot.user.setStatus(invisible)
+			     await bot.user.setStatus('invisible')
 			    embedNewState.setDescription("My status has been set to `Offline`")
 			    m.sendEmbed(embedNewState)
 		    }
