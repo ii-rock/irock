@@ -529,26 +529,6 @@ bot.on('message', async msg => {
             .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
    
     switch (arg[0].toLowerCase()) {
-	    case "dog":
-	   var { body } = await superagent.get('https://dog.ceo/api/breeds/image/random');
-	   var embed = new Discord.RichEmbed()
-	   .setColor('#593695')
-	   .setTitle(":dog: Pow pow")
-	   .setImage(body.message)
-	   .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
-	   message.channel.send({embed})
-		    
-    	break;
-	    case "cat":
-            var { body } = await superagent
-	   .get('http://random.cat/meow');
-	   var embed = new Discord.RichEmbed()
-	   .setColor('#593695')
-	   .setTitle("Meow :cat:")
-	   .setImage(body.file)
-	   .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
-	   message.channel.send({embed})
-    	break;
 	    case "setstatus":
 		    if (!config.admins.includes(msg.author.id)) return m.sendEmbed(embedNoPermission)
 		    if (!theMsg) return m.send(`Usage: \`${prefix}setstatus <online / busy / offline / idle>\``)
@@ -888,6 +868,30 @@ function playit(guild, song, msg) {
 
             serverQueue.textChannel.send({embed});
 }
-
+bot.on('message', async (message) => {
+	var args = message.content.substring(prefix.length).split(" ");
+	
+switch (args[0].toLowerCase()) {   
+    	case "dog":
+	   var { body } = await superagent.get('https://dog.ceo/api/breeds/image/random');
+	   var embed = new Discord.RichEmbed()
+	   .setColor(0x954D23)
+	   .setTitle(":dog: Po")
+	   .setImage(body.message)
+	   .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+	   message.channel.send({embed})
+    	break;
+    	case "cat":
+        var { body } = await superagent
+	   .get('http://random.cat/meow');
+	    var embed = new Discord.RichEmbed()
+	   .setColor(0x954D23)
+	   .setTitle("Meow :cat:")
+	   .setImage(body.file)
+	   .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+	   message.channel.send({embed})
+    	break;
+}
+});
 
 bot.login(process.env.TOKEN);
