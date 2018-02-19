@@ -6,6 +6,7 @@ let config = require("./config.json");
 const YouTube = require('simple-youtube-api');
 const GOOGLE_API_KEY = process.env.google_Key
 const youtube = new YouTube(GOOGLE_API_KEY);
+const superagent = require('superagent');
 
 var Cleverbot = require('cleverbot-node');
     cleverbot = new Cleverbot;
@@ -186,7 +187,7 @@ bot.on("message", function(message) {
     	googl.getKey();
     	googl.shorten(args[1])
     .then(function (shortUrl) {
-    	let embed = new Discord.RichEmbed()
+    	var embed = new Discord.RichEmbed()
     .setAuthor("URL Shortened", "https://cdn.pixabay.com/photo/2015/10/31/12/56/google-1015752_960_720.png")
     .setDescription(`Your URL has been shortened.`)
     .setColor("#166338")
@@ -198,7 +199,7 @@ bot.on("message", function(message) {
         m.send({embed});
     })
     .catch(function (err) {
-    	let embed = new Discord.RichEmbed()
+    	var embed = new Discord.RichEmbed()
     .setAuthor("ERROR")
     .setDescription(`${err.message}`)
     .setColor("#FF0000")
@@ -334,7 +335,7 @@ bot.on("message", function(message) {
         case "help":
            var embedHelp = new Discord.RichEmbed()
                 .setAuthor("Commands")
-                .setDescription(`${prefix}userinfo - shows a few information about the mentioned user.\n${prefix}8ball - ask a question and the bot will reply with a random answer.\n${prefix}serverinfo - shows a few information about the current guild.\n${prefix}say - says your message.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic <mention a channel> <new topic> - changes the current or mentioned channel's topic.`)
+                .setDescription(`${prefix}userinfo - shows a few information about the mentioned user.\n${prefix}8ball - ask a question and the bot will reply with a random answer.\n${prefix}serverinfo - shows a few information about the current guild.\n${prefix}say - says your message.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic <mention a channel> <new topic> - changes the current or mentioned channel's topic.\n${prefix}cat - sends a random cat picture.\n${prefix}dog - sends a random dog picture.`)
                 .addField("Music", `${prefix}play <youtube link/search query> - plays a song from youtube in your current voice channel.\n${prefix}stop - stops the player and leaves your current channel.\n${prefix}move - moves me to your current voice channel.\n${prefix}skip - skips your current song and plays the next one in the queue.\n${prefix}pause - pause current song, if any.\n${prefix}resume - resume current song, if any.\n${prefix}volume \`[1-100]\` - changes the volume of the player.\n${prefix}np - shows the current song, if any.\n${prefix}queue - shows the list of the queued songs, if any.`)
                 .addField("Google", `${prefix}google <search query> - search something on google and the bot will give you the link.\n${prefix}shortenurl <URL/Link> - convert a long link to a short one.`)
                 .addField("Cleverbot System", `${prefix}talk <message> - talk to the bot and it will reply to you.\n(Direct Messaging): You can chat with the bot privately and it will reply to you asap!\nExample,\nUser: Hey\n${bot.user.username}: Hey, how are you?`)
@@ -528,6 +529,26 @@ bot.on('message', async msg => {
             .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
    
     switch (arg[0].toLowerCase()) {
+	    case "dog":
+	   var { body } = await superagent.get('https://dog.ceo/api/breeds/image/random');
+	   var embed = new Discord.RichEmbed()
+	   .setColor('#593695')
+	   .setTitle(":dog: Pow pow")
+	   .setImage(body.message)
+	   .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
+	   message.channel.send({embed})
+		    
+    	break;
+	    case "cat":
+            var { body } = await superagent
+	   .get('http://random.cat/meow');
+	   var embed = new Discord.RichEmbed()
+	   .setColor('#593695')
+	   .setTitle("Meow :cat:")
+	   .setImage(body.file)
+	   .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
+	   message.channel.send({embed})
+    	break;
 	    case "setstatus":
 		    if (!config.admins.includes(msg.author.id)) return m.sendEmbed(embedNoPermission)
 		    if (!theMsg) return m.send(`Usage: \`${prefix}setstatus <online / busy / offline / idle>\``)
