@@ -342,6 +342,7 @@ bot.on("message", function(message) {
                 .setColor("#3C51C3")
                 .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
                 .setTimestamp()
+	       if (config.admins.includes(message.author.id)) embedHelp.addField("Owner Commands", `${prefix}close - closes the websocket connection and disconnects the bot.\n${prefix}restart - restarts the bot.\n${prefix}setstatus - changes my state.\n${prefix}setgame - makes me play a specified game.\n${prefix}watch - sets my status to Watching.\n${prefix}listen - sets my status to Listening.\n${prefix}stream - sets my status to Streaming.\n${prefix}setname - changes my username.\n${prefix}setavatar - changes my avatar.`)
             message.channel.sendEmbed(embedHelp);
 
             break;
