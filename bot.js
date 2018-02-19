@@ -161,7 +161,7 @@ bot.on("message", function(message) {
     });
 }
 	let embedNoPermission = new Discord.RichEmbed()
-            .setAuthor("No Permission")
+            .setAuthor("⛔ No Permission")
             .setDescription("You do not have permission to perform this action.")
             .setColor("#FF0000")
             .setTimestamp()
@@ -520,13 +520,39 @@ bot.on('message', async msg => {
     let theMsg = WholeMsg.join(" ")
     var m = msg.channel
     	    let embedNoPermission = new Discord.RichEmbed()
-            .setAuthor("No Permission")
+            .setAuthor("⛔ No Permission")
             .setDescription("You do not have permission to perform this action.")
             .setColor("#FF0000")
             .setTimestamp()
             .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
    
     switch (arg[0].toLowerCase()) {
+	    case "setstatus":
+		    if (!config.admins.includes(msg.author.id)) return m.sendEmbed(embedNoPermission)
+		    if (!theMsg === "online" || !theMsg === "busy" || !theMsg === "idle" || !theMsg === "offline") return m.send(`Usage: \`${prefix}setstate <online / busy / offline / away>\``)
+		    let embedNewState = new Discord.RichEmbed()
+            .setAuthor("Status Updated")
+            .setColor("#518CF1")
+            .setTimestamp()
+            .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
+		    if (theMsg === 'online') {
+			    bot.user.setStatus(online)
+			    embedNewState.setDescription("My status has been set to `Online`")
+			    m.sendEmbed(embedNewState)
+		    } else if (theMsg === 'busy') {
+			     bot.user.setStatus(dnd)
+			    embedNewState.setDescription("My status has been set to `Do Not Disturb`")
+			    m.sendEmbed(embedNewState)
+		    } else if (theMsg === 'idle') {
+			     bot.user.setStatus(idle)
+			    embedNewState.setDescription("My status has been set to `Idle`")
+			    m.sendEmbed(embedNewState)
+		    } else if (theMsg === 'offline') {
+			     bot.user.setStatus(invisible)
+			    embedNewState.setDescription("My status has been set to `Offline`")
+			    m.sendEmbed(embedNewState)
+		    }
+		    break;
 	case "setgame":
 		  if (!config.admins.includes(msg.author.id)) return m.sendEmbed(embedNoPermission)
 		   if (!theMsg) return m.send(":warning: The game cannot be empty.")
