@@ -90,12 +90,15 @@ var eightBall = [
     "Very doubtful"
 ];
 
+
+
 bot.on("guildCreate", async guild => {
  await bot.user.setGame(`${prefix}help | ${bot.guilds.size} Guilds`, `${TWITCH}`);
 });
 bot.on("guildDelete", async guild => {
  await bot.user.setGame(`${prefix}help | ${bot.guilds.size} Guilds`, `${TWITCH}`);
 });
+
 
 bot.on("guildCreate", update);
     
@@ -157,6 +160,13 @@ bot.on("message", function(message) {
        
     });
 }
+	let embedNoPermission = new Discord.RichEmbed()
+            .setAuthor("No Permission")
+            .setDescription("You do not have permission to perform this action.")
+            .setColor("#FF0000")
+            .setTimestamp()
+            .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+
     var mentioned = message.mentions.users.first()
     var channels = message.mentions.channels.first()
     var m = message.channel
@@ -442,12 +452,11 @@ bot.on("message", function(message) {
            }
            break;
         case "close":
-        if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
+        if (!config.admins.includes(message.author.id)) return m.sendEmbed(embedNoPermission)
         let embeds = new Discord.RichEmbed()
-            .setAuthor("Logging Out")
-            .setDescription(`Logged out of servers.`)
-            .setColor("#00008B")
-            .addField("Discord Servers", `Disconnected`)
+            .setAuthor("Connection Closed")
+            .setDescription(`Connection with discord servers has disconnected.`)
+            .setColor("#FF0000")
             .setTimestamp()
 
             message.channel.sendEmbed(embeds);
@@ -510,11 +519,16 @@ bot.on('message', async msg => {
     let WholeMsg = msg.content.split(" ").slice(1)
     let theMsg = WholeMsg.join(" ")
     var m = msg.channel
-    	    
+    	    let embedNoPermission = new Discord.RichEmbed()
+            .setAuthor("No Permission")
+            .setDescription("You do not have permission to perform this action.")
+            .setColor("#FF0000")
+            .setTimestamp()
+            .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
    
     switch (arg[0].toLowerCase()) {
 	case "setgame":
-		   if (!config.admins.includes(msg.author.id)) return m.send("You do not have permissions to perform this action.")
+		  if (!config.admins.includes(msg.author.id)) return m.sendEmbed(embedNoPermission)
 		   if (!theMsg) return m.send(":warning: The game cannot be empty.")
 		  let embedGame = new Discord.RichEmbed()
                 .setAuthor("State Changed")
@@ -533,7 +547,7 @@ bot.on('message', async msg => {
            }
 		    break;
         case "listen":
-	if (!config.admins.includes(msg.author.id)) return m.send("You do not have permissions to perform this action.")
+	if (!config.admins.includes(msg.author.id)) return m.sendEmbed(embedNoPermission)
 	if (!theMsg) return m.send(":warning: Cannot listen to nothing!")
         var embedListen = new Discord.RichEmbed()
                 .setAuthor("State Changed")
@@ -553,7 +567,7 @@ bot.on('message', async msg => {
            }
         break;
         case "watch":
-	if (!config.admins.includes(msg.author.id)) return m.send("You do not have permissions to perform this action.")
+	if (!config.admins.includes(msg.author.id)) return m.sendEmbed(embedNoPermission)
 	if (!theMsg) return m.send(":warning: Cannot watch nothing!")
         var embedWatch = new Discord.RichEmbed()
                 .setAuthor("State Changed")
@@ -573,7 +587,7 @@ bot.on('message', async msg => {
        
         break;
         case "stream":
-        if (!config.admins.includes(msg.author.id)) return m.send("You do not have permissions to perform this action.")
+        if (!config.admins.includes(msg.author.id)) return m.sendEmbed(embedNoPermission)
 	if (!theMsg) return m.send(":warning: Cannot stream nothing!")
         let embedStream = new Discord.RichEmbed()
             .setAuthor("State Changed")
