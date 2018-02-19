@@ -529,28 +529,30 @@ bot.on('message', async msg => {
     switch (arg[0].toLowerCase()) {
 	    case "setstatus":
 		    if (!config.admins.includes(msg.author.id)) return m.sendEmbed(embedNoPermission)
-		    if (!theMsg === "online" || !theMsg === "busy" || !theMsg === "idle" || !theMsg === "offline") return m.send(`Usage: \`${prefix}setstate <online / busy / offline / away>\``)
+		    if (!theMsg) return m.send(`Usage: \`${prefix}setstatus <online / busy / offline / idle>\``)
 		    let embedNewState = new Discord.RichEmbed()
             .setAuthor("Status Updated")
             .setColor("#518CF1")
             .setTimestamp()
             .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
 		    if (theMsg === 'online') {
-			    await bot.user.setStatus('online')
+			    bot.user.setStatus('online')
 			    embedNewState.setDescription("My status has been set to `Online`")
 			    m.sendEmbed(embedNewState)
 		    } else if (theMsg === 'busy') {
-			     await bot.user.setStatus('dnd')
+			     bot.user.setStatus('dnd')
 			    embedNewState.setDescription("My status has been set to `Do Not Disturb`")
 			    m.sendEmbed(embedNewState)
 		    } else if (theMsg === 'idle') {
-			     await bot.user.setStatus('idle')
+			     bot.user.setStatus('idle')
 			    embedNewState.setDescription("My status has been set to `Idle`")
 			    m.sendEmbed(embedNewState)
 		    } else if (theMsg === 'offline') {
-			     await bot.user.setStatus('invisible')
+			     bot.user.setStatus('invisible')
 			    embedNewState.setDescription("My status has been set to `Offline`")
 			    m.sendEmbed(embedNewState)
+		    } else {
+			    m.send(`Usage: \`${prefix}setstatus <online / busy / offline / idle>\``)
 		    }
 		    break;
 	case "setgame":
