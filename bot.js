@@ -879,10 +879,11 @@ function playit(guild, song, msg) {
         }
 	
     const dispatcher = serverQueue.connection.playStream(YTDL(song.url)) 
-    serverQueue.songs.shift()
+    
         dispatcher.on('end', reason => {
             if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
             else console.log(reason);
+	    serverQueue.songs.shift()
 	    playit(guild, serverQueue.songs[0]);
             
         })
