@@ -21,6 +21,7 @@
     "cleverbot-node": "^0.3.11",
     "opusscript": "^0.0.6",
     "simple-youtube-api": "^5.0.1",
-    "superagent": "^3.8.2"
+    "superagent": "^3.8.2",
+    "google-images": "^2.1.0"
   }
 }
