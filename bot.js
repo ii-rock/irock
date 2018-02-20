@@ -931,9 +931,10 @@ switch (args[0].toLowerCase()) {
        .setFooter(`Banned by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
        .setTimestamp()
        if (!theMsg === theMsg.replace(mentionedUser, "")) {
-            embed.addField("Reason", theMsg.replace(mentionedUser, ""))
+	       embed.addField("Reason", `Not specified`)
+            
        } else {
-       	    embed.addField("Reason", `Not specified`)
+       	    embed.addField("Reason", theMsg.replace(mentionedUser, ""))
        }
             m.send({embed})
 
@@ -956,9 +957,10 @@ switch (args[0].toLowerCase()) {
        .setFooter(`Kicked by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
        .setTimestamp()
        if (!theMsg === theMsg.replace(mentionedUser, "")) {
-            embed.addField("Reason", theMsg.replace(mentionedUser, ""))
+            embed.addField("Reason", `Not specified`)
        } else {
-       	    embed.addField("Reason", `Not specified`)
+	       embed.addField("Reason", theMsg.replace(mentionedUser, ""))
+       	    
        }
        m.send({embed})
 	    } catch (err) {
@@ -994,7 +996,7 @@ switch (args[0].toLowerCase()) {
 			var embed = new Discord.RichEmbed()
 	   .setAuthor("Your Code")
 	   .setColor('#D0C4BD')
-	   .setDescription("Your code:\n```js\n" + theMsg + "\n```")
+	   .setDescription("```js\n" + theMsg + "\n```")
        .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
        .setTimestamp()
 	m.send({embed})
