@@ -919,6 +919,7 @@ bot.on('message', async (message) => {
 	
 switch (args[0].toLowerCase()) {  
 		case "ban":
+		
 	       if (!message.guild.me.hasPermission('BAN_MEMBERS')) return m.send(":no_entry: I do not have permission `Ban Members`!")
 	       if (!message.member.hasPermission('BAN_MEMBERS')) return m.send(":no_entry: You do not have permission `Ban Members`!")
 	       if (!menGuildUser) return m.send(`Usage: \`${prefix}ban <user> <reason>\``)
