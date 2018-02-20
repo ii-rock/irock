@@ -401,13 +401,8 @@ bot.on("message", function(message) {
 
          case "setavatar":
 	   if (!config.admins.includes(message.author.id)) return m.sendEmbed(embedNoPermission)
-           if (!args[1] || !message.attachments) {
-            m.sendMessage("The avatar cannot be empty!");
-          } else {
+           if (!args[1]) return m.sendMessage("The avatar cannot be empty!");
 		  try {
-	    if (!args[1]) {
-		    bot.user.setAvatar(message.attachments.url)
-	    } else {
 	    bot.user.setAvatar(args[1]);
             
             var embedAv = new Discord.RichEmbed()
@@ -417,8 +412,6 @@ bot.on("message", function(message) {
                 .setColor("#C94830")
                 .setTimestamp()
             message.channel.sendEmbed(embedAv);
-           }
-	  }
 	  } catch (error) {
 		  message.channel.send(error)
 	  }
