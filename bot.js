@@ -400,10 +400,16 @@ bot.on("message", function(message) {
             break;
 
          case "setavatar":
-           if (!args[1]) {
+	   if (!config.admins.includes(message.author.id)) return m.sendEmbed(embedNoPermission)
+           if (!args[1] || !message.attachments) {
             m.sendMessage("The avatar cannot be empty!");
           } else {
-            bot.user.setAvatar(args[1]);
+		  try {
+	    if (!args[1]) {
+		    bot.user.setAvatar(message.attachments.url)
+	    } else {
+	    bot.user.setAvatar(args[1]);
+            
             var embedAv = new Discord.RichEmbed()
                 .setAuthor("Avatar Changed")
                 .setDescription(`My profile picture has been successfully changed.`)
@@ -412,8 +418,13 @@ bot.on("message", function(message) {
                 .setTimestamp()
             message.channel.sendEmbed(embedAv);
            }
+	  }
+	  } catch (error) {
+		  message.channel.send(error)
+	  }
         break;
         case "setname":
+	   if (!config.admins.includes(message.author.id)) return m.sendEmbed(embedNoPermission)
            if (theMsg.length = 0) {
             m.sendMessage("The username cannot be empty!");
            } else {
@@ -430,6 +441,7 @@ bot.on("message", function(message) {
            }
            break;
 	case "setnick":
+	   if (!config.admins.includes(message.author.id)) return m.sendEmbed(embedNoPermission)
            if (theMsg.length = 0) {
             m.sendMessage("The nickname cannot be empty!");
            } else {
