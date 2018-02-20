@@ -338,7 +338,7 @@ bot.on("message", function(message) {
         case "help":
            var embedHelp = new Discord.RichEmbed()
                 .setAuthor("Commands")
-                .setDescription(`${prefix}userinfo - shows a few information about the mentioned user.\n${prefix}8ball - ask a question and the bot will reply with a random answer.\n${prefix}serverinfo - shows a few information about the current guild.\n${prefix}say \`<message>\` - says your message.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic \`<mention a channel> <new topic>\` - changes the current or mentioned channel's topic.\n${prefix}cat - sends a random cat picture.\n${prefix}dog - sends a random dog picture.`)
+                .setDescription(`${prefix}userinfo - shows a few information about the mentioned user.\n${prefix}8ball - ask a question and the bot will reply with a random answer.\n${prefix}serverinfo - shows a few information about the current guild.\n${prefix}say \`<message>\` - says your message.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic \`<mention a channel> <new topic>\` - changes the current or mentioned channel's topic.\n${prefix}cat - sends a random cat picture.\n${prefix}dog - sends a random dog picture.\n${prefix}report \`<user> <reason>\` - report a user with a reason and it will be sent in the **reports** channel if found.`)
                 .addField("Music", `${prefix}play \`<youtube link/search query>\` - plays a song from youtube in your current voice channel.\n${prefix}stop - stops the player and leaves your current channel.\n${prefix}move - moves me to your current voice channel.\n${prefix}skip - skips your current song and plays the next one in the queue.\n${prefix}pause - pause current song, if any.\n${prefix}resume - resume current song, if any.\n${prefix}volume \`[1-100]\` - changes the volume of the player.\n${prefix}np - shows the current song, if any.\n${prefix}queue - shows the list of the queued songs, if any.`)
                 .addField("Google", `${prefix}google \`<search query>\` - search something on google and the bot will give you the link.\n${prefix}shortenurl \`<URL/Link>\` - convert a long link to a short one.\n${prefix}image \`<search query>\` - search for an image on google.`)
                 .addField("Cleverbot System", `${prefix}talk \`<message>\` - talk to the bot and it will reply to you.\n(Direct Messaging): You can chat with the bot privately and it will reply to you asap!\nExample,\nUser: Hey\n${bot.user.username}: Hey, how are you?`)
@@ -346,7 +346,7 @@ bot.on("message", function(message) {
                 .setColor("#3C51C3")
                 .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
                 .setTimestamp()
-	       if (config.admins.includes(message.author.id)) embedHelp.addField("Owner Commands", `${prefix}close - closes the websocket connection and disconnects the bot.\n${prefix}restart - restarts the bot.\n${prefix}setstatus - changes my state.\n${prefix}setgame - makes me play a specified game.\n${prefix}watch - sets my status to Watching.\n${prefix}listen - sets my status to Listening.\n${prefix}stream - sets my status to Streaming.\n${prefix}setname - changes my username.\n${prefix}setavatar - changes my avatar.`)
+	       if (config.admins.includes(message.author.id)) embedHelp.addField("Owner Commands", `${prefix}close - closes the websocket connection and disconnects the bot.\n${prefix}restart - restarts the bot.\n${prefix}setstatus - changes my state.\n${prefix}setgame - makes me play a specified game.\n${prefix}watch - sets my status to Watching.\n${prefix}listen - sets my status to Listening.\n${prefix}stream - sets my status to Streaming.\n${prefix}setname - changes my username.\n${prefix}setavatar - changes my avatar.\n${prefix}eval - runs a code inside the console and returns the result.`)
             message.channel.sendEmbed(embedHelp);
 
             break;
@@ -417,8 +417,32 @@ bot.on("message", function(message) {
            if (theMsg.length = 0) {
             m.sendMessage("The username cannot be empty!");
            } else {
+            
+		   var embedUsername = new Discord.RichEmbed()
+                .setAuthor("Username Changed", bot.user.displayAvatarURL)
+                .setDescription(`My username has been successfully changed.`)
+		.addField("Old Username", `${bot.user.username}`, inline = true)
+		.addField("New Username", `${theMsg}`, inline = true)
+                .setColor("#C94830")
+                .setTimestamp()
+            message.channel.sendEmbed(embedUsername);
             bot.user.setUsername(theMsg);
-            m.sendMessage(`My name has been successfully changed to **${theMsg}**`)
+           }
+           break;
+	case "setnick":
+           if (theMsg.length = 0) {
+            m.sendMessage("The nickname cannot be empty!");
+           } else {
+            
+		   var embedNickname = new Discord.RichEmbed()
+                .setAuthor("Nickname Changed", bot.user.displayAvatarURL)
+                .setDescription(`My nickname has been successfully changed.`)
+		.addField("Old Nickname", `${message.guild.me.nickname}`, inline = true)
+		.addField("New Nickname", `${theMsg}`, inline = true)
+                .setColor("#C94830")
+                .setTimestamp()
+            message.channel.sendEmbed(embedNickname);
+            message.guild.me.setNickname(theMsg);
            }
            break;
         case "userinfo":
@@ -876,9 +900,73 @@ bot.on('message', async (message) => {
 	var WholeMsg = message.content.split(" ").slice(1)
         var theMsg = WholeMsg.join(" ")
 	var args = message.content.substring(prefix.length).split(" ");
-	
+	var mentionedUser = message.mentions.users.first()
+	var m = message.channel
+    	    let embedNoPermission = new Discord.RichEmbed()
+            .setAuthor("⛔ No Permission")
+            .setDescription("You do not have permission to perform this action.")
+            .setColor("#FF0000")
+            .setTimestamp()
+            .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
 	
 switch (args[0].toLowerCase()) {   
+		case "eval":
+		if (!config.admins.includes(message.author.id)) return message.channel.sendEmbed(embedNoPermission)
+		try {
+        var Result = eval(theMsg)
+
+	    await m.send(Result)
+
+
+	} catch (err) {
+        m.send(err.message)
+	}
+	    break;
+	    case "report":
+	    let reportsChannel = message.guild.channels.find('name', "reports");
+	    if (!reportsChannel) {
+	    	var confirmMsg = await m.send("Reports channel was not found, create one or type `.confirm` to let me create new one. This timeouts in 10 seconds.")
+	    	try {
+	    	var response = await message.channel.awaitMessages(msg2 => msg2.content === ".confirm", {
+                            maxMatches: 1,
+                            time: 10000,
+                            errors: ['time']
+                        });
+	    	if (response) {
+	    		if (!message.member.hasPermission('MANAGE_CHANNELS')) return m.send(":no_entry: You do not have permission: `Manage Channels`, the **reports** channel was not created.") && confirmMsg.delete()
+	    		if (!message.guild.me.hasPermission('MANAGE_CHANNELS')) return m.send(":no_entry: I do not have permission: `Manage Channels`, the **reports** channel was not created.") && confirmMsg.delete()
+	    		try {
+	    			message.guild.createChannel("reports", 'text')
+	    			confirmMsg.delete()
+	    			m.send("**reports** channel has been created. You can now use the report command.")
+	    		} catch (error) {
+                    console.log(error)
+	    		}
+	    	}
+	    	} catch (err) {
+	    		confirmMsg.delete();
+	    		var errorMsg = await m.send("**reports** channel was not created, you did not confirm.")
+	    		errorMsg.delete(5000)
+	    	}
+
+	    } else {
+
+	    if (!mentionedUser) return m.send("Please mention a user!")
+	    if (!theMsg.replace(mentionedUser, "")) return m.send("Please provide a reason!")
+	    
+	        var embed = new Discord.RichEmbed()
+	   .setAuthor("User Report")
+	   .setColor('#FF0000')
+	   .setDescription(`User ${mentionedUser.username}#${mentionedUser.discriminator} was reported.`)
+	   .addField(`Reason`, `${theMsg.replace(mentionedUser, "")}`)
+	   .addField(`User ID`, `${mentionedUser.id}`, inline = true)
+	   .addField(`User Registeration Date`, mentionedUser.createdAt.toString().replace("GMT", ""))
+       .setFooter(`Reported by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+       .setTimestamp()
+	   reportsChannel.send({embed})
+	}
+	    break;
+
 		case "image":
 		if (!message.channel.nsfw) return message.channel.send(":warning: This command works in \`NSFW\` channels only.")
 		if (!theMsg) return message.channel.send(`:warning: Please enter a search query!\nUsage: ${prefix}image \`<search query>\``)
