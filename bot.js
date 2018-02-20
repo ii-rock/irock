@@ -885,7 +885,8 @@ switch (args[0].toLowerCase()) {
            .then(images => {
            	var embed = new Discord.RichEmbed()
 	   .setColor(0x954D23)
-	   .setTitle(`Search result for: ${theMsg}`)
+	   .setAuthor(`Google Images`, "https://cdn.pixabay.com/photo/2015/10/31/12/56/google-1015752_960_720.png")
+	   .addField(`Search result for "${theMsg}"`)
 	   .setImage(images[0].url)
 	   message.channel.send({embed})
            }).catch(function(error) {
