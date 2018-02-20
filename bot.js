@@ -338,10 +338,11 @@ bot.on("message", function(message) {
         case "help":
            var embedHelp = new Discord.RichEmbed()
                 .setAuthor("Commands")
-                .setDescription(`${prefix}userinfo - shows a few information about the mentioned user.\n${prefix}8ball - ask a question and the bot will reply with a random answer.\n${prefix}serverinfo - shows a few information about the current guild.\n${prefix}say \`<message>\` - says your message.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic \`<mention a channel> <new topic>\` - changes the current or mentioned channel's topic.\n${prefix}cat - sends a random cat picture.\n${prefix}dog - sends a random dog picture.\n${prefix}report \`<user> <reason>\` - report a user with a reason and it will be sent in the **reports** channel if found.`)
                 .addField("Music", `${prefix}play \`<youtube link/search query>\` - plays a song from youtube in your current voice channel.\n${prefix}stop - stops the player and leaves your current channel.\n${prefix}move - moves me to your current voice channel.\n${prefix}skip - skips your current song and plays the next one in the queue.\n${prefix}pause - pause current song, if any.\n${prefix}resume - resume current song, if any.\n${prefix}volume \`[1-100]\` - changes the volume of the player.\n${prefix}np - shows the current song, if any.\n${prefix}queue - shows the list of the queued songs, if any.`)
+	        .addField("Moderation", `${prefix}userinfo - shows a few information about the mentioned user.\n${prefix}serverinfo - shows a few information about the current guild.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic \`<mention a channel> <new topic>\` - changes the current or mentioned channel's topic.\n${prefix}purge \`<number of messages (1-100)> - deletes a specified amount of messages.\n${prefix}ban \`<user> <reason>\` - bans a user.\n${prefix}kick \`<user> <reason>\` - bans a user.\n${prefix}report \`<user> <reason>\` - report a user with a reason and it will be sent in the **reports** channel if found.`)
                 .addField("Google", `${prefix}google \`<search query>\` - search something on google and the bot will give you the link.\n${prefix}shortenurl \`<URL/Link>\` - convert a long link to a short one.\n${prefix}image \`<search query>\` - search for an image on google.`)
                 .addField("Cleverbot System", `${prefix}talk \`<message>\` - talk to the bot and it will reply to you.\n(Direct Messaging): You can chat with the bot privately and it will reply to you asap!\nExample,\nUser: Hey\n${bot.user.username}: Hey, how are you?`)
+	        .addField("Other", `${prefix}8ball - ask a question and the bot will reply with a random answer.\n${prefix}say \`<message>\` - says your message.\n${prefix}cat - sends a random cat picture.\n${prefix}dog - sends a random dog picture.`)
                 .addField("About Bot", `${prefix}ping - shows the time taken for the bot to respond.\n${prefix}uptime - shows the time since the bot has started up.\n${prefix}servers - shows the servers count that the bot has joined.\n${prefix}about - shows information about the bot's owner and the library used to create the bot.\n${prefix}invite - sends my invitation link.\n${prefix}reportbug - report a bug and it will be sent to the owner.`)
                 .setColor("#3C51C3")
                 .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
@@ -906,6 +907,7 @@ bot.on('message', async (message) => {
         var theMsg = WholeMsg.join(" ")
 	var args = message.content.substring(prefix.length).split(" ");
 	var mentionedUser = message.mentions.users.first()
+        var menGuildUser = message.mentions.members.first()
 	var m = message.channel
     	    let embedNoPermission = new Discord.RichEmbed()
             .setAuthor("⛔ No Permission")
@@ -914,13 +916,88 @@ bot.on('message', async (message) => {
             .setTimestamp()
             .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
 	
-switch (args[0].toLowerCase()) {   
+switch (args[0].toLowerCase()) {  
+		case "ban":
+	       if (!message.guild.me.hasPermission('BAN_MEMBERS')) return m.send(":no_entry: I do not have permission `Ban Members`!")
+	       if (!message.member.hasPermission('BAN_MEMBERS')) return m.send(":no_entry: You do not have permission `Ban Members`!")
+	       if (!menGuildUser) return m.send(`Usage: \`${prefix}ban <user> <reason>\``)
+	       if (!menGuildUser.bannable) return m.send(":warning: That user is having higher role than me or you. Could not be banned.")
+	       	try {
+	       	menGuildUser.ban(theMsg.replace(menGuildUser, ""));
+	       	var embed = new Discord.RichEmbed()
+	   .setAuthor("User Banned", mentionedUser.displayAvatarURL)
+	   .setColor('#0000FF')
+	   .setDescription(`${mentionedUser.username}#${mentionedUser.discriminator} has been banned from this server.`)
+       .setFooter(`Banned by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+       .setTimestamp()
+       if (!theMsg === theMsg.replace(mentionedUser, "")) {
+            embed.addField("Reason", theMsg.replace(mentionedUser, ""))
+       } else {
+       	    embed.addField("Reason", `Not specified`)
+       }
+            m.send({embed})
+
+	    } catch (err) {
+	    	m.send(err.message)
+	    }
+	    break;
+	    case "kick":
+	       if (!message.guild.me.hasPermission('KICK_MEMBERS')) return m.send(":no_entry: I do not have permission `Kick Members`!")
+	       if (!message.member.hasPermission('KICK_MEMBERS')) return m.send(":no_entry: You do not have permission `Kick Members`!")
+	       if (!menGuildUser) return m.send(`Usage: \`${prefix}kick <user> <reason>\``)
+	       if (!menGuildUser.kickable) return m.send(":warning: That user is having higher role than me or you. Could not be kicked.")
+	       	try {
+	       	menGuildUser.kick(theMsg.replace(mentionedUser, ""));
+	       	var embed = new Discord.RichEmbed()
+	   .setAuthor("User Kicked", mentionedUser.displayAvatarURL)
+	   .setColor('#0000FF')
+	   .setDescription(`${mentionedUser.username}#${mentionedUser.discriminator} has been kicked from this server.`)
+
+       .setFooter(`Kicked by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+       .setTimestamp()
+       if (!theMsg === theMsg.replace(mentionedUser, "")) {
+            embed.addField("Reason", theMsg.replace(mentionedUser, ""))
+       } else {
+       	    embed.addField("Reason", `Not specified`)
+       }
+       m.send({embed})
+	    } catch (err) {
+	    	m.send(err.message)
+	    }
+	    break;
+		case "purge":
+		if (!theMsg) return m.send(`:warning: Invalid value to delete.\nUsage: \`${prefix}purge <number of messages (1-100)>\``)
+ 
+	    try {
+		    
+            const fetched = await message.channel.fetchMessages({limit: theMsg});
+            message.channel.bulkDelete(fetched)
+		    var embed = new Discord.RichEmbed()
+	   .setAuthor("Purge")
+	   .setColor('#0000FF')
+	   .setDescription(`Successfully deleted ${fetched.size} messages.`)
+       .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+       .setTimestamp()
+            m.send({embed})
+            
+	    } catch (err) {
+	    	if (err.message === "The messages must be an Array, Collection, or number.") return m.send("The messages to delete must be a number.")
+	    	if (err.message.includes("equal to 100.")) return m.send("You can delete a maximum of 100 messages at once.")
+	    	m.send(err.message)
+        }
+	    break;
 		case "eval":
 		if (!config.admins.includes(message.author.id)) return message.channel.sendEmbed(embedNoPermission)
 		try {
          
 	 message.delete()
-	message.channel.send("Your code:\n```js\n" + theMsg + "\n```")
+			var embed = new Discord.RichEmbed()
+	   .setAuthor("Your Code")
+	   .setColor('#D0C4BD')
+	   .setDescription("Your code:\n```js\n" + theMsg + "\n```")
+       .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+       .setTimestamp()
+	m.send({embed})
 	eval(theMsg)
 	 
 	} catch (err) {
