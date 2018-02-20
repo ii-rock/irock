@@ -15,6 +15,9 @@ var Cleverbot = require('cleverbot-node');
 var googl = require('goo.gl');
 googl.setKey(process.env.google_Key);
 
+const GoogleImages = require('google-images');
+const img = new GoogleImages(`${process.env.engineID}`, `${process.env.google_Key}`});
+
 var bot = new Client({
     autoReconnect: true,
     disableEveryone: true
@@ -335,10 +338,10 @@ bot.on("message", function(message) {
         case "help":
            var embedHelp = new Discord.RichEmbed()
                 .setAuthor("Commands")
-                .setDescription(`${prefix}userinfo - shows a few information about the mentioned user.\n${prefix}8ball - ask a question and the bot will reply with a random answer.\n${prefix}serverinfo - shows a few information about the current guild.\n${prefix}say - says your message.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic <mention a channel> <new topic> - changes the current or mentioned channel's topic.\n${prefix}cat - sends a random cat picture.\n${prefix}dog - sends a random dog picture.`)
-                .addField("Music", `${prefix}play <youtube link/search query> - plays a song from youtube in your current voice channel.\n${prefix}stop - stops the player and leaves your current channel.\n${prefix}move - moves me to your current voice channel.\n${prefix}skip - skips your current song and plays the next one in the queue.\n${prefix}pause - pause current song, if any.\n${prefix}resume - resume current song, if any.\n${prefix}volume \`[1-100]\` - changes the volume of the player.\n${prefix}np - shows the current song, if any.\n${prefix}queue - shows the list of the queued songs, if any.`)
-                .addField("Google", `${prefix}google <search query> - search something on google and the bot will give you the link.\n${prefix}shortenurl <URL/Link> - convert a long link to a short one.`)
-                .addField("Cleverbot System", `${prefix}talk <message> - talk to the bot and it will reply to you.\n(Direct Messaging): You can chat with the bot privately and it will reply to you asap!\nExample,\nUser: Hey\n${bot.user.username}: Hey, how are you?`)
+                .setDescription(`${prefix}userinfo - shows a few information about the mentioned user.\n${prefix}8ball - ask a question and the bot will reply with a random answer.\n${prefix}serverinfo - shows a few information about the current guild.\n${prefix}say \`<message>\` - says your message.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic \`<mention a channel> <new topic>\` - changes the current or mentioned channel's topic.\n${prefix}cat - sends a random cat picture.\n${prefix}dog - sends a random dog picture.`)
+                .addField("Music", `${prefix}play \`<youtube link/search query>\` - plays a song from youtube in your current voice channel.\n${prefix}stop - stops the player and leaves your current channel.\n${prefix}move - moves me to your current voice channel.\n${prefix}skip - skips your current song and plays the next one in the queue.\n${prefix}pause - pause current song, if any.\n${prefix}resume - resume current song, if any.\n${prefix}volume \`[1-100]\` - changes the volume of the player.\n${prefix}np - shows the current song, if any.\n${prefix}queue - shows the list of the queued songs, if any.`)
+                .addField("Google", `${prefix}google \`<search query>\` - search something on google and the bot will give you the link.\n${prefix}shortenurl \`<URL/Link>\` - convert a long link to a short one.\n${prefix}image \`<search query>\` - search for an image on google.`)
+                .addField("Cleverbot System", `${prefix}talk \`<message>\` - talk to the bot and it will reply to you.\n(Direct Messaging): You can chat with the bot privately and it will reply to you asap!\nExample,\nUser: Hey\n${bot.user.username}: Hey, how are you?`)
                 .addField("About Bot", `${prefix}ping - shows the time taken for the bot to respond.\n${prefix}uptime - shows the time since the bot has started up.\n${prefix}servers - shows the servers count that the bot has joined.\n${prefix}about - shows information about the bot's owner and the library used to create the bot.\n${prefix}invite - sends my invitation link.\n${prefix}reportbug - report a bug and it will be sent to the owner.`)
                 .setColor("#3C51C3")
                 .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
@@ -872,6 +875,24 @@ bot.on('message', async (message) => {
 	var args = message.content.substring(prefix.length).split(" ");
 	
 switch (args[0].toLowerCase()) {   
+		case "image":
+		if (!message.channel.nsfw) return message.channel.send(":warning: This command works in NSFW channels only.")
+        try {
+        img.search(theMsg, {page: 1})
+           .then(images => {
+           	var embed = new Discord.RichEmbed()
+	   .setColor(0x954D23)
+	   .setTitle(`Search result for: ${theMsg}`)
+	   .setImage(images[0].url)
+	   message.channel.send({embed})
+           }).catch(function(error) {
+           	if (error.message === "Cannot read property 'url' of undefined") return message.channel.send(`No results were found for query: ${theMsg}`)
+           	message.channel.send(`:warning: Oops, that shouldn't happen!\n:x: ERROR: ${error.message}\n\nPlease use ${prefix}reportbug \`${error.message}\`, or try to use the command again.`)
+
+           });
+       } catch (err) {
+         message.channel.send(`No results were found for query: ${theMsg}`)
+       }
     	case "dog":
 	   var { body } = await superagent.get('https://dog.ceo/api/breeds/image/random');
 	   var embed = new Discord.RichEmbed()
