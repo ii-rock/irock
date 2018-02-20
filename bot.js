@@ -181,8 +181,8 @@ bot.on("message", function(message) {
     if (!message.content.startsWith(prefix)) return;
     bot.channels.get("405872224806109185").sendMessage(`${message.author.username}#${message.author.discriminator}: ${message.content}`);
 
-    let WholeMsg = message.content.split(" ").slice(1)
-    let theMsg = WholeMsg.join(" ")
+    var WholeMsg = message.content.split(" ").slice(1)
+    var theMsg = WholeMsg.join(" ")
     var args = message.content.substring(prefix.length).split(" ");
 
     switch (args[0].toLowerCase()) {
@@ -521,8 +521,8 @@ bot.on('message', async msg => {
     const searchString = arg.slice(1).join(' ');
     const url = arg[1] ? arg[1].replace(/<(.+)>/g, '$1') : '';
     const serverQueue = queue.get(msg.guild.id);
-    let WholeMsg = msg.content.split(" ").slice(1)
-    let theMsg = WholeMsg.join(" ")
+    var WholeMsg = msg.content.split(" ").slice(1)
+    var theMsg = WholeMsg.join(" ")
     var m = msg.channel
     	    let embedNoPermission = new Discord.RichEmbed()
             .setAuthor("⛔ No Permission")
@@ -872,11 +872,14 @@ function playit(guild, song, msg) {
             serverQueue.textChannel.send({embed});
 }
 bot.on('message', async (message) => {
+	var WholeMsg = message.content.split(" ").slice(1)
+        var theMsg = WholeMsg.join(" ")
 	var args = message.content.substring(prefix.length).split(" ");
 	
 switch (args[0].toLowerCase()) {   
 		case "image":
 		if (!message.channel.nsfw) return message.channel.send(":warning: This command works in NSFW channels only.")
+		if (!theMsg) return message.channel.send(`:warning: Please enter a search query!\nUsage: ${prefix}image \`<search query>\``)
         try {
         img.search(theMsg, {page: 1})
            .then(images => {
@@ -893,6 +896,7 @@ switch (args[0].toLowerCase()) {
        } catch (err) {
          message.channel.send(`No results were found for query: ${theMsg}`)
        }
+		break;
     	case "dog":
 	   var { body } = await superagent.get('https://dog.ceo/api/breeds/image/random');
 	   var embed = new Discord.RichEmbed()
