@@ -919,6 +919,7 @@ switch (args[0].toLowerCase()) {
 		if (!config.admins.includes(message.author.id)) return message.channel.sendEmbed(embedNoPermission)
 		try {
          eval(theMsg)
+	 message.channel.send("Your code:\n```js\n" + theMsg + "\n```")
 	} catch (err) {
         m.send(err.message)
 	}
