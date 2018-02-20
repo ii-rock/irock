@@ -927,7 +927,7 @@ switch (args[0].toLowerCase()) {
 	       	var embed = new Discord.RichEmbed()
 	   .setAuthor("User Banned", mentionedUser.displayAvatarURL)
 	   .setColor('#0000FF')
-	   .setDescription(`${mentionedUser.username}#${mentionedUser.discriminator} has been banned from this server.`)
+	   .setDescription(`${mentionedUser.username}#${mentionedUser.discriminator} has been banned from **${message.guild.name}**.`)
        .setFooter(`Banned by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
        .setTimestamp()
        if (theMsg.replace(mentionedUser, "")) {
@@ -950,7 +950,7 @@ switch (args[0].toLowerCase()) {
 	       	var embed = new Discord.RichEmbed()
 	   .setAuthor("User Kicked", mentionedUser.displayAvatarURL)
 	   .setColor('#0000FF')
-	   .setDescription(`${mentionedUser.username}#${mentionedUser.discriminator} has been kicked from this server.`)
+	   .setDescription(`${mentionedUser.username}#${mentionedUser.discriminator} has been kicked from **${message.guild.name}**.`)
 
        .setFooter(`Kicked by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
        .setTimestamp()
