@@ -884,9 +884,9 @@ switch (args[0].toLowerCase()) {
         img.search(theMsg, {page: 1})
            .then(images => {
            	var embed = new Discord.RichEmbed()
-	   .setColor(0x954D23)
+	   .setColor('#4285F4')
 	   .setAuthor(`Google Images`, "https://cdn.pixabay.com/photo/2015/10/31/12/56/google-1015752_960_720.png")
-	   .addField(`Search result for "${theMsg}"`)
+	   .setTitle(`Search result for "${theMsg}"`)
 	   .setImage(images[0].url)
 	   message.channel.send({embed})
            }).catch(function(error) {
@@ -901,8 +901,8 @@ switch (args[0].toLowerCase()) {
     	case "dog":
 	   var { body } = await superagent.get('https://dog.ceo/api/breeds/image/random');
 	   var embed = new Discord.RichEmbed()
-	   .setColor(0x954D23)
-	   .setTitle(":dog: Po")
+	   .setColor('#BD1608')
+	   .setTitle(":dog: Pow")
 	   .setImage(body.message)
 	   .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
 	   message.channel.send({embed})
@@ -911,7 +911,7 @@ switch (args[0].toLowerCase()) {
         var { body } = await superagent
 	   .get('http://random.cat/meow');
 	    var embed = new Discord.RichEmbed()
-	   .setColor(0x954D23)
+	   .setColor('#BD1608')
 	   .setTitle("Meow :cat:")
 	   .setImage(body.file)
 	   .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
