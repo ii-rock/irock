@@ -933,7 +933,7 @@ switch (args[0].toLowerCase()) {
        if (theMsg.replace(mentionedUser, "")) {
             embed.addField("Reason", theMsg.replace(mentionedUser, ""))
        } else {
-       	    embed.addField("Reason", `Not specified`)
+       	    embed.addField("Reason", `No reason provided.`)
        }
             m.send({embed})
 	    } catch (err) {
@@ -957,7 +957,7 @@ switch (args[0].toLowerCase()) {
        if (theMsg.replace(mentionedUser, "")) {
             embed.addField("Reason", theMsg.replace(mentionedUser, ""))
        } else {
-       	    embed.addField("Reason", `Not specified`)
+       	    embed.addField("Reason", `No reason provided.`)
        }
 			
        m.send({embed})
@@ -966,6 +966,7 @@ switch (args[0].toLowerCase()) {
 	    }
 	    break;
 		case "purge":
+		if (!message.member.hasPermission('MANAGE_MESSAGES')) return m.send(":warning: You need permission `Manage Messages` to use this command.")
 		if (!theMsg) return m.send(`:warning: Invalid value to delete.\nUsage: \`${prefix}purge <number of messages (1-100)>\``)
  
 	    try {
