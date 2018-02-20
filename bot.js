@@ -16,7 +16,7 @@ var googl = require('goo.gl');
 googl.setKey(process.env.google_Key);
 
 const GoogleImages = require('google-images');
-const img = new GoogleImages(`${process.env.engineID}`, `${process.env.google_Key}`});
+const img = new GoogleImages(process.env.engineID, process.env.google_Key);
 
 var bot = new Client({
     autoReconnect: true,
