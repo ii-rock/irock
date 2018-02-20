@@ -993,15 +993,16 @@ switch (args[0].toLowerCase()) {
 		if (!config.admins.includes(message.author.id)) return message.channel.sendEmbed(embedNoPermission)
 		if (!theMsg) return m.send(':warning: Cannot eval nothing!')
 		try {
-         
+          var Result = eval(theMsg)
 			var embed = new Discord.RichEmbed()
 	   .setAuthor("Your Code")
 	   .setColor('#D0C4BD')
 	   .setDescription("```js\n" + theMsg + "\n```")
+	   .addField('Result', "```js\n" + Result + "\n```")
        .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
        .setTimestamp()
 	m.send({embed})
-	eval(theMsg)
+	
 	 
 	} catch (err) {
         m.send(err.message)
