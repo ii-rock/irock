@@ -991,7 +991,6 @@ switch (args[0].toLowerCase()) {
 		if (!config.admins.includes(message.author.id)) return message.channel.sendEmbed(embedNoPermission)
 		try {
          
-	 message.delete()
 			var embed = new Discord.RichEmbed()
 	   .setAuthor("Your Code")
 	   .setColor('#D0C4BD')
