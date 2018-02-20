@@ -872,9 +872,11 @@ function playit(guild, song, msg) {
             serverQueue.textChannel.send({embed});
 }
 bot.on('message', async (message) => {
+	if (!message.content.startsWith(prefix)) return;
 	var WholeMsg = message.content.split(" ").slice(1)
         var theMsg = WholeMsg.join(" ")
 	var args = message.content.substring(prefix.length).split(" ");
+	
 	
 switch (args[0].toLowerCase()) {   
 		case "image":
