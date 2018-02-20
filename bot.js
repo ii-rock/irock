@@ -878,16 +878,18 @@ bot.on('message', async (message) => {
 	
 switch (args[0].toLowerCase()) {   
 		case "image":
-		if (!message.channel.nsfw) return message.channel.send(":warning: This command works in NSFW channels only.")
+		if (!message.channel.nsfw) return message.channel.send(":warning: This command works in \`NSFW\` channels only.")
 		if (!theMsg) return message.channel.send(`:warning: Please enter a search query!\nUsage: ${prefix}image \`<search query>\``)
         try {
         img.search(theMsg, {page: 1})
            .then(images => {
            	var embed = new Discord.RichEmbed()
 	   .setColor('#4285F4')
-	   .setAuthor(`Google Images`, "https://cdn.pixabay.com/photo/2015/10/31/12/56/google-1015752_960_720.png")
+	   .setAuthor(`Google Images Search`, "https://cdn.pixabay.com/photo/2015/10/31/12/56/google-1015752_960_720.png")
 	   .setTitle(`Search result for "${theMsg}"`)
 	   .setImage(images[0].url)
+           .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+           .setTimestamp()
 	   message.channel.send({embed})
            }).catch(function(error) {
            	if (error.message === "Cannot read property 'url' of undefined") return message.channel.send(`No results were found for query: ${theMsg}`)
@@ -905,6 +907,7 @@ switch (args[0].toLowerCase()) {
 	   .setTitle(":dog: Pow")
 	   .setImage(body.message)
 	   .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+	   .setTimestamp()
 	   message.channel.send({embed})
     	break;
     	case "cat":
@@ -915,6 +918,7 @@ switch (args[0].toLowerCase()) {
 	   .setTitle("Meow :cat:")
 	   .setImage(body.file)
 	   .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+	    .setTimestamp()
 	   message.channel.send({embed})
     	break;
 }
