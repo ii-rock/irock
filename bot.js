@@ -923,7 +923,7 @@ switch (args[0].toLowerCase()) {
 	       if (!menGuildUser) return m.send(`Usage: \`${prefix}ban <user> <reason>\``)
 	       if (!menGuildUser.bannable) return m.send(":warning: That user is having higher role than me or you. Could not be banned.")
 	       	try {
-	       	await menGuildUser.ban(theMsg.replace(mentionedUser, ""));
+	       	menGuildUser.ban(theMsg.replace(mentionedUser, ""));
 	       	var embed = new Discord.RichEmbed()
 	   .setAuthor("User Banned", mentionedUser.displayAvatarURL)
 	   .setColor('#0000FF')
@@ -935,7 +935,7 @@ switch (args[0].toLowerCase()) {
        } else {
        	    embed.addField("Reason", `Not specified`)
        }
-
+            m.send({embed})
 	    } catch (err) {
 	    	m.send(err.message)
 	    }
