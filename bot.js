@@ -918,11 +918,7 @@ switch (args[0].toLowerCase()) {
 		case "eval":
 		if (!config.admins.includes(message.author.id)) return message.channel.sendEmbed(embedNoPermission)
 		try {
-        var Result = eval(theMsg)
-
-	    await m.send(Result)
-
-
+         eval(theMsg)
 	} catch (err) {
         m.send(err.message)
 	}
