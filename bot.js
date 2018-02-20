@@ -930,12 +930,8 @@ switch (args[0].toLowerCase()) {
 	   .setDescription(`${mentionedUser.username}#${mentionedUser.discriminator} has been banned from this server.`)
        .setFooter(`Banned by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
        .setTimestamp()
-       if (!theMsg === theMsg.replace(mentionedUser, "")) {
-	       embed.addField("Reason", `Not specified`)
-            
-       } else {
-       	    embed.addField("Reason", theMsg.replace(mentionedUser, ""))
-       }
+       if (!theMsg === theMsg.replace(mentionedUser, "")) embed.addField("Reason", `Not specified`)
+       else embed.addField("Reason", theMsg.replace(mentionedUser, ""))
             m.send({embed})
 
 	    } catch (err) {
@@ -956,12 +952,9 @@ switch (args[0].toLowerCase()) {
 
        .setFooter(`Kicked by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
        .setTimestamp()
-       if (!theMsg === theMsg.replace(mentionedUser, "")) {
-            embed.addField("Reason", `Not specified`)
-       } else {
-	       embed.addField("Reason", theMsg.replace(mentionedUser, ""))
-       	    
-       }
+       if (!theMsg === theMsg.replace(mentionedUser, "")) embed.addField("Reason", `Not specified`)
+       else embed.addField("Reason", theMsg.replace(mentionedUser, ""))
+			
        m.send({embed})
 	    } catch (err) {
 	    	m.send(err.message)
