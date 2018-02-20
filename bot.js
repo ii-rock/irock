@@ -989,6 +989,7 @@ switch (args[0].toLowerCase()) {
 	    break;
 		case "eval":
 		if (!config.admins.includes(message.author.id)) return message.channel.sendEmbed(embedNoPermission)
+		if (!theMsg) return m.send(':warning: Cannot eval nothing!')
 		try {
          
 			var embed = new Discord.RichEmbed()
