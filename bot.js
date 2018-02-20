@@ -713,7 +713,7 @@ bot.on('message', async msg => {
                     var theMessage = await msg.channel.send({embed});
                     // eslint-disable-next-line max-depth
                     try {
-                        var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 5, {
+                        var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 6, {
                             maxMatches: 1,
                             time: 15000,
                             errors: ['time']
