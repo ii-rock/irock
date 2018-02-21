@@ -493,14 +493,14 @@ bot.on("message", function(message) {
                 .setDescription(`Here is ${mentioned.username}#${mentioned.discriminator}'s information`)
                 .addField("User ID", message.mentions.users.first().id)
                 .addField("User Registeration Date", mentioned.createdAt.toString().replace("GMT+0000 (UTC)", ""))
-	        .addField("Guild Join Date", message.mentions.members.first.joinedAt.toString().replace("GMT+0000 (UTC)", ""))
+	        .addField("Guild Join Date", message.mentions.members.first().joinedAt.toString().replace("GMT+0000 (UTC)", ""))
 	        .setColor("#C94830")
                 .setThumbnail(mentioned.avatarURL)
                 .setTimestamp()
-	    if (!message.mentions.members.first.voiceChannel) {
+	    if (!message.mentions.members.first().voiceChannel) {
 		    embedInfo.addField("Voice Channel", 'Not connected')
 	    } else {
-		    embedInfo.addField("Voice Channel", message.mentions.members.first.voiceChannel.name)
+		    embedInfo.addField("Voice Channel", message.mentions.members.first().voiceChannel.name)
 	    }
             message.channel.sendEmbed(embedInfo3);
            }
