@@ -482,9 +482,9 @@ bot.on("message", function(message) {
                 .setColor("#C94830")
                 .setTimestamp()
 	    if (!message.member.voiceChannel) {
-		    embedInfo.addField("Voice Channel", 'Not connected')
+		    embedInfo2.addField("Voice Channel", 'Not connected')
 	    } else {
-		    embedInfo.addField("Voice Channel", message.member.voiceChannel.name)
+		    embedInfo2.addField("Voice Channel", message.member.voiceChannel.name)
 	    }
             message.channel.sendEmbed(embedInfo2);
         } else {
@@ -498,9 +498,9 @@ bot.on("message", function(message) {
                 .setThumbnail(mentioned.avatarURL)
                 .setTimestamp()
 	    if (!message.mentions.members.first().voiceChannel) {
-		    embedInfo.addField("Voice Channel", 'Not connected')
+		    embedInfo3.addField("Voice Channel", 'Not connected')
 	    } else {
-		    embedInfo.addField("Voice Channel", message.mentions.members.first().voiceChannel.name)
+		    embedInfo3.addField("Voice Channel", message.mentions.members.first().voiceChannel.name)
 	    }
             message.channel.sendEmbed(embedInfo3);
            }
