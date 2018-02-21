@@ -454,35 +454,54 @@ bot.on("message", function(message) {
         case "userinfo":
            if (!message.mentions.users.first()) {
             var embedInfo = new Discord.RichEmbed()
-                .setAuthor("Your Information")
+                .setAuthor("Your Information", message.author.displayAvatarURL)
                 .setDescription(`Here is your account information`)
                 .addField("User ID", message.author.id)
                 .addField("User Registeration Date", message.author.createdAt)
+	        .addField("Guild Join Date", message.member.joinedAt)
+	  
                 .setThumbnail(message.author.avatarURL)
                 .setColor("#C94830")
                 .setTimestamp()
+	    if (!message.member.voiceChannel) {
+		    embedInfo.addField("Voice Channel", 'Not connected')
+	    } else {
+		    embedInfo.addField("Voice Channel", message.member.voiceChannel.name)
+	    }
             message.channel.sendEmbed(embedInfo);
            } else if (!message.guild) {
                m.reply("You can't use this command in private messages.")
            } else if (mentioned === message.author) {
-            var embedInfo2 = new Discord.RichEmbed()
-                .setAuthor("Your Information")
+            var embedInfo = new Discord.RichEmbed()
+                .setAuthor("Your Information", message.author.displayAvatarURL)
                 .setDescription(`Here is your account information`)
                 .addField("User ID", message.author.id)
                 .addField("User Registeration Date", message.author.createdAt)
-                .setColor("#C94830")
+	        .addField("Guild Join Date", message.member.joinedAt)
                 .setThumbnail(message.author.avatarURL)
+                .setColor("#C94830")
                 .setTimestamp()
+	    if (!message.member.voiceChannel) {
+		    embedInfo.addField("Voice Channel", 'Not connected')
+	    } else {
+		    embedInfo.addField("Voice Channel", message.member.voiceChannel.name)
+	    }
             message.channel.sendEmbed(embedInfo2);
         } else {
             var embedInfo3 = new Discord.RichEmbed()
-                .setAuthor(mentioned.username + "#" + mentioned.discriminator + "'s Information")
+                .setAuthor(mentioned.username + "#" + mentioned.discriminator + "'s Information", mentioned.displayAvatarURL)
                 .setDescription(`Here is ${mentioned.username}#${mentioned.discriminator}'s information`)
                 .addField("User ID", message.mentions.users.first().id)
                 .addField("User Registeration Date", mentioned.createdAt)
-                .setColor("#C94830")
+	        .addField("Guild Join Date", message.mentions.members.first.joinedAt)
+	        .setColor("#C94830")
                 .setThumbnail(mentioned.avatarURL)
                 .setTimestamp()
+	    if (!message.mentions.members.first.voiceChannel) {
+		    embedInfo.addField("Voice Channel", 'Not connected')
+	    } else {
+		    embedInfo.addField("Voice Channel", message.mentions.members.first.voiceChannel.name)
+	    }
             message.channel.sendEmbed(embedInfo3);
            }
            break;
