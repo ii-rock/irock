@@ -459,9 +459,9 @@ bot.on("message", function(message) {
                 .addField("User ID", message.author.id)
                 .addField("User Registeration Date", message.author.createdAt.toString().replace("GMT+0000 (UTC)", ""))
 	        .addField("Guild Join Date", message.member.joinedAt.toString().replace("GMT+0000 (UTC)", ""))
-	  
+	        .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
                 .setThumbnail(message.author.avatarURL)
-                .setColor("#C94830")
+                .setColor("#46925F")
                 .setTimestamp()
 	    if (!message.member.voiceChannel) {
 		    embedInfo.addField("Voice Channel", 'Not connected')
@@ -479,7 +479,8 @@ bot.on("message", function(message) {
                 .addField("User Registeration Date", message.author.createdAt.toString().replace("GMT+0000 (UTC)", ""))
 	        .addField("Guild Join Date", message.member.joinedAt.toString().replace("GMT+0000 (UTC)", ""))
                 .setThumbnail(message.author.avatarURL)
-                .setColor("#C94830")
+	        .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
+                .setColor("#46925F")
                 .setTimestamp()
 	    if (!message.member.voiceChannel) {
 		    embedInfo2.addField("Voice Channel", 'Not connected')
@@ -494,8 +495,9 @@ bot.on("message", function(message) {
                 .addField("User ID", message.mentions.users.first().id)
                 .addField("User Registeration Date", mentioned.createdAt.toString().replace("GMT+0000 (UTC)", ""))
 	        .addField("Guild Join Date", message.mentions.members.first().joinedAt.toString().replace("GMT+0000 (UTC)", ""))
-	        .setColor("#C94830")
+	        .setColor("#0000FF")
                 .setThumbnail(mentioned.avatarURL)
+	        .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
                 .setTimestamp()
 	    if (!message.mentions.members.first().voiceChannel) {
 		    embedInfo3.addField("Voice Channel", 'Not connected')
