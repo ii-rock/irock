@@ -8,6 +8,9 @@ const GOOGLE_API_KEY = process.env.google_Key
 const youtube = new YouTube(GOOGLE_API_KEY);
 const superagent = require('superagent');
 
+
+var jokes = fs.readFileSync("jokes.txt").toString().split("\n");
+
 var Cleverbot = require('cleverbot-node');
     cleverbot = new Cleverbot;
     cleverbot.configure({botapi: `${process.env.clever_Key}`});
@@ -186,6 +189,11 @@ bot.on("message", function(message) {
     var args = message.content.substring(prefix.length).split(" ");
 
     switch (args[0].toLowerCase()) {
+	    case "yomama":
+	    if (!mentioned) return m.send(':warning: You have to mention a user!')
+	    var joke = jokes[Math.floor(Math.random() * jokes.length)]
+	    m.send(`${mentioned}, ${joke}`)
+	    break;
 	    case "roll":
 		    var text = "";
   var possible = "0123456789";
