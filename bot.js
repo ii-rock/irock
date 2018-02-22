@@ -133,8 +133,9 @@ bot.on("ready", function() {
     
     console.log("The bot is online and ready to be used");
     bot.user.setActivity("YouTube", {type: "WATCHING"})
-    
+    setInterval(function() {
     dbl.postStats(bot.guilds.size);
+}, 1800000)
 	
     bot.channels.get("405872224806109185").sendMessage(`:white_check_mark: [Posted] Successfully posted to DBL.`);
 
