@@ -318,7 +318,7 @@ bot.on("message", function(message) {
     .setColor("#39AA54")
     .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
     .addField("Server Name", message.guild.name, inline = true)
-    .addField("Server Owner", (`${message.guild.owner}#${message.guild.owner.user.discriminator}`), inline = true)
+    .addField("Server Owner", (`${message.guild.owner.displayName}#${message.guild.owner.user.discriminator}`), inline = true)
     .addField("Server ID", message.guild.id, inline = true)
     .addField("Region", message.guild.region, inline = true)
     .addField("Created On", message.guild.createdAt.toString().replace("GMT+0000 (UTC)", ""), inline = true)
