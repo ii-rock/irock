@@ -192,7 +192,7 @@ bot.on("message", function(message) {
 
   for (var i = 0; i < 3; i++)
     text += possible.charAt(Math.floor(Math.random() * possible.length));
-		    m.send(`:game_die: ${author.username}#${author.discriminator} rolls: text`)
+		    m.send(`:game_die: ${author.username}#${author.discriminator} rolls: ${text}`)
 	    break;
         case "shortenurl":
     	googl.getKey();
