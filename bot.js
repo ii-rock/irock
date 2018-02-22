@@ -7,6 +7,8 @@ const YouTube = require('simple-youtube-api');
 const GOOGLE_API_KEY = process.env.google_Key
 const youtube = new YouTube(GOOGLE_API_KEY);
 const superagent = require('superagent');
+const DBL = require('dblapi.js')
+const dbl = new DBL(process.env.dbl_Key)
 
 
 var jokes = fs.readFileSync("jokes.txt").toString().split("\n");
@@ -107,10 +109,14 @@ bot.on("guildDelete", async guild => {
 });
 
 
-bot.on("guildCreate", update);
+bot.on("guildCreate" function() {
+	dbl.postStats(bot.guilds.size);
+});
     
 bot.on('ready', update);
-bot.on('guildDelete', update);
+bot.on('guildDelete', function() {
+	dbl.postStats(bot.guilds.size);
+});
    
 
 bot.on("guildCreate", guild => {
@@ -128,7 +134,8 @@ bot.on("ready", function() {
     console.log("The bot is online and ready to be used");
     bot.user.setActivity("YouTube", {type: "WATCHING"})
     
-    
+    dbl.postStats(bot.guilds.size);
+	
     bot.channels.get("405872224806109185").sendMessage(`:white_check_mark: [Posted] Successfully posted to DBL.`);
 
     setInterval(function() {
