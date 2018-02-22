@@ -303,7 +303,7 @@ bot.on("message", function(message) {
         case "say":
         message.delete();
         let embed = new Discord.RichEmbed()
-    .setAuthor(`${message.author.username}#${message.author.discriminator} says`, message.author.displayAvatarURL)
+    .setAuthor(`${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
     .setDescription(theMsg)
     .setColor("#E2C34A")
     .setTimestamp()
@@ -311,17 +311,18 @@ bot.on("message", function(message) {
         m.send({embed})
         break;
         case "serverinfo":
+        if (!message.guild) return;
         let sicon = message.guild.iconURL;
         let serverembed = new Discord.RichEmbed()
-    .setDescription("Server Information")
-    .setColor("#2772C6")
+    .setDescription("Server Information", sicon)
+    .setColor("#39AA54")
     .setThumbnail(sicon)
     .addField("Server Name", message.guild.name, inline = true)
-    .addField("Server Owner", message.guild.owner, inline = true)
+    .addField("Server Owner", (`${message.guild.owner}#${message.guild.owner.discriminator}`), inline = true)
     .addField("Server ID", message.guild.id, inline = true)
     .addField("Region", message.guild.region, inline = true)
-    .addField("Created On", message.guild.createdAt, inline = true)
-    .addField("You Joined At", message.member.joinedAt, inline = true)
+    .addField("Created On", message.guild.createdAt.toString().replace("GMT+0000 (UTC)", ""), inline = true)
+    .addField("You Joined At", message.member.joinedAt.toString().replace("GMT+0000 (UTC)", ""), inline = true)
     .addField("Total Members", message.guild.memberCount, inline = true);
 
      message.channel.sendEmbed(serverembed);
@@ -359,8 +360,8 @@ bot.on("message", function(message) {
     .setColor("#15f153")
     .setThumbnail(sicon)
     .addField("Server Name", message.guild.name)
-    .addField("Created On", message.guild.createdAt)
-    .addField("You Joined At", message.member.joinedAt)
+    .addField("Created On", message.guild.createdAt.toString().replace("GMT+0000 (UTC)", ""))
+    .addField("You Joined At", message.member.joinedAt.toString().replace("GMT+0000 (UTC)", ""))
     .addField("Total Members", message.guild.memberCount);
 
      message.channel.send(serverembed);
@@ -409,8 +410,8 @@ bot.on("message", function(message) {
             var embedAv = new Discord.RichEmbed()
                 .setAuthor("Avatar Changed")
                 .setDescription(`My profile picture has been successfully changed.`)
-                .setImage(args[1])
-                .setColor("#C94830")
+                .setThumbnail(args[1])
+                .setColor("#888670")
                 .setTimestamp()
             message.channel.sendEmbed(embedAv);
 	  } catch (error) {
@@ -435,7 +436,7 @@ bot.on("message", function(message) {
            }
            break;
 	case "setnick":
-	   if (!config.admins.includes(message.author.id)) return m.sendEmbed(embedNoPermission)
+	   if (!config.admins.includes(message.author.id) || !message.member.hasPermission('MANAGE_NICKNAMES')) return m.sendEmbed(embedNoPermission)
            if (theMsg.length = 0) {
             m.sendMessage("The nickname cannot be empty!");
            } else {
