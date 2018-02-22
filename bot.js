@@ -314,16 +314,17 @@ bot.on("message", function(message) {
         if (!message.guild) return;
         let sicon = message.guild.iconURL;
         let serverembed = new Discord.RichEmbed()
-    .setDescription("Server Information", sicon)
+    .setAuthor("Server Information", sicon)
     .setColor("#39AA54")
-    .setThumbnail(sicon)
+    .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
     .addField("Server Name", message.guild.name, inline = true)
-    .addField("Server Owner", (`${message.guild.owner}#${message.guild.owner.discriminator}`), inline = true)
+    .addField("Server Owner", (`${message.guild.owner}#${message.guild.owner.user.discriminator}`), inline = true)
     .addField("Server ID", message.guild.id, inline = true)
     .addField("Region", message.guild.region, inline = true)
     .addField("Created On", message.guild.createdAt.toString().replace("GMT+0000 (UTC)", ""), inline = true)
     .addField("You Joined At", message.member.joinedAt.toString().replace("GMT+0000 (UTC)", ""), inline = true)
     .addField("Total Members", message.guild.memberCount, inline = true);
+    
 
      message.channel.sendEmbed(serverembed);
      break;
@@ -352,22 +353,6 @@ bot.on("message", function(message) {
             message.channel.sendEmbed(embedHelp);
 
             break;
-        case "serverinfo":
-            if (message.guild) {
-        let sicon = message.guild.iconURL;
-        let serverembed = new Discord.RichEmbed()
-    .setDescription("Server Information")
-    .setColor("#15f153")
-    .setThumbnail(sicon)
-    .addField("Server Name", message.guild.name)
-    .addField("Created On", message.guild.createdAt.toString().replace("GMT+0000 (UTC)", ""))
-    .addField("You Joined At", message.member.joinedAt.toString().replace("GMT+0000 (UTC)", ""))
-    .addField("Total Members", message.guild.memberCount);
-
-     message.channel.send(serverembed);
-            } else {
-                m.reply("You can't use this command in private messages.")
-            }
      break;
         case "reportbug":
             var embedRep = new Discord.RichEmbed()
