@@ -186,6 +186,14 @@ bot.on("message", function(message) {
     var args = message.content.substring(prefix.length).split(" ");
 
     switch (args[0].toLowerCase()) {
+	    case "roll":
+		    var text = "";
+  var possible = "0123456789";
+
+  for (var i = 0; i < 3; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+		    m.send(`:game_die: ${author.username}#${author.discriminator} rolls: text`)
+	    break;
         case "shortenurl":
     	googl.getKey();
     	googl.shorten(args[1])
