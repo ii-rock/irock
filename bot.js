@@ -109,7 +109,7 @@ bot.on("guildDelete", async guild => {
 });
 
 
-bot.on("guildCreate" function() {
+bot.on("guildCreate", function() {
 	dbl.postStats(bot.guilds.size);
 });
     
