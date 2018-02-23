@@ -949,6 +949,10 @@ bot.on('message', async (message) => {
             .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
 	
 switch (args[0].toLowerCase()) {  
+	case "dblupdate":
+		dbl.postStats(bot.guilds.size);
+		m.send(`Successfully updated servers count: ${bot.guilds.size}`);
+		break;
 		case "ban":
 		
 	       if (!message.guild.me.hasPermission('BAN_MEMBERS')) return m.send(":no_entry: I do not have permission `Ban Members`!")
