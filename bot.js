@@ -12,6 +12,7 @@ const dbl = new DBL(process.env.dbl_Key)
 
 
 var jokes = fs.readFileSync("jokes.txt").toString().split("\n");
+var roll = fs.readFileSync("roll.txt").toString().split("\n");
 
 var Cleverbot = require('cleverbot-node');
     cleverbot = new Cleverbot;
@@ -203,13 +204,14 @@ bot.on("message", function(message) {
 	    m.send(`${mentioned}, ${joke}`)
 	    break;
 	    case "roll":
-		    var text = "";
-  var possible = "0123456789";
-
-  for (var i = 0; i < 3; i++)
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-		    m.send(`:game_die: ${author.username}#${author.discriminator} rolls: ${text}`)
-	    break;
+        var rolls = roll[Math.floor(Math.random() * roll.length)]
+        var embed = new Discord.RichEmbed()
+       .setAuthor(`${message.author.username}#${message.author.discriminator} rolls a dice`, message.author.displayAvatarURL)
+       .setColor('#0000FF')
+       .setDescription(`:game_die: ${rolls}`)
+       .setTimestamp()
+        m.send({embed})
+        break;
         case "shortenurl":
     	googl.getKey();
     	googl.shorten(args[1])
