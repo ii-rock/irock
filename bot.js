@@ -205,12 +205,12 @@ bot.on("message", function(message) {
 	    break;
 	    case "roll":
         var rolls = roll[Math.floor(Math.random() * roll.length)]
-        var embed = new Discord.RichEmbed()
+        var embedRoll = new Discord.RichEmbed()
        .setAuthor(`${message.author.username}#${message.author.discriminator} rolls a dice`, message.author.displayAvatarURL)
        .setColor('#0000FF')
        .setDescription(`:game_die: ${rolls}`)
        .setTimestamp()
-        m.send({embed})
+        m.sendEmbed(embedRoll)
         break;
         case "shortenurl":
     	googl.getKey();
