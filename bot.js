@@ -950,6 +950,7 @@ bot.on('message', async (message) => {
 	
 switch (args[0].toLowerCase()) {  
 	case "dblupdate":
+		if (!config.admins.includes(msg.author.id)) return m.sendEmbed(embedNoPermission)
 		dbl.postStats(bot.guilds.size);
 		m.send(`Successfully updated servers count: ${bot.guilds.size}`);
 		break;
