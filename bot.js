@@ -215,6 +215,7 @@ bot.on("message", function(message) {
         case "shortenurl":
     	googl.getKey();
     	googl.shorten(args[1])
+		    
     .then(function (shortUrl) {
     	var embed = new Discord.RichEmbed()
     .setAuthor("URL Shortened", "https://cdn.pixabay.com/photo/2015/10/31/12/56/google-1015752_960_720.png")
