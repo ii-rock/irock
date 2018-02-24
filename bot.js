@@ -201,6 +201,8 @@ bot.on("message", function(message) {
 	    case "yomama":
 	    if (!mentioned) return m.send(':warning: You have to mention a user!')
 	    var joke = jokes[Math.floor(Math.random() * jokes.length)]
+            if (mentioned.id === bot.user.id) return m.send(`You won't get jokes about my mama :stuck_out_tongue_closed_eyes:\n${author}, ${joke}`)
+	    
 	    m.send(`${mentioned}, ${joke}`)
 	    break;
 	    case "roll":
