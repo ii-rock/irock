@@ -652,6 +652,8 @@ bot.on('message', async msg => {
                 .setAuthor("State Changed")
 		if (theMsg === "h+g") {
                 embedGame.setDescription(`Now playing **${prefix}help | ${bot.guilds.size} Guilds**`)
+		} else if (theMsg === "h+u") {
+		embedGame.setDescription(`Now playing **${prefix}help | ${bot.users.size} Users**`)	
 		} else {
 		embedGame.setDescription(`Now playing **${theMsg}**`)
                 }
@@ -660,6 +662,8 @@ bot.on('message', async msg => {
             msg.channel.sendEmbed(embedGame);
            if (theMsg === "h+g") {
             await bot.user.setActivity(`${prefix}help | ${bot.guilds.size} Guilds`, {type: "PLAYING"});
+	   } else if (theMsg === "h+u") {
+            await bot.user.setActivity(`${prefix}help | ${bot.users.size} Users`, {type: "PLAYING"});
 	   } else {
             await bot.user.setActivity(theMsg, {type: "PLAYING"});
            }
@@ -671,6 +675,8 @@ bot.on('message', async msg => {
                 .setAuthor("State Changed")
                 if (theMsg === "h+g") {
                 embedListen.setDescription(`Now listening to **${prefix}help | ${bot.guilds.size} Guilds**`)
+		} else if (theMsg === "h+u") {
+		embedListen.setDescription(`Now listening to **${prefix}help | ${bot.users.size} Users**`)
 		} else {
 		embedListen.setDescription(`Now listening to **${theMsg}**`)
                 }
@@ -680,6 +686,8 @@ bot.on('message', async msg => {
            
 	   if (theMsg === "h+g") {
             await bot.user.setActivity(`${prefix}help | ${bot.guilds.size} Guilds`, {type: 2});
+	   } else if (theMsg === "h+u") {
+	    await bot.user.setActivity(`${prefix}help | ${bot.users.size} Users`, {type: 2});
 	   } else {
             await bot.user.setActivity(theMsg, {type: 2});
            }
@@ -691,6 +699,8 @@ bot.on('message', async msg => {
                 .setAuthor("State Changed")
                 if (theMsg === "h+g") {
                 embedWatch.setDescription(`Now watching **${prefix}help | ${bot.guilds.size} Guilds**`)
+		} else if (theMsg === "h+u") {
+		embedWatch.setDescription(`Now watching **${prefix}help | ${bot.users.size} Users**`)
 		} else {
 		embedWatch.setDescription(`Now watching **${theMsg}**`)
                 }
@@ -699,6 +709,8 @@ bot.on('message', async msg => {
             msg.channel.sendEmbed(embedWatch);
            if (theMsg === "h+g") {
             await bot.user.setActivity(`${prefix}help | ${bot.guilds.size} Guilds`, {type: "WATCHING"});
+	   } else if (theMsg === "h+u") {
+	    await bot.user.setActivity(`${prefix}help | ${bot.users.size} Users`, {type: 'WATCHING'});
 	   } else {
              await bot.user.setActivity(theMsg, {type: "WATCHING"});
            }
@@ -711,6 +723,8 @@ bot.on('message', async msg => {
             .setAuthor("State Changed")
             if (theMsg === "h+g") {
                 embedStream.setDescription(`Now streaming **${prefix}help | ${bot.guilds.size} Guilds**`)
+		} else if (theMsg === "h+u") {
+		embedStream.setDescription(`Now streaming **${prefix}help | ${bot.users.size} Users**`)
 		} else {
 		embedStream.setDescription(`Now streaming **${theMsg}**`)
                 }
@@ -720,6 +734,8 @@ bot.on('message', async msg => {
             msg.channel.sendEmbed(embedStream);
 	   if (theMsg === "h+g") {
             await bot.user.setGame(`${prefix}help | ${bot.guilds.size} Guilds`, `${TWITCH}`);
+	   } else if (theMsg === "h+u") {
+	    await bot.user.setGame(`${prefix}help | ${bot.users.size} Users`, `${TWITCH}`);  
 	   } else {
              await bot.user.setGame(`${theMsg}`, `${TWITCH}`);
            }
