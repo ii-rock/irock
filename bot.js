@@ -74,9 +74,7 @@ bot.on('guildMemberAdd', member => {
       var channel = bot.channels.get("389585768961540098").sendMessage(`Guys, please welcome **${member.displayName}** to the server!`)
       if (!channel) return;
       }   
-  }      
- if (!member.guild.id === "264445053596991498") return member.user.send(`:hugging: Whazzup ${member.user.username}, hope you enjoy your time in **${member.guild.name}**!`)
-  
+  }        
 });
 
 var servers = bot.guilds.size
