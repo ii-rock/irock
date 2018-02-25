@@ -196,16 +196,15 @@ bot.on("message", function(message) {
                 .setTimestamp()
 	if (!message.guild) {
         bot.channels.get("405872224806109185").sendMessage(`[Private] ${message.author.username}#${message.author.discriminator}: ${message.content}`);
-        if (!message.content.startsWith(prefix)) {
+        if (message.content.includes('help')) return message.author.sendEmbed(embedHelp) && message.author.send(`I am a music bot, clever.\nInvite me to your guild from [Here](${process.env.invite})`)
+	if (!message.content.startsWith(prefix)) {
 	    cleverbot.write(message.content, function (response) {
        message.reply(response.output)
        bot.channels.get("405872224806109185").sendMessage(`[Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}`);
-	    
-    })
-	} else if (message.content.includes('help')) {
-		message.author.sendEmbed(embedHelp)
-		message.author.send(`I am a music bot, clever.\nInvite me to your guild from [Here](${process.env.invite})`)
+		
 	}
+    })
+	
 }
     var mentioned = message.mentions.users.first()
     var channels = message.mentions.channels.first()
