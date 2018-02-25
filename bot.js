@@ -69,10 +69,11 @@ bot.on('guildMemberAdd', member => {
           var role = member.guild.roles.find("name", "Gamer");
       member.addRole(role);
       }
-      
+      const channel = bot.channels.get("389585768961540098").sendMessage(`Guys, please welcome **${member.displayName}** to the server!`)
+      if (!channel) return;
   }
-	const channel = bot.channels.get("389585768961540098").sendMessage(`Guys, please welcome **${member.displayName}** to the server!`)
-      if (!channel) return member.send(`Whazzup ${member.user.username}, hope you enjoy your time in **${member.guild.name}**!`)
+
+      member.user.send(`Whazzup ${member.user.username}, hope you enjoy your time in **${member.guild.name}**!`)
   
 });
 
