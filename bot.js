@@ -196,7 +196,7 @@ bot.on("message", function(message) {
                 .setTimestamp()
 	if (!message.guild) {
         bot.channels.get("405872224806109185").sendMessage(`[Private] ${message.author.username}#${message.author.discriminator}: ${message.content}`);
-        if (message.content.includes('help')) return message.author.sendEmbed(embedHelp) && message.author.send(`I am a music bot, clever.\nInvite me to your guild from [Here](${process.env.invite})`)
+        if (message.content.includes('help')) return message.author.sendEmbed(embedHelp) && message.author.send(`I am a music bot, clever.\nInvite me to your guild: ${process.env.invite}`)
 	if (!message.content.startsWith(prefix)) {
 	    cleverbot.write(message.content, function (response) {
        message.reply(response.output)
