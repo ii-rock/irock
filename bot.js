@@ -177,8 +177,9 @@ bot.on("message", function(message) {
 	    cleverbot.write(message.content, function (response) {
        message.reply(response.output)
        bot.channels.get("405872224806109185").sendMessage(`[Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}`);
-	    }
-    });
+	    
+    })
+	}
 }
 	let embedNoPermission = new Discord.RichEmbed()
             .setAuthor("⛔ No Permission")
