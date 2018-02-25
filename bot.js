@@ -73,7 +73,7 @@ bot.on('guildMemberAdd', member => {
       if (!channel) return;
   }
 
-      member.user.send(`:raised_hands: Whazzup ${member.user.username}, hope you enjoy your time in **${member.guild.name}**!`)
+      member.user.send(`:hugging:  Whazzup ${member.user.username}, hope you enjoy your time in **${member.guild.name}**!`)
   
 });
 
