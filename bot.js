@@ -173,10 +173,11 @@ bot.on("message", function(message) {
 
     if (!message.guild) {
         bot.channels.get("405872224806109185").sendMessage(`[Private] ${message.author.username}#${message.author.discriminator}: ${message.content}`);
-        cleverbot.write(message.content, function (response) {
+        if (!message.content.startsWith(prefix)) {
+	    cleverbot.write(message.content, function (response) {
        message.reply(response.output)
        bot.channels.get("405872224806109185").sendMessage(`[Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}`);
-       
+	    }
     });
 }
 	let embedNoPermission = new Discord.RichEmbed()
