@@ -64,16 +64,21 @@ bot.on('guildMemberAdd', member => {
       
       if (member.user.bot) {
           var role = member.guild.roles.find("name", "Bots");
-      member.addRole(role);
+	      member.addRole(role)
+	      var channel = bot.channels.get("389585768961540098").sendMessage(`Guys, please welcome **${member.displayName}** to the server!`)
+      if (!channel) return;
+					     
       } else {
           var role = member.guild.roles.find("name", "Gamer");
       member.addRole(role);
-      }
-      const channel = bot.channels.get("389585768961540098").sendMessage(`Guys, please welcome **${member.displayName}** to the server!`)
+      var channel = bot.channels.get("389585768961540098").sendMessage(`Guys, please welcome **${member.displayName}** to the server!`)
       if (!channel) return;
+      }
+      
   }
-
+      if (!member.guild.id === "295236047317762058") {
       member.user.send(`:hugging: Whazzup ${member.user.username}, hope you enjoy your time in **${member.guild.name}**!`)
+      }
   
 });
 
