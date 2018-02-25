@@ -73,11 +73,8 @@ bot.on('guildMemberAdd', member => {
       member.addRole(role);
       var channel = bot.channels.get("389585768961540098").sendMessage(`Guys, please welcome **${member.displayName}** to the server!`)
       if (!channel) return;
-      }
-      
-  }
-      member.user.send(`:hugging: Whazzup ${member.user.username}, hope you enjoy your time in **${member.guild.name}**!`)
-      
+      }   
+  }      
   
 });
 
