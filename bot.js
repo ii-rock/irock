@@ -194,6 +194,7 @@ bot.on("message", function(message) {
         bot.channels.get("405872224806109185").sendMessage(`[Private] ${message.author.username}#${message.author.discriminator}: ${message.content}`);
         if (message.content.includes('help')) return message.author.sendEmbed(embedHelp) && message.author.send(`I am a music bot, clever.\nInvite me to your guild: ${process.env.invite}`)
 	if (!message.content.startsWith(prefix)) {
+	    message.channel.startTyping()
 	    cleverbot.write(message.content, function (response) {
        message.reply(response.output)
        bot.channels.get("405872224806109185").sendMessage(`[Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}`);
@@ -333,6 +334,7 @@ bot.on("message", function(message) {
         if (theMsg.length <= 1) {
             message.reply(":x: The message has to be longer than 1 character!")
         } else {
+	message.channel.startTyping()
         cleverbot.write(theMsg, function (response) {
         message.reply(response.output)
         bot.channels.get("405872224806109185").sendMessage(`[Talk Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}`);
