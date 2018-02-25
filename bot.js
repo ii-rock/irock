@@ -176,12 +176,12 @@ bot.on("message", function(message) {
     if (!message.author.equals(bot.user))
 
     
-	let embedNoPermission = new Discord.RichEmbed()
+	var embedNoPermission = new Discord.RichEmbed()
             .setAuthor("⛔ No Permission")
             .setDescription("You do not have permission to perform this action.")
             .setColor("#FF0000")
             .setTimestamp()
-            .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+            .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL);
 	
         var embedHelp = new Discord.RichEmbed()
                 .setAuthor("Commands")
