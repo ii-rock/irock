@@ -175,7 +175,26 @@ bot.on("message", function(message) {
     if (message.author.bot) return;
     if (!message.author.equals(bot.user))
 
-    if (!message.guild) {
+    
+	let embedNoPermission = new Discord.RichEmbed()
+            .setAuthor("⛔ No Permission")
+            .setDescription("You do not have permission to perform this action.")
+            .setColor("#FF0000")
+            .setTimestamp()
+            .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+	
+        var embedHelp = new Discord.RichEmbed()
+                .setAuthor("Commands")
+                .addField("Music", `${prefix}play \`<youtube link/search query>\` - plays a song from youtube in your current voice channel.\n${prefix}stop - stops the player and leaves your current channel.\n${prefix}move - moves me to your current voice channel.\n${prefix}skip - skips your current song and plays the next one in the queue.\n${prefix}pause - pause current song, if any.\n${prefix}resume - resume current song, if any.\n${prefix}volume \`[1-100]\` - changes the volume of the player.\n${prefix}np - shows the current song, if any.\n${prefix}queue - shows the list of the queued songs, if any.`)
+	        .addField("Moderation", `${prefix}userinfo \`<user>\` - shows a few information about the mentioned user.\n${prefix}serverinfo - shows a few information about the current guild.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic \`<mention a channel> <new topic>\` - changes the current or mentioned channel's topic.\n${prefix}purge \`<number of messages (1-100)>\` - deletes a specified amount of messages.\n${prefix}ban \`<user> <reason>\` - bans a user from the server.\n${prefix}kick \`<user> <reason>\` - kicks a user from the server.\n${prefix}report \`<user> <reason>\` - report a user with a reason and it will be sent in the **reports** channel if found.`)
+                .addField("Google", `${prefix}google \`<search query>\` - search something on google and the bot will give you the link.\n${prefix}shortenurl \`<URL/Link>\` - convert a long link to a short one.\n${prefix}image \`<search query>\` - search for an image on google.`)
+                .addField("Cleverbot System", `${prefix}talk \`<message>\` - talk to the bot and it will reply to you.\n(Direct Messaging): You can chat with the bot privately and it will reply to you asap!\nExample,\nUser: Hey\n${bot.user.username}: Hey, how are you?`)
+	        .addField("Other", `${prefix}8ball - ask a question and the bot will reply with a random answer.\n${prefix}say \`<message>\` - says your message.\n${prefix}cat - sends a random cat picture.\n${prefix}dog - sends a random dog picture.\n${prefix}roll - rolls a number.\n${prefix}yomama \`<user>\` - Joke with the mentioned user using yomama jokes.\n${prefix}dm \`<user> <message>\` - send the mentioned user a direct message.`)
+                .addField("About Bot", `${prefix}ping - shows the time taken for the bot to respond.\n${prefix}uptime - shows the time since the bot has started up.\n${prefix}servers - shows the servers count that the bot has joined.\n${prefix}about - shows information about the bot's owner and the library used to create the bot.\n${prefix}invite - sends my invitation link.\n${prefix}reportbug - report a bug and it will be sent to the owner.`)
+                .setColor("#3C51C3")
+                .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
+                .setTimestamp()
+	if (!message.guild) {
         bot.channels.get("405872224806109185").sendMessage(`[Private] ${message.author.username}#${message.author.discriminator}: ${message.content}`);
         if (!message.content.startsWith(prefix)) {
 	    cleverbot.write(message.content, function (response) {
@@ -183,15 +202,12 @@ bot.on("message", function(message) {
        bot.channels.get("405872224806109185").sendMessage(`[Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}`);
 	    
     })
+	} else if (!message.content.includes('help'))
+		message.author.send({embed})
+		message.author.send(`I am a music bot, clever.\nInvite me to your guild from [Here](${process.env.invite})`)
+		
 	}
 }
-	let embedNoPermission = new Discord.RichEmbed()
-            .setAuthor("⛔ No Permission")
-            .setDescription("You do not have permission to perform this action.")
-            .setColor("#FF0000")
-            .setTimestamp()
-            .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
-
     var mentioned = message.mentions.users.first()
     var channels = message.mentions.channels.first()
     var m = message.channel
@@ -381,17 +397,7 @@ bot.on("message", function(message) {
             message.channel.sendEmbed(embeed);
             break;
         case "help":
-           var embedHelp = new Discord.RichEmbed()
-                .setAuthor("Commands")
-                .addField("Music", `${prefix}play \`<youtube link/search query>\` - plays a song from youtube in your current voice channel.\n${prefix}stop - stops the player and leaves your current channel.\n${prefix}move - moves me to your current voice channel.\n${prefix}skip - skips your current song and plays the next one in the queue.\n${prefix}pause - pause current song, if any.\n${prefix}resume - resume current song, if any.\n${prefix}volume \`[1-100]\` - changes the volume of the player.\n${prefix}np - shows the current song, if any.\n${prefix}queue - shows the list of the queued songs, if any.`)
-	        .addField("Moderation", `${prefix}userinfo \`<user>\` - shows a few information about the mentioned user.\n${prefix}serverinfo - shows a few information about the current guild.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic \`<mention a channel> <new topic>\` - changes the current or mentioned channel's topic.\n${prefix}purge \`<number of messages (1-100)>\` - deletes a specified amount of messages.\n${prefix}ban \`<user> <reason>\` - bans a user from the server.\n${prefix}kick \`<user> <reason>\` - kicks a user from the server.\n${prefix}report \`<user> <reason>\` - report a user with a reason and it will be sent in the **reports** channel if found.`)
-                .addField("Google", `${prefix}google \`<search query>\` - search something on google and the bot will give you the link.\n${prefix}shortenurl \`<URL/Link>\` - convert a long link to a short one.\n${prefix}image \`<search query>\` - search for an image on google.`)
-                .addField("Cleverbot System", `${prefix}talk \`<message>\` - talk to the bot and it will reply to you.\n(Direct Messaging): You can chat with the bot privately and it will reply to you asap!\nExample,\nUser: Hey\n${bot.user.username}: Hey, how are you?`)
-	        .addField("Other", `${prefix}8ball - ask a question and the bot will reply with a random answer.\n${prefix}say \`<message>\` - says your message.\n${prefix}cat - sends a random cat picture.\n${prefix}dog - sends a random dog picture.\n${prefix}roll - rolls a number.\n${prefix}yomama \`<user>\` - Joke with the mentioned user using yomama jokes.\n${prefix}dm \`<user> <message>\` - send the mentioned user a direct message.`)
-                .addField("About Bot", `${prefix}ping - shows the time taken for the bot to respond.\n${prefix}uptime - shows the time since the bot has started up.\n${prefix}servers - shows the servers count that the bot has joined.\n${prefix}about - shows information about the bot's owner and the library used to create the bot.\n${prefix}invite - sends my invitation link.\n${prefix}reportbug - report a bug and it will be sent to the owner.`)
-                .setColor("#3C51C3")
-                .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
-                .setTimestamp()
+           
 	       if (config.admins.includes(message.author.id)) embedHelp.addField("Owner Commands", `${prefix}close - closes the websocket connection and disconnects the bot.\n${prefix}restart - restarts the bot.\n${prefix}setstatus - changes my state.\n${prefix}setgame - makes me play a specified game.\n${prefix}watch - sets my status to Watching.\n${prefix}listen - sets my status to Listening.\n${prefix}stream - sets my status to Streaming.\n${prefix}setname - changes my username.\n${prefix}setavatar - changes my avatar.\n${prefix}eval - runs a code inside the console and returns the result.`)
             message.channel.sendEmbed(embedHelp);
 
