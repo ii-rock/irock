@@ -76,9 +76,8 @@ bot.on('guildMemberAdd', member => {
       }
       
   }
-      if (!member.guild.id === "295236047317762058") {
       member.user.send(`:hugging: Whazzup ${member.user.username}, hope you enjoy your time in **${member.guild.name}**!`)
-      }
+      
   
 });
 
