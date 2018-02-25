@@ -202,8 +202,8 @@ bot.on("message", function(message) {
        bot.channels.get("405872224806109185").sendMessage(`[Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}`);
 	    
     })
-	} else if (!message.content.includes('help')) {
-		message.author.send({embed})
+	} else if (message.content.includes('help')) {
+		message.author.sendEmbed(embedHelp)
 		message.author.send(`I am a music bot, clever.\nInvite me to your guild from [Here](${process.env.invite})`)
 	}
 }
