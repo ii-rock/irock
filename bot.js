@@ -73,7 +73,7 @@ bot.on('guildMemberAdd', member => {
       if (!channel) return;
   }
 
-      member.user.send(`:hugging:  Whazzup ${member.user.username}, hope you enjoy your time in **${member.guild.name}**!`)
+      member.user.send(`:hugging: Whazzup ${member.user.username}, hope you enjoy your time in **${member.guild.name}**!`)
   
 });
 
@@ -99,7 +99,8 @@ var eightBall = [
     "My reply is no",
     "My sources say no",
     "Outlook not so good",
-    "Very doubtful"
+    "Very doubtful",
+    "Needs a lot of thinking :thinking:"
 ];
 
 
@@ -202,7 +203,7 @@ bot.on("message", function(message) {
     switch (args[0].toLowerCase()) {
 	    case "dm":
 		    if (!mentioned) return m.send('Comon, that\'s not possible, you have to mention a user!')
-		   if (!theMsg.replace(mentioned, '')) (':poop: Discord does not allow empty messages...')
+		   if (!theMsg.replace(mentioned, '')) return m.send(':poop: Discord does not allow empty messages...')
 		    mentioned.send(`${author.username}#${author.discriminator} told me to send you a direct message :slight_smile:\n:speech_balloon: ${theMsg.replace(mentioned, '')}`)
                    
 	    break;
