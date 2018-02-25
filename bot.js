@@ -197,6 +197,7 @@ bot.on("message", function(message) {
 	    message.channel.startTyping()
 	    cleverbot.write(message.content, function (response) {
        message.reply(response.output)
+            message.channel.stopTyping()
        bot.channels.get("405872224806109185").sendMessage(`[Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}`);
 		
 	
@@ -337,6 +338,7 @@ bot.on("message", function(message) {
 	message.channel.startTyping()
         cleverbot.write(theMsg, function (response) {
         message.reply(response.output)
+	message.channel.stopTyping()
         bot.channels.get("405872224806109185").sendMessage(`[Talk Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}`);
         });
         }
