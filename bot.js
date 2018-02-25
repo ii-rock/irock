@@ -308,7 +308,6 @@ bot.on("message", function(message) {
         if (theMsg.length <= 1) {
             message.reply(":x: The message has to be longer than 1 character!")
         } else {
-        bot.channels.get("405872224806109185").sendMessage(`[Talk Command] ${message.author.username}#${message.author.discriminator}: ${message.content}`);
         cleverbot.write(theMsg, function (response) {
         message.reply(response.output)
         bot.channels.get("405872224806109185").sendMessage(`[Talk Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}`);
