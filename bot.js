@@ -202,8 +202,9 @@ bot.on("message", function(message) {
        message.reply(response.output)
        bot.channels.get("405872224806109185").sendMessage(`[Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}`);
 		
-	}
+	
     })
+	}
 	
 }
     var mentioned = message.mentions.users.first()
