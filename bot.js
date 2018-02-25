@@ -201,13 +201,12 @@ bot.on("message", function(message) {
        message.reply(response.output)
        bot.channels.get("405872224806109185").sendMessage(`[Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}`);
 	    
-    }
+    })
 	} else if (!message.content.includes('help'))
 		message.author.send({embed})
 		message.author.send(`I am a music bot, clever.\nInvite me to your guild from [Here](${process.env.invite})`)
 	}
 	
-		
 })
     var mentioned = message.mentions.users.first()
     var channels = message.mentions.channels.first()
