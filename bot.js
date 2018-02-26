@@ -1049,7 +1049,7 @@ switch (args[0].toLowerCase()) {
  
 	    try {
 		    
-            const fetched = await message.channel.fetchMessages({limit: theMsg});
+            const fetched = await message.channel.fetchMessages({limit: args[1]});
             message.channel.bulkDelete(fetched)
 		    var embed = new Discord.RichEmbed()
 	   .setAuthor("Purge")
@@ -1061,8 +1061,9 @@ switch (args[0].toLowerCase()) {
             
 	    } catch (err) {
 	    	if (err.message === "The messages must be an Array, Collection, or number.") return m.send("The messages to delete must be a number.")
-	    	if (err.message.includes("equal to 100.")) return m.send("You can delete a maximum of 100 messages at once.")
-	    	m.send(err.message)
+	    	if (err.message.includes("equal to 100.")) return m.send("You can only delete a maximum of 100 messages at once.")
+	    	if (err.message.includes('is not int.')) return m.send(`:warning: Invalid value to delete.\nUsage: \`${prefix}purge <number of messages (1-100)>\``)
+		    m.send(err.message)
         }
 	    break;
 		case "eval":
