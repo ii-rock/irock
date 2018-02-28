@@ -1087,6 +1087,7 @@ switch (args[0].toLowerCase()) {
 	    break;
 	    case "report":
 	    let reportsChannel = message.guild.channels.find('name', "reports");
+	    
 	    if (!reportsChannel) {
 	    	var confirmMsg = await m.send("Reports channel was not found, create one or type `.confirm` to let me create new one. This timeouts in 10 seconds.")
 	    	try {
@@ -1113,7 +1114,6 @@ switch (args[0].toLowerCase()) {
 	    	}
 
 	    } else {
-
 	    if (!mentionedUser) return m.send("Please mention a user!")
 	    if (!theMsg.replace(mentionedUser, "")) return m.send("Please provide a reason!")
 	    
@@ -1146,7 +1146,7 @@ switch (args[0].toLowerCase()) {
 	   message.channel.send({embed})
            }).catch(function(error) {
            	if (error.message === "Cannot read property 'url' of undefined") return message.channel.send(`No results were found for query: ${theMsg}`)
-           	message.channel.send(`:warning: Oops, that shouldn't happen!\n:x: ERROR: ${error.message}\n\nPlease use ${prefix}reportbug \`${error.message}\`, or try to use the command again.`)
+           	message.channel.send(`:warning: Oops, that shouldn't happen!\n:x: ERROR: ${error.message}\n\nIf you think this is a bug, please use ${prefix}reportbug \`${error.message}\`, or try to use the command again.`)
 
            });
        } catch (err) {
