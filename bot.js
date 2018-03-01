@@ -1049,7 +1049,7 @@ switch (args[0].toLowerCase()) {
  
 	    try {
 	    const fetched = await message.channel.fetchMessages({limit: args[1]});
-            message.channel.bulkDelete(args[1])
+            await message.channel.bulkDelete(args[1])
 		    var embed = new Discord.RichEmbed()
 	   .setAuthor("Purge")
 	   .setColor('#0000FF')
