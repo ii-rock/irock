@@ -1134,7 +1134,7 @@ switch (args[0].toLowerCase()) {
 		if (!message.channel.nsfw) return message.channel.send(":warning: This command works in \`NSFW\` channels only.")
 		if (!theMsg) return message.channel.send(`:warning: Please enter a search query!\nUsage: ${prefix}image \`<search query>\``)
         try {
-        img.search(`${theMsg} gif`, {page: Math.floor(Math.random() * 5 + 1)})
+        img.search(`${theMsg}`, {page: Math.floor(Math.random() * 5 + 1)})
            .then(images => {
            	var embed = new Discord.RichEmbed()
 	   .setColor('#4285F4')
