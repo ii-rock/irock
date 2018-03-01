@@ -1048,9 +1048,8 @@ switch (args[0].toLowerCase()) {
 		if (!theMsg) return m.send(`:warning: Invalid value to delete.\nUsage: \`${prefix}purge <number of messages (1-100)>\``)
  
 	    try {
-		    
-            const fetched = await message.channel.fetchMessages({limit: args[1]});
-            message.channel.bulkDelete(fetched)
+	    const fetched = await message.channel.fetchMessages({limit: args[1]});
+            message.channel.bulkDelete(args[1])
 		    var embed = new Discord.RichEmbed()
 	   .setAuthor("Purge")
 	   .setColor('#0000FF')
