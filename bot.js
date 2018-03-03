@@ -317,7 +317,7 @@ bot.on("message", function(message) {
     	if (theMsg.length < 1) {
     		m.send(":x: Please enter a search query.");
     	} else {
-          var Result = "http://www.google.com/search?hl=en&q=" + theMsg.replace(' ', '+');
+          var Result = "http://www.google.com/search?hl=en&q=" + theMsg.split(' ').join('+');
          let embed = new Discord.RichEmbed()
     .setAuthor("Google Search")
     .setDescription("You've searched on google.")
