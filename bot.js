@@ -497,6 +497,8 @@ bot.on("message", function(message) {
                 .setThumbnail(message.author.avatarURL)
                 .setColor("#46925F")
                 .setTimestamp()
+	    if (message.author.presence.game) return embedInfo.addField('Game/Status', message.author.presence.game.name)
+	    if (!message.author.presence.game) return embedInfo.addField('Game/Status', '`Not playing`')
 	    if (!message.member.voiceChannel) {
 		    embedInfo.addField("Voice Channel", 'Not connected')
 	    } else {
@@ -516,6 +518,8 @@ bot.on("message", function(message) {
 	        .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
                 .setColor("#46925F")
                 .setTimestamp()
+	    if (message.author.presence.game) return embedInfo.addField('Game/Status', message.author.presence.game.name)
+	    if (!message.author.presence.game) return embedInfo.addField('Game/Status', '`Not playing`')
 	    if (!message.member.voiceChannel) {
 		    embedInfo2.addField("Voice Channel", 'Not connected')
 	    } else {
@@ -533,6 +537,8 @@ bot.on("message", function(message) {
                 .setThumbnail(mentioned.avatarURL)
 	        .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
                 .setTimestamp()
+	    if (message.mentions.users.first().presence.game) return embedInfo.addField('Game/Status', message.mentions.users.first().presence.game.name)
+	    if (!message.mentions.users.first().presence.game) return embedInfo.addField('Game/Status', '`Not playing`')
 	    if (!message.mentions.members.first().voiceChannel) {
 		    embedInfo3.addField("Voice Channel", 'Not connected')
 	    } else {
