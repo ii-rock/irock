@@ -497,8 +497,8 @@ bot.on("message", function(message) {
                 .setThumbnail(message.author.avatarURL)
                 .setColor("#46925F")
                 .setTimestamp()
-	    if (message.author.presence.game) return embedInfo.addField('Game/Status', message.author.presence.game.name)
-	    if (!message.author.presence.game) return embedInfo.addField('Game/Status', '`Not playing`')
+	    if (message.author.presence.game) embedInfo.addField('Game/Status', message.author.presence.game.name)
+	    if (!message.author.presence.game) embedInfo.addField('Game/Status', '`Not playing`')
 	    if (!message.member.voiceChannel) {
 		    embedInfo.addField("Voice Channel", 'Not connected')
 	    } else {
