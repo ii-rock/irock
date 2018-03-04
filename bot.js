@@ -521,7 +521,7 @@ bot.on("message", function(message) {
                 .setTimestamp()
 	    if (message.author.presence) embedInfo2.addField('Game/Status', message.author.presence.game.name)
 	   if (!message.author.presence) embedInfo2.addField('Game/Status', '`Not playing`')
-	    }
+	    
 
 	    if (!message.member.voiceChannel) {
 		    embedInfo2.addField("Voice Channel", 'Not connected')
