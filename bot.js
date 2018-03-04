@@ -87,7 +87,7 @@ var eightBall = [
     "You may rely on it",
     "As I see it, yes",
     "Most likely",
-    "utlook good",
+    "Outlook good",
     "Yes",
     "Signs point to yes",
     "Reply hazy try again",
