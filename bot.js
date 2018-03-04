@@ -497,11 +497,9 @@ bot.on("message", function(message) {
                 .setThumbnail(message.author.avatarURL)
                 .setColor("#46925F")
                 .setTimestamp()
-	    if (message.author.presence) {
-		    embedInfo.addField('Game/Status', message.author.presence.game.name)
-	    } else {
-		    embedInfo.addField('Game/Status', '`Not playing`')
-	    }
+	    if (message.author.presence) embedInfo.addField('Game/Status', message.author.presence.game.name)
+	    if (!message.author.presence) embedInfo.addField('Game/Status', '`Not playing`')
+	    
 	    if (!message.member.voiceChannel) {
 		    embedInfo.addField("Voice Channel", 'Not connected')
 	    } else {
@@ -521,11 +519,8 @@ bot.on("message", function(message) {
 	        .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
                 .setColor("#46925F")
                 .setTimestamp()
-	    if (message.author.presence) {
-		    
-           embedInfo2.addField('Game/Status', message.author.presence.game.name)
-	    } else { 
-	   embedInfo2.addField('Game/Status', '`Not playing`')
+	    if (message.author.presence) embedInfo2.addField('Game/Status', message.author.presence.game.name)
+	   if (!message.author.presence) embedInfo2.addField('Game/Status', '`Not playing`')
 	    }
 
 	    if (!message.member.voiceChannel) {
