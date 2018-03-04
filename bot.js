@@ -497,7 +497,7 @@ bot.on("message", function(message) {
                 .setThumbnail(message.author.avatarURL)
                 .setColor("#46925F")
                 .setTimestamp()
-	    if (message.author.presence) { 
+	    if (!message.author.presence.game.name === '') { 
 		    embedInfo.addField('Game/Status', message.author.presence.game.name)
 	    } else {
 		    embedInfo.addField('Game/Status', '`Not playing`')
@@ -523,7 +523,7 @@ bot.on("message", function(message) {
 	        .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
                 .setColor("#46925F")
                 .setTimestamp()
-	    if (message.author.presence) {
+	    if (!message.author.presence.game.name === '') {
 		    embedInfo2.addField('Game/Status', message.author.presence.game.name)
 	    } else {
 		    embedInfo2.addField('Game/Status', '`Not playing`')
@@ -546,8 +546,8 @@ bot.on("message", function(message) {
                 .setThumbnail(mentioned.avatarURL)
 	        .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
                 .setTimestamp()
-	    if (message.mentions.users.first().presence) {
-		    embedInfo3.addField('Game/Status', message.mentions.users.first().presence.game.name)
+	    if (message.mentions.members.first().presence) {
+		    embedInfo3.addField('Game/Status', message.mentions.members.first().presence.game.name)
 	    } else {
 		    embedInfo3.addField('Game/Status', '`Not playing`')
 	    }
