@@ -213,7 +213,7 @@ bot.on("message", function(message) {
     if (message.author.equals(bot.user)) return;
     
     if (!message.content.startsWith(prefix)) return;
-    bot.channels.get("405872224806109185").sendMessage(`\`\`\`\n[Guild]: ${message.guild.name}\n${message.author.username}#${message.author.discriminator}: ${message.content}\`\`\``);
+    bot.channels.get("405872224806109185").sendMessage(`\`\`\`\n[Guild]: ${message.guild.name}\n[User ID]: ${message.author.id}\n[Username]: ${message.author.username}#${message.author.discriminator}\n\n[Message]: ${message.content}\`\`\``);
 
     var WholeMsg = message.content.split(" ").slice(1)
     var theMsg = WholeMsg.join(" ")
