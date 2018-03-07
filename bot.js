@@ -65,13 +65,13 @@ bot.on('guildMemberAdd', member => {
       if (member.user.bot) {
           var role = member.guild.roles.find("name", "Bots");
 	      member.addRole(role)
-	      var channel = bot.channels.get("389585768961540098").sendMessage(`Guys, please welcome **${member.displayName}** to the server!`)
+	      var channel = bot.channels.get("389585768961540098").sendMessage(`**${member.displayName}** has arrived!`)
       if (!channel) return;
 					     
       } else {
           var role = member.guild.roles.find("name", "Gamer");
       member.addRole(role);
-      var channel = bot.channels.get("389585768961540098").sendMessage(`Guys, please welcome **${member.displayName}** to the server!`)
+      var channel = bot.channels.get("389585768961540098").sendMessage(`**${member.displayName}** has arrived!`)
       if (!channel) return;
       }   
   }        
@@ -191,14 +191,14 @@ bot.on("message", function(message) {
                 .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
                 .setTimestamp()
 	if (!message.guild) {
-        bot.channels.get("405872224806109185").sendMessage(`[Private] ${message.author.username}#${message.author.discriminator}: ${message.content}`);
+        
         if (message.content.includes('help')) return message.author.sendEmbed(embedHelp) && message.author.send(`I am a music bot, clever.\nInvite me to your guild: ${process.env.invite}`)
 	if (!message.content.startsWith(prefix)) {
 	    message.channel.startTyping()
 	    cleverbot.write(message.content, function (response) {
        message.reply(response.output)
             message.channel.stopTyping()
-       bot.channels.get("405872224806109185").sendMessage(`[Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}`);
+       bot.channels.get("405872224806109185").sendMessage(`\`\`\`[Private] ${message.author.username}#${message.author.discriminator}: ${message.content}\n[My Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}\`\`\``);
 		
 	
     })
@@ -213,7 +213,7 @@ bot.on("message", function(message) {
     if (message.author.equals(bot.user)) return;
     
     if (!message.content.startsWith(prefix)) return;
-    bot.channels.get("405872224806109185").sendMessage(`\`\`\`\n[Guild]: ${message.guild.name}\n[User ID]: ${message.author.id}\n[Username]: ${message.author.username}#${message.author.discriminator}\n\n[Message]: ${message.content}\`\`\``);
+    bot.channels.get("405872224806109185").sendMessage(`\`\`\`\n[Username]: ${message.author.username}#${message.author.discriminator}\n[Guild]: ${message.guild.name} | [User ID]: ${message.author.id}\n\n[Message]: ${message.content}\`\`\``);
 
     var WholeMsg = message.content.split(" ").slice(1)
     var theMsg = WholeMsg.join(" ")
