@@ -193,7 +193,7 @@ bot.on("message", function(message) {
 	if (!message.guild) {
         
         if (message.content.includes('help')) return message.author.sendEmbed(embedHelp) && message.author.send(`I am a music bot, clever.\nInvite me to your guild: ${process.env.invite}`)
-	if (!message.content.startsWith(prefix)) {
+	if (message.content.startsWith(prefix)) return;
 	    message.channel.startTyping()
 	    cleverbot.write(message.content, function (response) {
        message.reply(response.output)
@@ -202,7 +202,6 @@ bot.on("message", function(message) {
 		
 	
     })
-	}
 	
 }
     var mentioned = message.mentions.users.first()
