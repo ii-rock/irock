@@ -201,11 +201,12 @@ bot.on("message", function(message) {
 		    var botTag = bot.user.username + '#' + bot.user.discriminator
 		    var userTag = message.author.username + '#' + message.author.discriminator
 		    var pvtEmbed = new Discord.RichEmbed()
-		    .setAuthor('Private Message')
+		    .setAuthor('Private Message', message.author.displayAvatarURL)
 		    .addField('User', userTag)
 		    .addField('Conversation', `${userTag}: ${message.content}\n${botTag}: ${response.output}`)
 		    .setFooter(`User ID: ${message.author.id}`)
 		    .setColor('#4A0A25')
+		    .setTimestamp()
        bot.channels.get("405872224806109185").sendEmbed(pvtEmbed)
 		
 	
@@ -222,11 +223,12 @@ bot.on("message", function(message) {
     
     if (!message.content.startsWith(prefix)) return;
 	var msgEmbed = new Discord.RichEmbed()
-		    .setAuthor('Guild Message')
+		    .setAuthor('Guild Message', message.author.displayAvatarURL)
 		    .addField('User', userTag)
 		    .addField('Message', `${message.content}`)
 	            .setFooter(`Guild Name: ${message.guild.name}  |  User ID: ${message.author.id}`)
 	            .setColor('#CFDCD8')
+	            .setTimestamp()
     bot.channels.get("405872224806109185").sendEmbed(msgEmbed);
 
     var WholeMsg = message.content.split(" ").slice(1);
