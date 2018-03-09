@@ -198,7 +198,15 @@ bot.on("message", function(message) {
 	    cleverbot.write(message.content, function (response) {
        message.reply(response.output)
             message.channel.stopTyping()
-       bot.channels.get("405872224806109185").sendMessage(`———[Private Message]———\n\n${message.author.username}#${message.author.discriminator}: ${message.content}\n\n${bot.user.username}#${bot.user.discriminator}: ${response.output}\n\n——————————————`);
+		    var botTag = bot.user.username + '#' + bot.user.discriminator
+		    var userTag = message.author.username + '#' + message.author.discriminator
+		    var pvtEmbed = new Discord.RichEmbed()
+		    .setAuthor('Private Message')
+		    .addField('User', userTag)
+		    .addField('Conversation', `${userTag}: ${message.content}\n${botTag}: ${response.output}`)
+		    .setFooter(`User ID: ${message.author.id}`)
+		    .setColor('#4A0A25')
+       bot.channels.get("405872224806109185").sendEmbed(pvtEmbed)
 		
 	
     })
@@ -208,11 +216,18 @@ bot.on("message", function(message) {
     var channels = message.mentions.channels.first()
     var m = message.channel
     var author = message.author
+    var userTag = message.author.username + '#' + message.author.discriminator
 
     if (message.author.equals(bot.user)) return;
     
     if (!message.content.startsWith(prefix)) return;
-    bot.channels.get("405872224806109185").sendMessage(`———[Guild Message]———\n\n${message.author.username}#${message.author.discriminator}: ${message.content}\n\n[Guild]: ${message.guild.name}   |   [User ID]: ${message.author.id}\n\n——————————————`);
+	var msgEmbed = new Discord.RichEmbed()
+		    .setAuthor('Guild Message')
+		    .addField('User', userTag)
+		    .addField('Message', `${message.content}`)
+	            .setFooter(`Guild Name: ${message.guild.name}  |  User ID: ${message.author.id}`)
+	            .setColor('#CFDCD8')
+    bot.channels.get("405872224806109185").sendEmbed(msgEmbed);
 
     var WholeMsg = message.content.split(" ").slice(1);
     var theMsg = WholeMsg.join(" ")
