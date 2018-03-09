@@ -198,7 +198,7 @@ bot.on("message", function(message) {
 	    cleverbot.write(message.content, function (response) {
        message.reply(response.output)
             message.channel.stopTyping()
-       bot.channels.get("405872224806109185").sendMessage(`———[Private Message]———\n${message.author.username}#${message.author.discriminator}: ${message.content}\n[My Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}\n——————————————`);
+       bot.channels.get("405872224806109185").sendMessage(`———[Private Message]———\n${message.author.username}#${message.author.discriminator}: ${message.content}\n${bot.user.username}#${bot.user.discriminator}: ${response.output}\n——————————————`);
 		
 	
     })
