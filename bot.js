@@ -198,7 +198,7 @@ bot.on("message", function(message) {
 	    cleverbot.write(message.content, function (response) {
        message.reply(response.output)
             message.channel.stopTyping()
-       bot.channels.get("405872224806109185").sendMessage(`———[Private Message]———\n${message.author.username}#${message.author.discriminator}: ${message.content}\n${bot.user.username}#${bot.user.discriminator}: ${response.output}\n——————————————`);
+       bot.channels.get("405872224806109185").sendMessage(`———[Private Message]———\n\n${message.author.username}#${message.author.discriminator}: ${message.content}\n\n${bot.user.username}#${bot.user.discriminator}: ${response.output}\n\n——————————————`);
 		
 	
     })
@@ -212,7 +212,7 @@ bot.on("message", function(message) {
     if (message.author.equals(bot.user)) return;
     
     if (!message.content.startsWith(prefix)) return;
-    bot.channels.get("405872224806109185").sendMessage(`———[Guild Message]———\n${message.author.username}#${message.author.discriminator}: ${message.content}\n\n[Guild]: ${message.guild.name}   |   [User ID]: ${message.author.id}\n——————————————`);
+    bot.channels.get("405872224806109185").sendMessage(`———[Guild Message]———\n\n${message.author.username}#${message.author.discriminator}: ${message.content}\n\n[Guild]: ${message.guild.name}   |   [User ID]: ${message.author.id}\n\n——————————————`);
 
     var WholeMsg = message.content.split(" ").slice(1);
     var theMsg = WholeMsg.join(" ")
