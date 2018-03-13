@@ -141,7 +141,7 @@ bot.on("ready", function() {
     dbl.postStats(bot.guilds.size);
 }, 1800000)
 	
-    bot.channels.get("405872224806109185").sendMessage(`:white_check_mark: [Posted] Successfully posted to DBL.`);
+    bot.channels.get("405872224806109185").sendMessage(`:signal_strength: [Ready] Connected to DBL.`);
 
     setInterval(function() {
 
@@ -226,7 +226,9 @@ bot.on("message", function(message) {
 		    .setAuthor('Guild Message', message.author.displayAvatarURL)
 		    .addField('User', userTag)
 		    .addField('Message', `${message.content}`)
-	            .setFooter(`Guild Name: ${message.guild.name}  |  User ID: ${message.author.id}`)
+	            .addField('Text Channel ID', message.channel.id)
+	            .addField('Guild Name', message.guild.name)
+	            .setFooter(`User ID: ${message.author.id}`)
 	            .setColor('#CFDCD8')
 	            .setTimestamp()
     bot.channels.get("405872224806109185").sendEmbed(msgEmbed);
