@@ -241,6 +241,13 @@ bot.on("message", function(message) {
 	    case "dm":
 		    if (!mentioned) return m.send('Comon, that\'s not possible, you have to mention a user!')
 		   if (!theMsg.replace(mentioned, '')) return m.send(':poop: Discord does not allow empty messages...')
+		    var embedDm = new Discord.RichEmbed()
+       .setAuthor(`:speech_balloon: Direct Message`)
+       .setColor('#0000FF')
+       .setDescription(`Direct message have been sent to ${mentioned}`)
+       .addField('Message', theMsg.replace(mentioned, ''))
+       .setTimestamp()
+        m.sendEmbed(embedDm)
 		    mentioned.send(`${author.username}#${author.discriminator} told me to send you a direct message :slight_smile:\n:speech_balloon: ${theMsg.replace(mentioned, '')}`)
                    
 	    break;
