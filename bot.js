@@ -141,7 +141,10 @@ bot.on("ready", function() {
 }, 1800000)
 	
     bot.channels.get("405872224806109185").sendMessage(`:signal_strength: [Ready] Connected to DBL.`);
-
+    clever.setNick('Rocky');
+	clever.create(function (err, session) {
+		
+	})
     setInterval(function() {
 
         upSecs = upSecs + 1
@@ -193,7 +196,6 @@ bot.on("message", function(message) {
         if (message.content.includes('help')) return message.author.sendEmbed(embedHelp) && message.author.send(`I am a music bot, clever.\nInvite me to your guild: ${process.env.invite}`)
 	if (message.content.startsWith(prefix)) return;
 	    message.channel.startTyping()
-		clever.create(function (err, session) {
 	    clever.ask(message.content, function (err, response) {
             message.reply(response)
 								 
@@ -210,9 +212,7 @@ bot.on("message", function(message) {
 		    .setTimestamp()
        bot.channels.get("405872224806109185").sendEmbed(pvtEmbed)
 	    
-	    
-    })
-})
+	    })
 
 }
 
@@ -364,13 +364,12 @@ bot.on("message", function(message) {
             message.reply(":x: The message has to be longer than 1 character!")
         } else {
 	message.channel.startTyping()
-        clever.create(function (err, session) {
+      
 	    clever.ask(theMsg, function (err, response) {
         message.reply(response)
 	message.channel.stopTyping()
         bot.channels.get("405872224806109185").sendMessage(`[Talk Reply] ${bot.user.username}#${bot.user.discriminator}: ${response}`);
 	
-        })
 	})
         }
                         
