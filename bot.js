@@ -16,7 +16,7 @@ var roll = fs.readFileSync("roll.txt").toString().split("\n");
 
 var cleverbot = require("cleverbot.io"),
 clever = new cleverbot(process.env.api_User, process.env.api_Password);
-
+clever.setNick('Rocky')
 var googl = require('goo.gl');
 googl.setKey(process.env.google_Key);
 
