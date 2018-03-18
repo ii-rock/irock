@@ -14,9 +14,8 @@ const dbl = new DBL(process.env.dbl_Key)
 var jokes = fs.readFileSync("jokes.txt").toString().split("\n");
 var roll = fs.readFileSync("roll.txt").toString().split("\n");
 
-var Cleverbot = require('cleverbot-node');
-    cleverbot = new Cleverbot;
-    cleverbot.configure({botapi: `${process.env.clever_Key}`});
+var cleverbot = require("cleverbot.io"),
+clever = new cleverbot(process.env.api_User, process.env.api_Password);
 
 var googl = require('goo.gl');
 googl.setKey(process.env.google_Key);
@@ -167,7 +166,7 @@ bot.on("ready", function() {
 
 
 bot.on("message", function(message) { 
-
+    let nothing;
     if (message.author.bot) return;
     if (!message.author.equals(bot.user))
 
@@ -195,24 +194,27 @@ bot.on("message", function(message) {
         if (message.content.includes('help')) return message.author.sendEmbed(embedHelp) && message.author.send(`I am a music bot, clever.\nInvite me to your guild: ${process.env.invite}`)
 	if (message.content.startsWith(prefix)) return;
 	    message.channel.startTyping()
-	    cleverbot.write(message.content, function (response) {
-       message.reply(response.output)
+	    clever.ask(message.content, function (err, response) { 
+		    message.reply(response)
+								 
+	
             message.channel.stopTyping()
 		    var botTag = bot.user.username + '#' + bot.user.discriminator
 		    var userTag = message.author.username + '#' + message.author.discriminator
 		    var pvtEmbed = new Discord.RichEmbed()
 		    .setAuthor('Private Message', message.author.displayAvatarURL)
 		    .addField('User', userTag)
-		    .addField('Conversation', `${userTag}: ${message.content}\n${botTag}: ${response.output}`)
+		    .addField('Conversation', `${userTag}: ${message.content}\n${botTag}: ${response}`)
 		    .setFooter(`User ID: ${message.author.id}`)
 		    .setColor('#4A0A25')
 		    .setTimestamp()
        bot.channels.get("405872224806109185").sendEmbed(pvtEmbed)
-		
-	
+	    }
+	    
     })
-	
+
 }
+
     var mentioned = message.mentions.users.first()
     var channels = message.mentions.channels.first()
     var m = message.channel
@@ -362,10 +364,11 @@ bot.on("message", function(message) {
         } else {
 		try {
 	message.channel.startTyping()
-        cleverbot.write(theMsg, function (response) {
-        message.reply(response.output)
+        clever.ask(theMsg, function (err, response) { 
+		    message.reply(response)
 	message.channel.stopTyping()
         bot.channels.get("405872224806109185").sendMessage(`[Talk Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}`);
+	}
 	} catch (err) {
 	m.send(err.message)
 		}
