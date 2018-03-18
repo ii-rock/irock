@@ -15,7 +15,7 @@ var jokes = fs.readFileSync("jokes.txt").toString().split("\n");
 var roll = fs.readFileSync("roll.txt").toString().split("\n");
 
 var cleverbot = require("cleverbot.io"),
-var clever = new cleverbot(process.env.api_User, process.env.api_Password);
+clever = new cleverbot(process.env.api_User, process.env.api_Password);
 
 var googl = require('goo.gl');
 googl.setKey(process.env.google_Key);
