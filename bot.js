@@ -14,9 +14,10 @@ const dbl = new DBL(process.env.dbl_Key)
 var jokes = fs.readFileSync("jokes.txt").toString().split("\n");
 var roll = fs.readFileSync("roll.txt").toString().split("\n");
 
-var cleverbot = require("cleverbot.io"),
-clever = new cleverbot(process.env.api_User, process.env.api_Password);
-clever.setNick('Rocky')
+var Cleverbot = require('cleverbot-node');
+    cleverbot = new Cleverbot;
+    cleverbot.configure({botapi: `${process.env.clever_Key}`});
+
 var googl = require('goo.gl');
 googl.setKey(process.env.google_Key);
 
@@ -193,8 +194,8 @@ bot.on("message", function(message) {
         if (message.content.includes('help')) return message.author.sendEmbed(embedHelp) && message.author.send(`I am a music bot, clever.\nInvite me to your guild: ${process.env.invite}`)
 	if (message.content.startsWith(prefix)) return;
 	    message.channel.startTyping()
-	    clever.ask(message.content, function (err, response) { 
-		    message.reply(response)
+	    cleverbot.write(message.content, function (response) {
+            message.reply(response.output)
 								 
 	
             message.channel.stopTyping()
@@ -203,7 +204,7 @@ bot.on("message", function(message) {
 		    var pvtEmbed = new Discord.RichEmbed()
 		    .setAuthor('Private Message', message.author.displayAvatarURL)
 		    .addField('User', userTag)
-		    .addField('Conversation', `${userTag}: ${message.content}\n${botTag}: ${response}`)
+		    .addField('Conversation', `${userTag}: ${message.content}\n${botTag}: ${response.output}`)
 		    .setFooter(`User ID: ${message.author.id}`)
 		    .setColor('#4A0A25')
 		    .setTimestamp()
@@ -362,8 +363,8 @@ bot.on("message", function(message) {
             message.reply(":x: The message has to be longer than 1 character!")
         } else {
 	message.channel.startTyping()
-        clever.ask(theMsg, function (err, response) { 
-		    message.reply(response)
+        cleverbot.write(message.content, function (response) {
+        message.reply(response.output)
 	message.channel.stopTyping()
         bot.channels.get("405872224806109185").sendMessage(`[Talk Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}`);
 	
