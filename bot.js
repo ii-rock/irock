@@ -193,7 +193,7 @@ bot.on("message", function(message) {
         if (message.content.includes('help')) return message.author.sendEmbed(embedHelp) && message.author.send(`I am a music bot, clever.\nInvite me to your guild: ${process.env.invite}`)
 	if (message.content.startsWith(prefix)) return;
 	    message.channel.startTyping()
-		bot.create(function (err, session) {
+		clever.create(function (err, session) {
 	    clever.ask(message.content, function (err, response) {
             message.reply(response)
 								 
@@ -364,7 +364,7 @@ bot.on("message", function(message) {
             message.reply(":x: The message has to be longer than 1 character!")
         } else {
 	message.channel.startTyping()
-        bot.create(function (err, session) {
+        clever.create(function (err, session) {
 	    clever.ask(theMsg, function (err, response) {
         message.reply(response)
 	message.channel.stopTyping()
