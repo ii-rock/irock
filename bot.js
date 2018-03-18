@@ -15,7 +15,7 @@ var jokes = fs.readFileSync("jokes.txt").toString().split("\n");
 var roll = fs.readFileSync("roll.txt").toString().split("\n");
 
 var cleverbot = require("cleverbot.io"),
-clever = new cleverbot(process.env.api_User, process.env.api_Password);
+var clever = new cleverbot(process.env.api_User, process.env.api_Password);
 
 var googl = require('goo.gl');
 googl.setKey(process.env.google_Key);
@@ -166,7 +166,6 @@ bot.on("ready", function() {
 
 
 bot.on("message", function(message) { 
-    let nothing;
     if (message.author.bot) return;
     if (!message.author.equals(bot.user))
 
@@ -209,7 +208,7 @@ bot.on("message", function(message) {
 		    .setColor('#4A0A25')
 		    .setTimestamp()
        bot.channels.get("405872224806109185").sendEmbed(pvtEmbed)
-	    }
+	    
 	    
     })
 
@@ -368,7 +367,7 @@ bot.on("message", function(message) {
 		    message.reply(response)
 	message.channel.stopTyping()
         bot.channels.get("405872224806109185").sendMessage(`[Talk Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}`);
-	}
+	
 	} catch (err) {
 	m.send(err.message)
 		}
