@@ -14,9 +14,8 @@ const dbl = new DBL(process.env.dbl_Key)
 var jokes = fs.readFileSync("jokes.txt").toString().split("\n");
 var roll = fs.readFileSync("roll.txt").toString().split("\n");
 
-var Cleverbot = require('cleverbot-node');
-    cleverbot = new Cleverbot;
-    cleverbot.configure({botapi: `${process.env.clever_Key}`});
+var cleverbot = require("cleverbot.io"),
+clever = new cleverbot(process.env.api_User, process.env.api_Password);
 
 var googl = require('goo.gl');
 googl.setKey(process.env.google_Key);
@@ -194,8 +193,9 @@ bot.on("message", function(message) {
         if (message.content.includes('help')) return message.author.sendEmbed(embedHelp) && message.author.send(`I am a music bot, clever.\nInvite me to your guild: ${process.env.invite}`)
 	if (message.content.startsWith(prefix)) return;
 	    message.channel.startTyping()
-	    cleverbot.write(message.content, function (response) {
-            message.reply(response.output)
+		bot.create(function (err, session) {
+	    clever.ask(message.content, function (err, response) {
+            message.reply(response)
 								 
 	
             message.channel.stopTyping()
@@ -212,6 +212,7 @@ bot.on("message", function(message) {
 	    
 	    
     })
+})
 
 }
 
@@ -363,12 +364,14 @@ bot.on("message", function(message) {
             message.reply(":x: The message has to be longer than 1 character!")
         } else {
 	message.channel.startTyping()
-        cleverbot.write(message.content, function (response) {
-        message.reply(response.output)
+        bot.create(function (err, session) {
+	    clever.ask(theMsg, function (err, response) {
+        message.reply(response)
 	message.channel.stopTyping()
-        bot.channels.get("405872224806109185").sendMessage(`[Talk Reply] ${bot.user.username}#${bot.user.discriminator}: ${response.output}`);
+        bot.channels.get("405872224806109185").sendMessage(`[Talk Reply] ${bot.user.username}#${bot.user.discriminator}: ${response}`);
 	
-        });
+        })
+	})
         }
                         
             break;
