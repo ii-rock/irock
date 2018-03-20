@@ -780,7 +780,7 @@ bot.on('message', async msg => {
                 .setDescription("Please provide a Link/Search query to play music.")
                 .addField("Usage", `${prefix}play <youtube link / search query>`)
                 .setColor("#0000FF")
-                .setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
+                .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
                 .setTimestamp()
             
 	if (!theMsg) return msg.channel.sendEmbed(embedError);
@@ -810,9 +810,9 @@ bot.on('message', async msg => {
                     var videos = await youtube.searchVideos(searchString, 5);
                     let index = 0;
                     var embed = new Discord.RichEmbed()
-                .setAuthor("Video selection. Type the video number to continue.", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
+                .setAuthor("Select a video by typing it's number", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
 		.setDescription(`${videos.map(video2 => `**[${++index}](${video2.url}).** ${video2.title}`).join('\n')}`)
-		.setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
+		.setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
                 .setFooter(`Please provide a value to select one of the search results ranging from 1-5, this timeouts in 15 seconds.`)
                 .setColor("#FF0000")
                     var theMessage = await msg.channel.send({embed});
@@ -831,7 +831,7 @@ bot.on('message', async msg => {
                 .setAuthor("Request Canceled", "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678069-sign-error-256.png")
                 .setDescription(`You did not choose, the request was canceled.`)
                 .setFooter(`This was requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
-                .setColor("#FF0000")
+                .setColor("#0000FF")
                         return msg.channel.sendEmbed(embedd);
                     }
                     const videoIndex = parseInt(response.first().content);
@@ -876,7 +876,7 @@ bot.on('message', async msg => {
                 .addField("Old Volume", `**${serverQueue.volume}%**`, inline = true)
                 .addField("New Volume", `**${arg[1]}%**`, inline = true)
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
-	        .setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
+	        .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
                 .setTimestamp()
                 .setColor("#FF0000")
                 msg.channel.send({embed});
@@ -888,7 +888,7 @@ bot.on('message', async msg => {
                 .setAuthor("Now Playing", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
                 .setDescription(`I am currently playing **${serverQueue.songs[0].title}**`)
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
-	        .setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
+	        .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
                 .setTimestamp()
                 .setColor("#FF0000")
                 msg.channel.send({embed});
@@ -902,7 +902,7 @@ bot.on('message', async msg => {
                 .addField("Now Playing", `**${serverQueue.songs[0].title}**`)
                 .addField("Queue", `${serverQueue.songs.map(song => `**${++list} -** ${song.title}`).join('\n')}`)
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
-	        .setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
+	        .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
                 .setTimestamp()
                 .setColor("#FF0000")
                 msg.channel.send({embed});
@@ -999,10 +999,10 @@ function playit(guild, song, msg) {
                 .setAuthor("Now Playing", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
                 .setDescription(`The player is now playing.`)
                 .addField("Video Name", `${song.title}`)
-                .addField("Duration", `\`${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}\``)
-                .addField("Uploader", `${song.channel.title}`)
+                .addField("Duration", `\`${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}\``, inline = true)
+                .addField("Uploaded By", `${song.channel.title}`, inline = true)
                 .addField("Voice Channel", `${serverQueue.voiceChannel.name}`)
-                .setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
+                .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
                 .setColor("#FCBD06")
 
             serverQueue.textChannel.send({embed});
