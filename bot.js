@@ -811,7 +811,7 @@ bot.on('message', async msg => {
                     let index = 0;
                     var embed = new Discord.RichEmbed()
                 .setAuthor("Video selection. Type the video number to continue.", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
-		.setDescription(`${videos.map(video2 => `**${++index}.** ${video2.title}`).join('\n')}`)
+		.setDescription(`${videos.map(video2 => `[${video2.url}](**${++index}).** ${video2.title}`).join('\n')}`)
 		.setThumbnail("http://icons.iconarchive.com/icons/iconmoon/viva/256/Headphones-icon.png")
                 .setFooter(`Please provide a value to select one of the search results ranging from 1-5, this timeouts in 15 seconds.`)
                 .setColor("#FF0000")
