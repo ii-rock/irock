@@ -977,11 +977,7 @@ function playit(guild, song, msg) {
     
     console.log(serverQueue.songs);
    
-    if (!song) {
-	    
-            queue.delete(guild.id);
-	    return;
-        }
+    
 	
     const dispatcher = serverQueue.connection.playStream(YTDL(song.url)) 
     
