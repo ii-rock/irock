@@ -1146,17 +1146,19 @@ switch (args[0].toLowerCase()) {
 	    		errorMsg.delete(5000)
 	    	}
 		    } else {
+	    if (!args[1]) return m.send(`Command usage: ${prefix}announce \`<normal - important> <message>\``)
 	    if (!args[1] === 'important' || !args[1] === 'normal') return m.send(`Command usage: ${prefix}announce \`<normal - important> <message>\``)
 	    if (!theMsg.replace(args[1], '')) return m.send(":warning: Please provide the message to send.")
 	    
 	        var embed = new Discord.RichEmbed()
-	   .setDescription(theMsg)
+	   .setDescription(theMsg.replace(args[1], ''))
        .setFooter(`Announcement by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
        .setTimestamp()
 		if (args[1] === 'important') embed.setAuthor("Important Announcement") && embed.setColor('#0000FF')
 		if (args[1] === 'normal') embed.setAuthor("Announcement") && embed.setColor('#FF8800')
 	   announceChannel.send({embed})
 	}
+		break;
 	    case "report":
 	    let reportsChannel = message.guild.channels.find('name', "reports");
 	    
