@@ -972,9 +972,13 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
     return undefined;
 }
 
-function playit(guild, song, msg) {
+function playit(guild, song) {
     const serverQueue = queue.get(guild.id);
-    
+    if (!song) {
+		serverQueue.voiceChannel.leave();
+		queue.delete(guild.id);
+		return;
+	}
     console.log(serverQueue.songs);
    
     
