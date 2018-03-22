@@ -1121,7 +1121,7 @@ switch (args[0].toLowerCase()) {
 		if (!message.member.hasPermission('ADMINISTRATOR')) return m.send(":no_entry: You do not have permission: `Administrator`")
 	    let announceChannel = message.guild.channels.find('name', "announcements");
 	    
-	    if (!reportsChannel) {
+	    if (!announceChannel) {
 	    	var confirmMsg = await m.send("Announcements channel was not found, create one or type `.confirm` to let me create new one. This timeouts in 10 seconds.")
 	    	try {
 	    	var response = await message.channel.awaitMessages(msg2 => msg2.content === ".confirm", {
