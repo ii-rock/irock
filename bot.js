@@ -390,7 +390,7 @@ bot.on("message", function(message) {
         case "say":
         message.delete();
         let embed = new Discord.RichEmbed()
-    .setAuthor(`${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+    .setAuthor(`${message.author.username}#${message.author.discriminator} said`, message.author.displayAvatarURL)
     .setDescription(theMsg)
     .setColor("#E2C34A")
     .setTimestamp()
