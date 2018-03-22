@@ -347,10 +347,9 @@ bot.on("message", function(message) {
     	} else {
           var Result = "http://www.google.com/search?hl=en&q=" + theMsg.split(' ').join('+');
          let embed = new Discord.RichEmbed()
-    .setAuthor("Google Search")
+    .setAuthor("Google Search", 'https://cdn.pixabay.com/photo/2015/10/31/12/56/google-1015752_960_720.png')
     .setDescription("You've searched on google.")
     .setColor("#15f153")
-    .setThumbnail("https://cdn.pixabay.com/photo/2015/10/31/12/56/google-1015752_960_720.png")
     .addField("Search Result", `**[Click Here](${Result})**`, inline = true)
     .addField("Search Query", theMsg, inline = true)
     .setFooter(`Requested by ${author.username}#${author.discriminator}`, author.displayAvatarURL)
@@ -1118,6 +1117,46 @@ switch (args[0].toLowerCase()) {
         m.send(err.message)
 	}
 	    break;
+		 case "announce":
+		if (!message.member.hasPermission('ADMINISTRATOR')) return m.send(":no_entry: You do not have permission: `Administrator`")
+	    let announceChannel = message.guild.channels.find('name', "announcements");
+	    
+	    if (!reportsChannel) {
+	    	var confirmMsg = await m.send("Announcements channel was not found, create one or type `.confirm` to let me create new one. This timeouts in 10 seconds.")
+	    	try {
+	    	var response = await message.channel.awaitMessages(msg2 => msg2.content === ".confirm", {
+                            maxMatches: 1,
+                            time: 10000,
+                            errors: ['time']
+                        });
+	    	if (response) {
+	    		if (!message.member.hasPermission('MANAGE_CHANNELS')) return m.send(":no_entry: You do not have permission: `Manage Channels`, the **reports** channel was not created.") && confirmMsg.delete()
+	    		if (!message.guild.me.hasPermission('MANAGE_CHANNELS')) return m.send(":no_entry: I do not have permission: `Manage Channels`, the **reports** channel was not created.") && confirmMsg.delete()
+	    		try {
+	    			message.guild.createChannel("announcements", 'text')
+	    			confirmMsg.delete()
+	    			m.send("**announcements** channel has been created. You can now use the announce command.")
+	    		} catch (error) {
+                    console.log(error)
+	    		}
+	    	}
+	    	} catch (err) {
+	    		confirmMsg.delete();
+	    		var errorMsg = await m.send("**announcements** channel was not created, you did not confirm.")
+	    		errorMsg.delete(5000)
+	    	}
+		    } else {
+	    if (!args[1] === 'important' || !args[1] 'normal') return m.send(`Command usage: ${prefix}announce \`<normal - important> <message>\``)
+	    if (!theMsg.replace(args[1], '')) return m.send(":warning: Please provide the message to send.")
+	    
+	        var embed = new Discord.RichEmbed()
+	   .setDescription(theMsg)
+       .setFooter(`Announcement by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+       .setTimestamp()
+		if (args[1] === 'important') embed.setAuthor("Important Announcement") && embed.setColor('#0000FF')
+		if (args[1] === 'normal') embed.setAuthor("Announcement") && embed.setColor('#FF8800')
+	   announceChannel.send({embed})
+	}
 	    case "report":
 	    let reportsChannel = message.guild.channels.find('name', "reports");
 	    
