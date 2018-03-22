@@ -1146,7 +1146,7 @@ switch (args[0].toLowerCase()) {
 	    		errorMsg.delete(5000)
 	    	}
 		    } else {
-	    if (!args[1] === 'important' || !args[1] 'normal') return m.send(`Command usage: ${prefix}announce \`<normal - important> <message>\``)
+	    if (!args[1] === 'important' || !args[1] === 'normal') return m.send(`Command usage: ${prefix}announce \`<normal - important> <message>\``)
 	    if (!theMsg.replace(args[1], '')) return m.send(":warning: Please provide the message to send.")
 	    
 	        var embed = new Discord.RichEmbed()
