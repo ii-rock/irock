@@ -947,7 +947,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
             authorAvatar: msg.author.displayAvatarURL,
             connection: null,
             songs: [],
-            volume: 70,
+            volume: 50,
             playing: true
         };
         queue.set(msg.guild.id, queueConstruct);
@@ -978,7 +978,7 @@ function playit(guild, song, msg) {
     console.log(serverQueue.songs);
    
     if (!song) {
-	    serverQueue.voiceChannel.leave();
+	    
             queue.delete(guild.id);
 	    return;
         }
