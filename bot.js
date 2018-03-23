@@ -1037,8 +1037,12 @@ switch (args[0].toLowerCase()) {
                 await kickChannel.delete()
 		
 		setTimeout(function() {
-                await menGuildUser.setVoiceChannel(kickChannel.id)
-                await kickChannel.delete()
+try {
+                menGuildUser.setVoiceChannel(kickChannel.id)
+                kickChannel.delete()
+} catch (err) {
+console.log(err.message)
+}
 		}, 500)
 		
 		await message.channel.send(`${mentionedUser.username}#${mentionedUser.discriminator} has been kicked from ${kickedFrom}`)
