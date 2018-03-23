@@ -1031,10 +1031,16 @@ switch (args[0].toLowerCase()) {
 		
 		var kickedFrom = menGuildUser.voiceChannel.name
 		
-                var kickChannel = await message.guild.channels.find('name', 'kick')
+                var kickChannel = message.guild.channels.find('name', 'kick')
 		if (!kickChannel) await message.guild.createChannel('kick', 'voice')
                 await menGuildUser.setVoiceChannel(kickChannel.id)
                 await kickChannel.delete()
+		
+		setTimeout(function() {
+                await menGuildUser.setVoiceChannel(kickChannel.id)
+                await kickChannel.delete()
+		}, 500)
+		
 		await message.channel.send(`${mentionedUser.username}#${mentionedUser.discriminator} has been kicked from ${kickedFrom}`)
 	break;
 	case "dblupdate":
