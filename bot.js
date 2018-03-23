@@ -1036,11 +1036,9 @@ switch (args[0].toLowerCase()) {
 		
 		var channelID = kickChannel.id
 	        var channel = kickChannel
-		
-		setTimeout(function() {
-                menGuildUser.setVoiceChannel(channelID)
-		channel.delete()
-		}, 1000)
+
+                await menGuildUser.setVoiceChannel(channelID)
+		await channel.delete()
 
 		message.channel.send(`${mentionedUser.username}#${mentionedUser.discriminator} has been kicked from ${kickedFrom}`)
 	break;
