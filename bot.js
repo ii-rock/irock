@@ -1023,6 +1023,19 @@ bot.on('message', async (message) => {
             .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
 	
 switch (args[0].toLowerCase()) {  
+	case "vckick":
+		if (!mentionedUser) return m.send('Please mention a user to kick')
+                if (!menGuildUser.voiceChannel) return m.send(':warning: The mentioned user is not in a voice channel!')
+                if (!message.member.hasPermission('MOVE_MEMBERS')) return m.send(":no_entry: You do not have permission `Move Members` to use this command.")
+		if (!message.guild.me.hasPermission('MOVE_MEMBERS')) return m.send(":no_entry: I do not have permission `Move Members`!")
+		
+		let kickedFrom = menGuildUser.voiceChannel.name
+                var kickChannel = message.guild.channels.find('name', 'kick')
+		if (!kickChannel) message.guild.createChannel('kick', 'voice')
+                await message.member.setVoiceChannel(kickChannel)
+                await kickChannel.delete()
+		message.channel.send(`${mentionedUser.username}#${mentionedUser.discriminator} has been kicked from ${kickedFrom}`)
+	break;
 	case "dblupdate":
 		if (!config.admins.includes(message.author.id)) return m.sendEmbed(embedNoPermission)
 		dbl.postStats(bot.guilds.size);
