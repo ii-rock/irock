@@ -1032,14 +1032,11 @@ switch (args[0].toLowerCase()) {
 		var kickedFrom = menGuildUser.voiceChannel.name
 		
                 var kickChannel = message.guild.channels.find('name', 'kick')
-		if (!kickChannel) await message.guild.createChannel('kick', 'voice')
+		if (!kickChannel || !kickChannel.type.toString() === 'voice') await message.guild.createChannel('kick', 'voice')
                 await menGuildUser.setVoiceChannel(kickChannel.id)
-		await menGuildUser.setVoiceChannel(kickChannel.id)
-		await menGuildUser.setVoiceChannel(kickChannel.id)
-                await kickChannel.delete()
 		await kickChannel.delete()
 		
-		await message.channel.send(`${mentionedUser.username}#${mentionedUser.discriminator} has been kicked from ${kickedFrom}`)
+		message.channel.send(`${mentionedUser.username}#${mentionedUser.discriminator} has been kicked from ${kickedFrom}`)
 	break;
 	case "dblupdate":
 		if (!config.admins.includes(message.author.id)) return m.sendEmbed(embedNoPermission)
