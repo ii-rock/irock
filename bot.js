@@ -1033,8 +1033,11 @@ switch (args[0].toLowerCase()) {
 		
                 var kickChannel = message.guild.channels.find('name', 'kick')
 		if (!kickChannel || !kickChannel.type.toString() === 'voice') await message.guild.createChannel('kick', 'voice')
-                await menGuildUser.setVoiceChannel(kickChannel.id)
-		await kickChannel.delete()
+		var channelID = kickChannel.id
+	        var channel = kickChannel
+		
+                await menGuildUser.setVoiceChannel(channelID)
+		await channel.delete()
 		
 		message.channel.send(`${mentionedUser.username}#${mentionedUser.discriminator} has been kicked from ${kickedFrom}`)
 	break;
