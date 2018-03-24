@@ -1024,10 +1024,14 @@ bot.on('message', async (message) => {
 	
 switch (args[0].toLowerCase()) {  
 	case "vckick":
+		if (!message.member.hasPermission('MOVE_MEMBERS')) return m.send(":no_entry: You do not have permission `Move Members` to use this command.")
+                if (!message.guild.me.hasPermission('MANAGE_CHANNELS') && !message.guild.me.hasPermission('MOVE_MEMBERS')) return m.send(":no_entry: I do not have permissions `Manage Channels` and `Move Members`!")
+		if (!message.guild.me.hasPermission('MANAGE_CHANNELS')) return m.send(":no_entry: I do not have permission `Manage Channels`!")
+		if (!message.guild.me.hasPermission('MOVE_MEMBERS')) return m.send(":no_entry: I do not have permission `Move Members`!")
+		
 		if (!menGuildUser) return m.send('Please mention a user to kick!')
                 if (!menGuildUser.voiceChannel) return m.send(':warning: The mentioned user is not in a voice channel!')
-                if (!message.member.hasPermission('MOVE_MEMBERS')) return m.send(":no_entry: You do not have permission `Move Members` to use this command.")
-		if (!message.guild.me.hasPermission('MOVE_MEMBERS')) return m.send(":no_entry: I do not have permission `Move Members`!")
+                
 		
 		var kickedFrom = menGuildUser.voiceChannel.name
 		
