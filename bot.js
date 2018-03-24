@@ -1035,8 +1035,8 @@ switch (args[0].toLowerCase()) {
 		
 		var kickedFrom = menGuildUser.voiceChannel.name
 		
-		await message.guild.createChannel('kick', 'voice')
-                var kickChannel = await message.guild.channels.find('name', 'kick')
+		await message.guild.createChannel(`Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator}`, 'voice')
+                var kickChannel = await message.guild.channels.find('name', `Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator}`)
 		
 		var channelID = kickChannel.id
 	        var channel = kickChannel
