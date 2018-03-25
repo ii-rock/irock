@@ -1000,12 +1000,12 @@ function playit(guild, song) {
                 .setAuthor("Now Playing", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
                 .setDescription(`The player is now playing.`)
                 .addField("Video Name", `${song.title}`)
-                
+                .addField("Duration", `${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}`, inline = true)
                 .addField("Uploaded By", `${song.channel.title}`, inline = true)
                 .addField("Voice Channel", `${serverQueue.voiceChannel.name}`)
                 .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
                 .setColor("#D975A1")
-                .addField("Duration", `${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}`, inline = true)
+                
                 
             serverQueue.textChannel.send({embed});
 }
