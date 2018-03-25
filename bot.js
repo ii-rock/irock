@@ -1136,7 +1136,7 @@ switch (args[0].toLowerCase()) {
 	    const fetched = await message.channel.fetchMessages({limit: args[1]});
 		    try {
 		    var confirmMsg = await m.send(`**${fetched.size}** messages will be deleted. Reply with \`y\` to confirm that action or ignore this message to cancel.`)
-		    var response = await message.channel.awaitMessages(msg2 => msg2.content === "y", {
+		    var response = await message.channel.awaitMessages(msg2 => msg2.content === "y" || msg2.content === "yes", {
                             maxMatches: 1,
                             time: 10000,
                             errors: ['time']
