@@ -1134,6 +1134,15 @@ switch (args[0].toLowerCase()) {
  
 	    try {
 	    const fetched = await message.channel.fetchMessages({limit: args[1]});
+		    try {
+		    var confirmMsg = await m.send(`${fetched.size} messages will be deleted, are you sure? Reply with \`y\` to confirm that action or \`n\` to cancel.`)
+		    var response = await message.channel.awaitMessages(msg2 => msg2.content === "y", {
+                            maxMatches: 1,
+                            time: 10000,
+                            errors: ['time']
+                        });
+	if (response.first().content === 'y') {
+	    confirmMsg.delete()
             await message.channel.bulkDelete(args[1])
 		    var embed = new Discord.RichEmbed()
 	   .setAuthor("Purge")
@@ -1142,7 +1151,17 @@ switch (args[0].toLowerCase()) {
        .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
        .setTimestamp()
             m.send({embed})
-            
+	} else if (response.first().content === 'n')
+		confirmMsg.delete()
+	        m.send('Your request to purge has been canceled.
+		    }
+		    } catch (error) {
+
+	    		confirmMsg.delete();
+	    		var errorMsg = await m.send("Messages are not deleted, you did not confirm.")
+                        errorMsg.delete(5000)
+	    	}
+		    
 	    } catch (err) {
 	    	if (err.message === "The messages must be an Array, Collection, or number.") return m.send("The messages to delete must be a number.")
 	    	if (err.message.includes("equal to 100.")) return m.send("You can only delete a maximum of 100 messages at once.")
