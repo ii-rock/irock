@@ -959,9 +959,9 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
             queueConstruct.connection = connection;
             playit(msg.guild, queueConstruct.songs[0]);
         } catch (error) {
-            console.error(`I could not join the voice channel: ${error}\nIf you think this is a bug, please use \`${prefix}reportbug <issue>\``);
+            console.error(`I could not join the voice channel: ${error.message}\nIf you think this is a bug, please use \`${prefix}reportbug <issue>\``);
             queue.delete(msg.guild.id);
-            return msg.channel.send(`I could not join the voice channel: ${error}\nIf you think this is a bug, please use \`${prefix}reportbug <issue>\``);
+            return msg.channel.send(`I could not join the voice channel: ${error.message}\nIf you think this is a bug, please use \`${prefix}reportbug <issue>\``);
         }
     } else {
         serverQueue.songs.push(song);
@@ -985,26 +985,32 @@ function playit(guild, song) {
 	
     const dispatcher = serverQueue.connection.playStream(YTDL(song.url)) 
     
-        dispatcher.on('end', reason => {
-            if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
-            else console.log(reason);
+        dispatcher.on('end' => {
 	    serverQueue.songs.shift()
 	    playit(guild, serverQueue.songs[0]);
             
         })
         dispatcher.on('error', error => console.error(error));
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 100);
-
+    var hours = song.duration.hours
+    var minutes = song.duration.minutes
+    var seconds = song.duration.seconds
+    
     var embed = new Discord.RichEmbed()
                 .setAuthor("Now Playing", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
                 .setDescription(`The player is now playing.`)
                 .addField("Video Name", `${song.title}`)
-                .addField("Duration", `\`${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}\``, inline = true)
+                
                 .addField("Uploaded By", `${song.channel.title}`, inline = true)
                 .addField("Voice Channel", `${serverQueue.voiceChannel.name}`)
                 .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
                 .setColor("#FCBD06")
-
+           
+                if (hours.toString() === '1' || hours.toString() === '2' || hours.toString() === '3' || hours.toString() === '3' || hours.toString() === '4' || hours.toString() === '5' || hours.toString() === '6' || hours.toString() === '7' || hours.toString() === '8' || hours.toString() === '9' || minutes.toString() === '1' || minutes.toString() === '2' || minutes.toString() === '3' || minutes.toString() === '4' || minutes.toString() === '5' || minutes.toString() === '6' || minutes.toString() === '7' || minutes.toString() === '8' || minutes.toString() === '9' || seconds.toString() === '1' || seconds.toString() === '2' || seconds.toString() === '3' || seconds.toString() === '4' || seconds.toString() === '5' || seconds.toString() === '6' || seconds.toString() === '7' || seconds.toString() === '8' || seconds.toString() === '9') {
+                 embed.addField("Duration", `\`0${song.duration.hours}:0${song.duration.minutes}:0${song.duration.seconds}\``, inline = true)
+} else {
+	embed.addField("Duration", `\`${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}\``, inline = true)
+}
             serverQueue.textChannel.send({embed});
 }
 bot.on('message', async (message) => {
