@@ -1151,16 +1151,17 @@ switch (args[0].toLowerCase()) {
        .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
        .setTimestamp()
             m.send({embed})
-	} else if (response.first().content === 'n')
+	} else if (response.first().content === 'n') {
 		confirmMsg.delete()
 	        m.send('Your request to purge has been canceled.')
-		    }
+		    }  
 		    } catch (error) {
 
 	    		confirmMsg.delete();
 	    		var errorMsg = await m.send("Messages are not deleted, you did not confirm.")
                         errorMsg.delete(5000)
 	    	}
+	    
 		    
 	    } catch (err) {
 	    	if (err.message === "The messages must be an Array, Collection, or number.") return m.send("The messages to delete must be a number.")
