@@ -1006,10 +1006,14 @@ function playit(guild, song) {
                 .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
                 .setColor("#FCBD06")
            
-                if (hours.toString() === '1' || hours.toString() === '2' || hours.toString() === '3' || hours.toString() === '3' || hours.toString() === '4' || hours.toString() === '5' || hours.toString() === '6' || hours.toString() === '7' || hours.toString() === '8' || hours.toString() === '9' || minutes.toString() === '1' || minutes.toString() === '2' || minutes.toString() === '3' || minutes.toString() === '4' || minutes.toString() === '5' || minutes.toString() === '6' || minutes.toString() === '7' || minutes.toString() === '8' || minutes.toString() === '9' || seconds.toString() === '1' || seconds.toString() === '2' || seconds.toString() === '3' || seconds.toString() === '4' || seconds.toString() === '5' || seconds.toString() === '6' || seconds.toString() === '7' || seconds.toString() === '8' || seconds.toString() === '9') {
-                 embed.addField("Duration", `\`0${song.duration.hours}:0${song.duration.minutes}:0${song.duration.seconds}\``, inline = true)
-} else {
-	embed.addField("Duration", `\`${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}\``, inline = true)
+                if (hours.toString().length = 1) {
+                 embed.addField("Duration", `\`0${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}\``, inline = true)
+} else if (minutes.toString().length = 1) {
+	embed.addField("Duration", `\`${song.duration.hours}:0${song.duration.minutes}:${song.duration.seconds}\``, inline = true)
+} else if (seconds.toString().length = 1) {
+	embed.addField("Duration", `\`${song.duration.hours}:${song.duration.minutes}:0${song.duration.seconds}\``, inline = true)
+} else if (hours.toString().length = 1 && minutes.toString().length = 1 && seconds.toString().length = 1) {
+	embed.addField("Duration", `\`0${song.duration.hours}:0${song.duration.minutes}:0${song.duration.seconds}\``, inline = true)
 }
             serverQueue.textChannel.send({embed});
 }
