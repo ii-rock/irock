@@ -1006,10 +1006,10 @@ function playit(guild, song) {
                 .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
                 .setColor("#FCBD06")
     
-                if (hours.length == 1 && minutes.length == 1 && seconds.length == 1) embed.addField("Duration", `\`0${song.duration.hours}:0${song.duration.minutes}:0${song.duration.seconds}\``, inline = true)
-                if (hours.length == 1 && !minutes.length == 1 && !seconds.length == 1) embed.addField("Duration", `\`0${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}\``, inline = true)
-                if (minutes.length == 1 && !hours.length == 1 && !seconds.length == 1) embed.addField("Duration", `\`${song.duration.hours}:0${song.duration.minutes}:${song.duration.seconds}\``, inline = true)
-	        if (seconds.length == 1 && !minutes.length == 1 && !hours.length == 1) embed.addField("Duration", `\`${song.duration.hours}:${song.duration.minutes}:0${song.duration.seconds}\``, inline = true)
+                if (hours.toString().length === '1' && minutes.toString().length === '1' && seconds.toString().length === '1') embed.addField("Duration", `\`0${song.duration.hours}:0${song.duration.minutes}:0${song.duration.seconds}\``, inline = true)
+                if (hours.toString().length === '1' && !minutes.toString().length === '1' && !seconds.toString().length === '1') embed.addField("Duration", `\`0${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}\``, inline = true)
+                if (minutes.toString().length === '1' && !hours.toString().length === '1' && !seconds.toString().length === '1') embed.addField("Duration", `\`${song.duration.hours}:0${song.duration.minutes}:${song.duration.seconds}\``, inline = true)
+	        if (seconds.toString().length === '1' && !minutes.toString().length === '1' && !hours.toString().length === '1') embed.addField("Duration", `\`${song.duration.hours}:${song.duration.minutes}:0${song.duration.seconds}\``, inline = true)
                 
             serverQueue.textChannel.send({embed});
 }
