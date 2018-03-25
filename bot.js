@@ -1153,7 +1153,7 @@ switch (args[0].toLowerCase()) {
             m.send({embed})
 	} else if (response.first().content === 'n')
 		confirmMsg.delete()
-	        m.send('Your request to purge has been canceled.
+	        m.send('Your request to purge has been canceled.')
 		    }
 		    } catch (error) {
 
