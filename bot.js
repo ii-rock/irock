@@ -1032,9 +1032,9 @@ switch (args[0].toLowerCase()) {
                 if (!menGuildUser.voiceChannel) return m.send(':warning: The mentioned user is not in a voice channel!')
 		if (menGuildUser.hasPermission('ADMINISTRATOR')) return m.send(":no_entry: That user has `Administrator` permission. Oh, untouchable!")
 		if (menGuildUser.id === message.guild.ownerID) return m.send(":no_entry: That user is the owner of this guild. Ouch, this did not succeed!")
-		
+	        if (menGuildUser.id === message.guild.ownerID && menGuildUser.id === message.author.id) {
                 
-		
+	      
 		var kickedFrom = menGuildUser.voiceChannel.name
 		
 		await message.guild.createChannel(`Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator}`, 'voice')
@@ -1052,6 +1052,25 @@ switch (args[0].toLowerCase()) {
 		   .setTimestamp()
 		   .setFooter(`Kicked by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
 		message.channel.sendEmbed(vcKickEmbed)
+		} else {
+			var kickedFrom = menGuildUser.voiceChannel.name
+		
+		await message.guild.createChannel(`Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator}`, 'voice')
+                var kickChannel = await message.guild.channels.find('name', `Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator}`)
+		
+		var channelID = kickChannel.id
+	        var channel = kickChannel
+
+                await menGuildUser.setVoiceChannel(channelID)
+		await channel.delete()
+                var vcKickEmbed = new Discord.RichEmbed()
+                   .setAuthor('Voice Channel Kick', mentionedUser.displayAvatarURL)
+                   .setDescription(`**${mentionedUser.username}#${mentionedUser.discriminator}** has been kicked from **${kickedFrom}**`)
+                   .setColor('#3B3E28')
+		   .setTimestamp()
+		   .setFooter(`Kicked by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+		message.channel.sendEmbed(vcKickEmbed)
+		}
 	break;
 	case "dblupdate":
 		if (!config.admins.includes(message.author.id)) return m.sendEmbed(embedNoPermission)
