@@ -1135,18 +1135,14 @@ switch (args[0].toLowerCase()) {
 	    try {
 	    const fetched = await message.channel.fetchMessages({limit: args[1]});
 		    try {
-		    var confirmMsg = await m.send(`**${fetched.size}** messages will be deleted. Reply with \`y\` to confirm that action or \`n\` to cancel.`)
-		    var responseYes = await message.channel.awaitMessages(msg2 => msg2.content === "y", {
+		    var confirmMsg = await m.send(`**${fetched.size}** messages will be deleted. Reply with \`y\` to confirm that action or ignore this message to cancel.`)
+		    var response = await message.channel.awaitMessages(msg2 => msg2.content === "y", {
                             maxMatches: 1,
                             time: 10000,
                             errors: ['time']
                         });
-		    var responseNo = await message.channel.awaitMessages(msg2 => msg2.content === "n", {
-                            maxMatches: 1,
-                            time: 10000,
-                            errors: ['time']
-                        });
-	if (responseYes) {
+
+	if (response) {
 	    confirmMsg.delete()
             await message.channel.bulkDelete(args[1])
 		    var embed = new Discord.RichEmbed()
@@ -1156,10 +1152,7 @@ switch (args[0].toLowerCase()) {
        .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
        .setTimestamp()
             m.send({embed})
-	} else if (responseNo) {
-		await confirmMsg.delete()
-	        await m.send('Your request to purge has been canceled.')
-		    }  
+	}
 		    } catch (error) {
 
 	    		confirmMsg.delete();
