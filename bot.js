@@ -985,7 +985,7 @@ function playit(guild, song) {
 	
     const dispatcher = serverQueue.connection.playStream(YTDL(song.url)) 
     
-        dispatcher.on('end' => {
+        dispatcher.on('end', function() {
 	    serverQueue.songs.shift()
 	    playit(guild, serverQueue.songs[0]);
             
