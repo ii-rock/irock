@@ -1011,8 +1011,6 @@ function playit(guild, song) {
                 if (minutes.toString.length == 1 && !hours.toString.length == 1 && !seconds.toString.length == 1) embed.addField("Duration", `\`${song.duration.hours}:0${song.duration.minutes}:${song.duration.seconds}\``, inline = true)
 	        if (seconds.toString.length == 1 && !minutes.toString.length == 1 && !hours.toString.length == 1) embed.addField("Duration", `\`${song.duration.hours}:${song.duration.minutes}:0${song.duration.seconds}\``, inline = true)
                 
-	
-}
             serverQueue.textChannel.send({embed});
 }
 bot.on('message', async (message) => {
