@@ -186,7 +186,7 @@ bot.on("message", function(message) {
 	        .addField("Moderation", `${prefix}userinfo \`<user>\` - shows a few information about the mentioned user.\n${prefix}serverinfo - shows a few information about the current guild.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic \`<mention a channel> <new topic>\` - changes the current or mentioned channel's topic.\n${prefix}purge \`<number of messages (1-100)>\` - deletes a specified amount of messages.\n${prefix}ban \`<user> <reason>\` - bans a user from the server.\n${prefix}kick \`<user> <reason>\` - kicks a user from the server.\n${prefix}report \`<user> <reason>\` - report a user with a reason and it will be sent in the **reports** channel if found.\n${prefix}announce <message> - send a message to announcements channel if found.\n${prefix}vckick <@user> - kick the mentioned user from their voice channel.`)
                 .addField("Google", `${prefix}google \`<search query>\` - search something on google and the bot will give you the link.\n${prefix}shortenurl \`<URL/Link>\` - convert a long link to a short one.\n${prefix}image \`<search query>\` - search for an image on google.`)
                 .addField("Cleverbot System (Slow Nowadays)", `${prefix}talk \`<message>\` - talk to the bot and it will reply to you.\n(Direct Messaging): You can chat with the bot privately and it will reply to you asap!\nExample,\nUser: Hey\n${bot.user.username}: Hey, how are you?`)
-	        .addField("Other", `${prefix}8ball - ask a question and the bot will reply with a random answer.\n${prefix}say \`<message>\` - says your message.\n${prefix}cat - sends a random cat picture.\n${prefix}dog - sends a random dog picture.\n${prefix}roll - rolls a number.\n${prefix}yomama \`<user>\` - Joke with the mentioned user using yomama jokes.\n${prefix}dm \`<user> <message>\` - send the mentioned user a direct message.`)
+	        .addField("Other", `${prefix}8ball - ask a question and the bot will reply with a random answer.\n${prefix}say \`<message>\` - says your message.\n${prefix}cat - sends a random cat picture.\n${prefix}dog - sends a random dog picture.\n${prefix}roll \`<number limit>\` (Default: 100) - rolls a number.\n${prefix}yomama \`<user>\` - Joke with the mentioned user using yomama jokes.\n${prefix}dm \`<user> <message>\` - send the mentioned user a direct message.`)
                 .addField("About Bot", `${prefix}ping - shows the time taken for the bot to respond.\n${prefix}uptime - shows the time since the bot has started up.\n${prefix}servers - shows the servers count that the bot has joined.\n${prefix}about - shows information about the bot's owner and the library used to create the bot.\n${prefix}invite - sends my invitation link.\n${prefix}reportbug - report a bug and it will be sent to the owner.`)
                 .setColor("#3C51C3")
                 .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
@@ -262,6 +262,7 @@ bot.on("message", function(message) {
 	    m.send(`${mentioned}, ${joke}`)
 	    break;
 	    case "roll":
+        if (!args[1]) {
         var rolls = roll[Math.floor(Math.random() * roll.length)]
         var embedRoll = new Discord.RichEmbed()
        .setAuthor(`${message.author.username}#${message.author.discriminator} rolls a dice`, message.author.displayAvatarURL)
@@ -269,6 +270,16 @@ bot.on("message", function(message) {
        .setDescription(`:game_die: ${rolls}`)
        .setTimestamp()
         m.sendEmbed(embedRoll)
+	} else {
+		if (isNaN(args[1])) return msg.channel.send(":x: Please provide a number limit.");
+		var rolls = Math.floor(Math.random() * args[1]) + 1  
+        var embedRoll = new Discord.RichEmbed()
+       .setAuthor(`${message.author.username}#${message.author.discriminator} rolls a dice`, message.author.displayAvatarURL)
+       .setColor('#0000FF')
+       .setDescription(`:game_die: ${rolls}`)
+       .setTimestamp()
+        m.sendEmbed(embedRoll)
+	}
         break;
         case "shortenurl":
     	googl.getKey();
@@ -893,6 +904,7 @@ bot.on('message', async msg => {
                 .setColor("#FF0000")
                 msg.channel.send({embed});
         break;
+
         case "queue":
         if (!serverQueue) return msg.channel.send('There is nothing playing.');
 		    let list = 0;
