@@ -1095,14 +1095,11 @@ switch (args[0].toLowerCase()) {
 		if (!message.guild.me.hasPermission('BAN_MEMBERS')) return m.send(":no_entry: I do not have permission `Ban Members`!")
 	       if (!message.member.hasPermission('BAN_MEMBERS')) return m.send(":no_entry: You do not have permission `Ban Members`!")
 	       if (isNaN(args[1])) return m.send(`Usage: \`${prefix}unban <id>\``)
-		try {
-		let unbannedUser;
+
 		message.guild.unban(args[1])
 		.then(user => m.send(`${user.username}#${user.discriminator} has been unbanned by ${message.author.username}#${message.author.discriminator}`))
+                .catch(m.send(":x: That user was not found, or not banned.")
 
-		} catch (error) {
-			if (error.message === `Unknown Ban`) return m.send(':x: That user was not found, or not banned.')
-		}
 		break;
 		case "ban":
 		
