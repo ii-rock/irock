@@ -183,7 +183,7 @@ bot.on("message", function(message) {
         var embedHelp = new Discord.RichEmbed()
                 .setAuthor("Commands")
                 .addField("Music", `${prefix}play \`<youtube link/search query>\` - plays a song from youtube in your current voice channel.\n${prefix}stop - stops the player and leaves your current channel.\n${prefix}move - moves me to your current voice channel.\n${prefix}skip - skips your current song and plays the next one in the queue.\n${prefix}pause - pause current song, if any.\n${prefix}resume - resume current song, if any.\n${prefix}volume \`[1-100]\` - changes the volume of the player.\n${prefix}np - shows the current song, if any.\n${prefix}queue - shows the list of the queued songs, if any.`)
-	        .addField("Moderation", `${prefix}userinfo \`<user>\` - shows a few information about the mentioned user.\n${prefix}serverinfo - shows a few information about the current guild.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic \`<mention a channel> <new topic>\` - changes the current or mentioned channel's topic.\n${prefix}purge \`<number of messages (1-100)>\` - deletes a specified amount of messages.\n${prefix}ban \`<user> <reason>\` - bans a user from the server.\n${prefix}kick \`<user> <reason>\` - kicks a user from the server.\n${prefix}report \`<user> <reason>\` - report a user with a reason and it will be sent in the **reports** channel if found.\n${prefix}announce <message> - send a message to announcements channel if found.\n${prefix}vckick <@user> - kick the mentioned user from their voice channel.`)
+	        .addField("Moderation", `${prefix}userinfo \`<user>\` - shows a few information about the mentioned user.\n${prefix}serverinfo - shows a few information about the current guild.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic \`<mention a channel> <new topic>\` - changes the current or mentioned channel's topic.\n${prefix}purge \`<number of messages (1-100)>\` - deletes a specified amount of messages.\n${prefix}ban \`<user> <reason>\` - bans a user from the server.\n${prefix}unban \`<user id>\` - unban a user by id.\n${prefix}kick \`<user> <reason>\` - kicks a user from the server.\n${prefix}report \`<user> <reason>\` - report a user with a reason and it will be sent in the **reports** channel if found.\n${prefix}announce <message> - send a message to announcements channel if found.\n${prefix}vckick <@user> - kick the mentioned user from their voice channel.`)
                 .addField("Google", `${prefix}google \`<search query>\` - search something on google and the bot will give you the link.\n${prefix}shortenurl \`<URL/Link>\` - convert a long link to a short one.\n${prefix}image \`<search query>\` - search for an image on google.`)
                 .addField("Cleverbot System (Slow Nowadays)", `${prefix}talk \`<message>\` - talk to the bot and it will reply to you.\n(Direct Messaging): You can chat with the bot privately and it will reply to you asap!\nExample,\nUser: Hey\n${bot.user.username}: Hey, how are you?`)
 	        .addField("Other", `${prefix}8ball - ask a question and the bot will reply with a random answer.\n${prefix}say \`<message>\` - says your message.\n${prefix}cat - sends a random cat picture.\n${prefix}dog - sends a random dog picture.\n${prefix}roll \`<number limit>\` (Default: 100) - rolls a number.\n${prefix}yomama \`<user>\` - Joke with the mentioned user using yomama jokes.\n${prefix}dm \`<user> <message>\` - send the mentioned user a direct message.`)
@@ -1094,26 +1094,14 @@ switch (args[0].toLowerCase()) {
 	case "unban":
 		if (!message.guild.me.hasPermission('BAN_MEMBERS')) return m.send(":no_entry: I do not have permission `Ban Members`!")
 	       if (!message.member.hasPermission('BAN_MEMBERS')) return m.send(":no_entry: You do not have permission `Ban Members`!")
-	       if (isNaN(args[1])) return m.send(`Usage: \`${prefix}unban <id> <reason>\``)
+	       if (isNaN(args[1])) return m.send(`Usage: \`${prefix}unban <id>\``)
 		try {
 		let unbannedUser;
 		message.guild.unban(args[1])
-		.then(user => user.username.toString() + '#' + user.discriminator.toString() === unbannedUser)
-                .catch(console.error)
-		var embed = new Discord.RichEmbed()
-	   .setAuthor("User Unbanned", mentionedUser.displayAvatarURL)
-	   .setColor('#0000FF')
-	   .setDescription(`${unbannedUser} has been unbanned from **${message.guild.name}**.`)
-       .setFooter(`Unbanned by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
-       .setTimestamp()
-		if (theMsg.replace(args[1], "")) {
-            embed.addField("Reason", theMsg.replace(args[1], ""))
-       } else {
-       	    embed.addField("Reason", `No reason provided.`)
-       }
-			m.send({embed})
+		.then(user => m.send(`${user.username}#${user.discriminator} has been unbanned by ${message.author.username}#${message.author.discriminator}`))
+
 		} catch (error) {
-			if (error.message === `Cannot read property \'ban\' of undefined`) return m.send(':x: That user was not found.')
+			if (error.message === `Unknown Ban`) return m.send(':x: That user was not found, or not banned.')
 		}
 		break;
 		case "ban":
