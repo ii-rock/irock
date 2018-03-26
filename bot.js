@@ -1098,7 +1098,7 @@ switch (args[0].toLowerCase()) {
 
 		message.guild.unban(args[1])
 		.then(user => m.send(`${user.username}#${user.discriminator} has been unbanned by ${message.author.username}#${message.author.discriminator}`))
-                .catch(m.send(":x: That user was not found, or not banned.")
+                .catch(m.send(":x: That user was not found, or not banned."))
 
 		break;
 		case "ban":
