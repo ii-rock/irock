@@ -1091,6 +1091,25 @@ switch (args[0].toLowerCase()) {
 		dbl.postStats(bot.guilds.size);
 		m.send(`Successfully updated servers count: ${bot.guilds.size}`);
 		break;
+	case "unban":
+		if (!message.guild.me.hasPermission('BAN_MEMBERS')) return m.send(":no_entry: I do not have permission `Ban Members`!")
+	       if (!message.member.hasPermission('BAN_MEMBERS')) return m.send(":no_entry: You do not have permission `Ban Members`!")
+	       if (!menGuildUser) return m.send(`Usage: \`${prefix}unban <id> <reason>\``)
+		try {
+		let unbannedUser;
+		message.guild.unban(args[1])
+		.then(user => user.username.toString() + '#' + user.discriminator.toString() === unbannedUser)
+                .catch(console.error)
+		var embed = new Discord.RichEmbed()
+	   .setAuthor("User Unbanned", mentionedUser.displayAvatarURL)
+	   .setColor('#0000FF')
+	   .setDescription(`${unbannedUser} has been unbanned from **${message.guild.name}**.`)
+       .setFooter(`Unbanned by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+       .setTimestamp()
+		} catch (error) {
+			if (error.message === 'Cannot read property 'ban' of undefined') return m.send(':x: That user was not found.')
+		}
+		break;
 		case "ban":
 		
 	       if (!message.guild.me.hasPermission('BAN_MEMBERS')) return m.send(":no_entry: I do not have permission `Ban Members`!")
