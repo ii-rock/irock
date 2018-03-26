@@ -1107,7 +1107,7 @@ switch (args[0].toLowerCase()) {
        .setFooter(`Unbanned by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
        .setTimestamp()
 		} catch (error) {
-			if (error.message === 'Cannot read property 'ban' of undefined') return m.send(':x: That user was not found.')
+			if (error.message === `Cannot read property \'ban\' of undefined`) return m.send(':x: That user was not found.')
 		}
 		break;
 		case "ban":
