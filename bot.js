@@ -1094,7 +1094,7 @@ switch (args[0].toLowerCase()) {
 	case "unban":
 		if (!message.guild.me.hasPermission('BAN_MEMBERS')) return m.send(":no_entry: I do not have permission `Ban Members`!")
 	       if (!message.member.hasPermission('BAN_MEMBERS')) return m.send(":no_entry: You do not have permission `Ban Members`!")
-	       if (!menGuildUser) return m.send(`Usage: \`${prefix}unban <id> <reason>\``)
+	       if (isNaN(args[1])) return m.send(`Usage: \`${prefix}unban <id> <reason>\``)
 		try {
 		let unbannedUser;
 		message.guild.unban(args[1])
@@ -1106,6 +1106,12 @@ switch (args[0].toLowerCase()) {
 	   .setDescription(`${unbannedUser} has been unbanned from **${message.guild.name}**.`)
        .setFooter(`Unbanned by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
        .setTimestamp()
+		if (theMsg.replace(args[1], "")) {
+            embed.addField("Reason", theMsg.replace(args[1], ""))
+       } else {
+       	    embed.addField("Reason", `No reason provided.`)
+       }
+			m.send({embed})
 		} catch (error) {
 			if (error.message === `Cannot read property \'ban\' of undefined`) return m.send(':x: That user was not found.')
 		}
