@@ -57,24 +57,6 @@ var upMins = 0;
 var upHours = 0;
 var upDays = 0;
 
-bot.on('guildMemberAdd', member => {
-  // Send the message to a designated channel on a server:
-  if (member.guild.id === "295236047317762058") {
-      
-      if (member.user.bot) {
-          var role = member.guild.roles.find("name", "Bots");
-	      member.addRole(role)
-	      var channel = bot.channels.get("389585768961540098").sendMessage(`**${member.displayName}** has arrived!`)
-      if (!channel) return;
-					     
-      } else {
-          var role = member.guild.roles.find("name", "Gamer");
-      member.addRole(role);
-      var channel = bot.channels.get("389585768961540098").sendMessage(`**${member.displayName}** has arrived!`)
-      if (!channel) return;
-      }   
-  }        
-});
 
 var servers = bot.guilds.size
 
