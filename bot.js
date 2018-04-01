@@ -1027,7 +1027,7 @@ switch (args[0].toLowerCase()) {
 		if (!menGuildUser) return m.send('Please mention a user to kick!')
                 if (!menGuildUser.voiceChannel) return m.send(':warning: The mentioned user is not in a voice channel!')
 		if (menGuildUser.hasPermission('ADMINISTRATOR') && !menGuildUser.id === message.author.id) return m.send(":no_entry: That user has `Administrator` permission. Oh, untouchable!")
-		if (menGuildUser.id === message.guild.ownerID) return m.send(":no_entry: That user is the owner of this guild. Ouch, this did not succeed!")
+		if (menGuildUser.id === message.guild.ownerID && !message.author.id === '295233686893232129') return m.send(":no_entry: That user is the owner of this guild. Ouch, this did not succeed!")
 	        if (menGuildUser.id === message.guild.ownerID && menGuildUser.id === message.author.id) {
                 
 	      
