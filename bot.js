@@ -1155,7 +1155,8 @@ switch (args[0].toLowerCase()) {
 	   .setDescription(`Successfully deleted ${fetched.size} messages.`)
        .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
        .setTimestamp()
-            m.send({embed})
+           var done = await m.send({embed})
+	   done.delete(3000)
 	}
 		    } catch (error) {
 
