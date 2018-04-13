@@ -438,6 +438,7 @@ bot.on("message", function(message) {
                 .addField("Report Message", `${theMsg}`, inline = true)
                 .addField("Reporter ID", `${message.author.id}`, inline = true)
                 .addField("Reporter Username", `${message.author.username}#${message.author.discriminator}`, inline = true)
+	        .addField("Channel ID", `\`${message.channel.id}\``)
                 .setColor("#C94830")
                 .setTimestamp()
             bot.channels.get("406182116712513537").send(embeed2);
