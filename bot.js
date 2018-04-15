@@ -1294,7 +1294,8 @@ switch (args[0].toLowerCase()) {
 	   message.channel.send({embed})
            }).catch(function(error) {
            	if (error.message === "Cannot read property 'url' of undefined") return message.channel.send(`No results were found for query: ${theMsg}`)
-           	message.channel.send(`:warning: Oops, that shouldn't happen!\n:x: ERROR: ${error.message}\n\nIf you think this is a bug, please use ${prefix}reportbug \`${error.message}\`, or try to use the command again.`)
+		if (error.message === 'Response code 403 (Forbidden)') return message.channel.send(':warning: Google Search API is offline, please try again later.')
+           	message.channel.send(`:x: ERROR: ${error.message}\n\nIf you think this is a bug, please use ${prefix}reportbug \`${error.message}\`, or try to use the command again.`)
 
            });
        } catch (err) {
