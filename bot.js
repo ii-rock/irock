@@ -382,13 +382,8 @@ bot.on("message", function(message) {
         break;
         case "say":
         message.delete();
-        let embed = new Discord.RichEmbed()
-    .setAuthor(`${message.author.username}#${message.author.discriminator} said`, message.author.displayAvatarURL)
-    .setDescription(theMsg)
-    .setColor("#E2C34A")
-    .setTimestamp()
+    message.channel.send(theMsg)
 
-        m.send({embed})
         break;
         case "serverinfo":
         if (!message.guild) return;
