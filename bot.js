@@ -554,6 +554,11 @@ break;
 	    } else {
 		    embedInfo.addField("Voice Channel", message.member.voiceChannel.name)
 	    }
+		   if (!message.member.presence.game) {
+		    embedInfo.addField("Current Game", 'No game detected')
+	    } else {
+		    embedInfo.addField("Current Game", message.member.presence.game.name)
+	    }
             message.channel.sendEmbed(embedInfo);
            } else if (!message.guild) {
                m.reply("You can't use this command in private messages.")
@@ -574,6 +579,11 @@ break;
 	    } else {
 		    embedInfo2.addField("Voice Channel", message.member.voiceChannel.name)
 	    }
+		   if (!message.member.presence.game) {
+		    embedInfo.addField("Current Game", 'No game detected')
+	    } else {
+		    embedInfo.addField("Current Game", message.member.presence.game.name)
+	    }
             message.channel.sendEmbed(embedInfo2);
         } else {
             var embedInfo3 = new Discord.RichEmbed()
@@ -591,6 +601,11 @@ break;
 		    embedInfo3.addField("Voice Channel", 'Not connected')
 	    } else {
 		    embedInfo3.addField("Voice Channel", message.mentions.members.first().voiceChannel.name)
+	    }
+		if (!message.mentions.members.first().presence.game) {
+		    embedInfo.addField("Current Game", 'No game detected')
+	    } else {
+		    embedInfo.addField("Current Game", message.mentions.members.first().presence.game.name)
 	    }
             message.channel.sendEmbed(embedInfo3);
            }
