@@ -602,10 +602,10 @@ break;
 	    } else {
 		    embedInfo3.addField("Voice Channel", message.mentions.members.first().voiceChannel.name)
 	    }
-		if (!message.mentions.members.first.presence.game) {
+		if (!message.mentions.users.first().presence.game) {
 		    embedInfo.addField("Current Game", 'No game detected')
 	    } else {
-		    embedInfo.addField("Current Game", message.mentions.members.first.presence.game.name)
+		    embedInfo.addField("Current Game", message.mentions.users.first().presence.game.name)
 	    }
             message.channel.sendEmbed(embedInfo3);
            }
