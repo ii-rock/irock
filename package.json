@@ -24,6 +24,7 @@
     "superagent": "^3.8.2",
     "cleverbot.io": "^1.0.4",
     "google-images": "^2.1.0",
-    "dblapi.js": "^1.1.0"
+    "dblapi.js": "^1.1.0",
+    "fortnite": "^4.1.1"
   }
 }
