@@ -242,8 +242,8 @@ bot.on("message", function(message) {
             let squads = data.stats.squad
            
             var embed = new Discord.RichEmbed()
-            .setAuthor(`Fortnite Stats`, 'https://www.northeastohioparent.com/wp-content/uploads/2018/04/FortniteBattleRoyale-LOGO.png')
-            .setDescription(`Lifetime stats for user **${theUser}**\nPlatform: \`${data.platform}\``)
+            .setAuthor(`Fortnite Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
+            .setDescription(`Lifetime stats for user: **${theUser}**\nPlatform: \`${data.platform}\``)
             .addField('Solo', `Wins: ${solo.wins}\nKills: ${solo.kills}\nK/D: ${solo.kd}\nMatches: ${solo.matches}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
             .addField('Duos', `Wins: ${duos.wins}\nKills: ${duos.kills}\nK/D: ${duos.kd}\nMatches: ${duos.matches}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
             .addField('Squads', `Wins: ${squads.wins}\nKills: ${squads.kills}\nK/D: ${squads.kd}\nMatches: ${squads.matches}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
