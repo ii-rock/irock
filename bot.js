@@ -10,6 +10,8 @@ const superagent = require('superagent');
 const DBL = require('dblapi.js')
 const dbl = new DBL(process.env.dbl_Key)
 
+const FortniteTracker = require('fortnite');
+const fortnite = new FortniteTracker(process.env.trackerKey);
 
 var jokes = fs.readFileSync("jokes.txt").toString().split("\n");
 var roll = fs.readFileSync("roll.txt").toString().split("\n");
@@ -167,6 +169,7 @@ bot.on("message", function(message) {
                 .addField("Music", `${prefix}play \`<youtube link/search query>\` - plays a song from youtube in your current voice channel.\n${prefix}stop - stops the player and leaves your current channel.\n${prefix}move - moves me to your current voice channel.\n${prefix}skip - skips your current song and plays the next one in the queue.\n${prefix}pause - pause current song, if any.\n${prefix}resume - resume current song, if any.\n${prefix}volume \`[1-100]\` - changes the volume of the player.\n${prefix}np - shows the current song, if any.\n${prefix}queue - shows the list of the queued songs, if any.`)
 	        .addField("Moderation", `${prefix}userinfo \`<user>\` - shows a few information about the mentioned user.\n${prefix}avatar <user> - displays a user's avatar url.\n${prefix}serverinfo - shows a few information about the current guild.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic \`<mention a channel> <new topic>\` - changes the current or mentioned channel's topic.\n${prefix}purge \`<number of messages (1-100)>\` - deletes a specified amount of messages.\n${prefix}ban \`<user> <reason>\` - bans a user from the server.\n${prefix}unban \`<user id>\` - unban a user by id.\n${prefix}kick \`<user> <reason>\` - kicks a user from the server.\n${prefix}report \`<user> <reason>\` - report a user with a reason and it will be sent in the **reports** channel if found.\n${prefix}announce <message> - send a message to announcements channel if found.\n${prefix}vckick <@user> - kick the mentioned user from their voice channel.`)
                 .addField("Google", `${prefix}google \`<search query>\` - search something on google and the bot will give you the link.\n${prefix}shortenurl \`<URL/Link>\` - convert a long link to a short one.\n${prefix}image \`<search query>\` - search for an image on google.`)
+	        .addField('Fortnite', `${prefix}ftn \`<username> <platform [pc - xbox - ps]>\` Default platform: PC - get lifetime stats for a fortnite player.`)
                 .addField("Cleverbot System (Slow Nowadays)", `${prefix}talk \`<message>\` - talk to the bot and it will reply to you.\n(Direct Messaging): You can chat with the bot privately and it will reply to you asap!\nExample,\nUser: Hey\n${bot.user.username}: Hey, how are you?`)
 	        .addField("Other", `${prefix}8ball - ask a question and the bot will reply with a random answer.\n${prefix}say \`<message>\` - says your message.\n${prefix}cat - sends a random cat picture.\n${prefix}dog - sends a random dog picture.\n${prefix}roll \`<number limit>\` (Default: 100) - rolls a number.\n${prefix}yomama \`<user>\` - Joke with the mentioned user using yomama jokes.\n${prefix}dm \`<user> <message>\` - send the mentioned user a direct message.`)
                 .addField("About Bot", `${prefix}ping - shows the time taken for the bot to respond.\n${prefix}uptime - shows the time since the bot has started up.\n${prefix}servers - shows the servers count that the bot has joined.\n${prefix}about - shows information about the bot's owner and the library used to create the bot.\n${prefix}invite - sends my invitation link.\n${prefix}reportbug - report a bug and it will be sent to the owner.`)
@@ -223,6 +226,39 @@ bot.on("message", function(message) {
     var args = message.content.substring(prefix.length).split(" ");
 
     switch (args[0].toLowerCase()) {
+		            case "ftn":
+        var username = args[1]
+        var platform = args[2] || "pc"
+        if (platform === 'ps') {
+            platform === 'psn'
+        } else if (platform === 'xbox') {
+            platform === 'xbl'
+        }
+        var data = fortnite.user(username, platform).then(data => {
+            let theUser = data.username
+            let stats = data.stats;
+            let solo = data.stats.solo
+            let duos = data.stats.duo
+            let squads = data.stats.squad
+           
+            var embed = new Discord.RichEmbed()
+            .setAuthor(`Fortnite Stats`, 'https://www.northeastohioparent.com/wp-content/uploads/2018/04/FortniteBattleRoyale-LOGO.png')
+            .setDescription(`Lifetime stats for user **${theUser}**\nPlatform: \`${data.platform}\``)
+            .addField('Solo', `Wins: ${solo.wins}\nKills: ${solo.kills}\nK/D: ${solo.kd}\nMatches: ${solo.matches}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
+            .addField('Duos', `Wins: ${duos.wins}\nKills: ${duos.kills}\nK/D: ${duos.kd}\nMatches: ${duos.matches}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
+            .addField('Squads', `Wins: ${squads.wins}\nKills: ${squads.kills}\nK/D: ${squads.kd}\nMatches: ${squads.matches}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
+            .setColor("#76931C")
+            .setTimestamp()
+            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
+            m.send({embed})
+
+        }).catch(e => {
+            console.log(e)
+            message.channel.send(`:x: Username ${username} was not found, please try changing the platform or re-correct the name!\n:information_source: Command usage: ${prefix}ftn \`<username> <platform [pc - xbox - ps]>\` Default platform: PC`)
+
+        });
+
+        break;
 	    case "dm":
 		    if (!mentioned) return m.send('Comon, that\'s not possible, you have to mention a user!')
 		   if (!theMsg.replace(mentioned, '')) return m.send(':poop: Discord does not allow empty messages...')
