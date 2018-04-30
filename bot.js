@@ -227,6 +227,7 @@ bot.on("message", function(message) {
 
     switch (args[0].toLowerCase()) {
 		            case "ftn":
+		    
         var username = args[1]
 	if (!username) return m.send(':warning: Please provide a username to search for!')
         var platform = args[2] || "pc"
@@ -236,6 +237,7 @@ bot.on("message", function(message) {
             platform === 'xbl'
         }
         var data = fortnite.user(username, platform).then(data => {
+	    message.channel.startTyping()
             let theUser = data.username
             let stats = data.stats;
             let solo = data.stats.solo
@@ -261,21 +263,21 @@ bot.on("message", function(message) {
             var embed = new Discord.RichEmbed()
             .setAuthor(`Fortnite Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
             .setDescription(`Lifetime stats for user: **${theUser}**\nPlatform: \`${data.platform}\``)
-            .addField('Solo', `Wins: ${solo.wins}\nKills: ${solo.kills}\nK/D: ${solo.kd}\nMatches: ${solo.matches}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
-            .addField('Duos', `Wins: ${duos.wins}\nKills: ${duos.kills}\nK/D: ${duos.kd}\nMatches: ${duos.matches}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
-            .addField('Squads', `Wins: ${squads.wins}\nKills: ${squads.kills}\nK/D: ${squads.kd}\nMatches: ${squads.matches}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
-	    .addField('Total Stats', `Wins: ${eval(soloWins + duoWins + squadWins)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nMatches: ${eval(sM + dM + sqM)}\nScore: ${eval(sS + dS + sqS)}`)
+            .addField(':bust_in_silhouette: Solo', `Wins: ${solo.wins}\nKills: ${solo.kills}\nK/D: ${solo.kd}\nMatches: ${solo.matches}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
+            .addField(':busts_in_silhouette: Duos', `Wins: ${duos.wins}\nKills: ${duos.kills}\nK/D: ${duos.kd}\nMatches: ${duos.matches}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
+            .addField(':busts_in_silhouette::busts_in_silhouette: Squads', `Wins: ${squads.wins}\nKills: ${squads.kills}\nK/D: ${squads.kd}\nMatches: ${squads.matches}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
+	    .addField(':notepad_spiral: Total Stats', `Wins: ${eval(soloWins + duoWins + squadWins)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nMatches: ${eval(sM + dM + sqM)}\nScore: ${eval(sS + dS + sqS)}`)
             .setColor("#C25AE8")
             .setTimestamp()
             .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
             m.send({embed})
-
+ message.channel.stopTyping()
         }).catch(e => {
             console.log(e)
             message.channel.send(`:x: Username ${username} was not found, please try changing the platform or re-correct the name!\n:information_source: Command usage: ${prefix}ftn \`<username> <platform [pc - xbox - ps]>\` Default platform: PC`)
-
+message.channel.stopTyping()
         });
-
+            
         break;
 	    case "dm":
 		    if (!mentioned) return m.send('Comon, that\'s not possible, you have to mention a user!')
