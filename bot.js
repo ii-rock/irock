@@ -228,6 +228,7 @@ bot.on("message", function(message) {
     switch (args[0].toLowerCase()) {
 		            case "ftn":
         var username = args[1]
+	if (!username) return m.send(':warning: Please provide a username to search for!')
         var platform = args[2] || "pc"
         if (platform === 'ps') {
             platform === 'psn'
