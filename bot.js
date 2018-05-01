@@ -152,7 +152,7 @@ bot.on("ready", function() {
 });
 
 
-bot.on("message", (message) => { 
+bot.on("message", async (message) => { 
     if (message.author.bot) return;
     if (!message.author.equals(bot.user))
 
