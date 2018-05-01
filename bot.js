@@ -152,7 +152,7 @@ bot.on("ready", function() {
 });
 
 
-bot.on("message", function(message) { 
+bot.on("message", (message) => { 
     if (message.author.bot) return;
     if (!message.author.equals(bot.user))
 
@@ -242,7 +242,7 @@ bot.on("message", function(message) {
 		    .setTimestamp()
 		    .setColor('#CFC5C3')
             .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
-        var searchingMsg = m.sendEmbed(embedSearching)
+        var searchingMsg = await m.sendEmbed(embedSearching)
         var data = fortnite.user(username, platform).then(data => {
 	    message.channel.startTyping()
             let theUser = data.username
@@ -279,13 +279,13 @@ bot.on("message", function(message) {
 	    .setThumbnail('https://purepng.com/public/uploads/large/purepng.com-fortnite-logo-black-and-whitefortnitefortnite-battle-royalegameslogos-691522709171yxrho.png')
             .setTimestamp()
             .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
-	    searchingMsg.delete()
+	    await searchingMsg.delete()
             m.send({embed})
 		
  message.channel.stopTyping()
         }).catch(e => {
             console.log(e)
-            searchingMsg.delete()
+            await searchingMsg.delete()
             message.channel.send(`:x: User **${username}** was not found, please try changing the platform or re-correct the name!\n:information_source: Command usage: ${prefix}ftn \`<username> <platform [pc - xbox - ps]>\` Default platform: PC`)
 message.channel.stopTyping()
         });
