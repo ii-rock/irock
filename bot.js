@@ -243,6 +243,7 @@ bot.on("message", async (message) => {
 		            case "ftn":
 		    
         var username = args[1]
+	if (message.author.id === '295233686893232129') username === process.env.fortniteUser
 	if (!username) return m.send(':warning: Please provide a username to search for!')
         var platform = args[2] || "pc"
         if (platform === 'ps') {
