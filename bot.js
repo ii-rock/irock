@@ -243,8 +243,8 @@ bot.on("message", async (message) => {
 		            case "ftn":
 		    
         var username = args[1]
-	if (message.author.id === '295233686893232129') username === process.env.fortniteUser
-	if (!username) return m.send(':warning: Please provide a username to search for!')
+	if (message.author.id === '295233686893232129' && !args[1]) return username === process.env.fortniteUser
+	if (!username && !message.author.id === '295233686893232129') return m.send(':warning: Please provide a username to search for!')
         var platform = args[2] || "pc"
         if (platform === 'ps') {
             platform === 'psn'
@@ -253,7 +253,7 @@ bot.on("message", async (message) => {
         }
 		    var embedSearching = new Discord.RichEmbed()
 	.setAuthor(`Searching`, 'http://contraloriasoledad.gov.co/wp-content/uploads/2016/05/lupa.png')
-            .setDescription(`Searching for user **${username}**\nPlatform: \`${platform}\``)
+            .setDescription(`Searching for user **${username}**\nPlatform: \`${platform.toUpperCase()}\``)
 		    .setTimestamp()
 		    .setColor(randomColor)
             .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
