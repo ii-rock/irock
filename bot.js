@@ -62,6 +62,18 @@ var upDays = 0;
 
 var servers = bot.guilds.size
 
+var colors = [
+	"#D10C05",
+	"#23BC8F",
+	"#2F82A4",
+	"#751B9F",
+	"#F1C40F",
+	"#2F5EC1",
+	"#1D1A1A",
+	"#F1009F",
+        "#83021D"
+];
+
 var eightBall = [
     "It is certain",
     "It is decidedly so",
@@ -153,7 +165,9 @@ bot.on("ready", function() {
 
 
 bot.on("message", async (message) => { 
+	var randomColor = colors[Math.floor(Math.random() * colors.length)]
     if (message.author.bot) return;
+	
     if (!message.author.equals(bot.user))
 
     
@@ -240,7 +254,7 @@ bot.on("message", async (message) => {
 	.setAuthor(`Searching`, 'http://contraloriasoledad.gov.co/wp-content/uploads/2016/05/lupa.png')
             .setDescription(`Searching for user **${username}**\nPlatform: \`${platform}\``)
 		    .setTimestamp()
-		    .setColor('#CFC5C3')
+		    .setColor(randomColor)
             .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
         var searchingMsg = await m.sendEmbed(embedSearching)
         var data = fortnite.user(username, platform).then(data => {
@@ -275,17 +289,17 @@ bot.on("message", async (message) => {
             .addField('Duos', `Wins: ${duos.wins}\nKills: ${duos.kills}\nK/D: ${duos.kd}\nMatches: ${duos.matches}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
             .addField('Squads', `Wins: ${squads.wins}\nKills: ${squads.kills}\nK/D: ${squads.kd}\nMatches: ${squads.matches}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
 	    .addField('Total Stats :notepad_spiral:', `Wins: ${eval(soloWins + duoWins + squadWins)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nMatches: ${eval(sM + dM + sqM)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
-            .setColor("#DD234B")
+            .setColor(randomColor)
 	    .setThumbnail('https://purepng.com/public/uploads/large/purepng.com-fortnite-logo-black-and-whitefortnitefortnite-battle-royalegameslogos-691522709171yxrho.png')
             .setTimestamp()
             .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
-	    await searchingMsg.delete()
+	    searchingMsg.delete()
             m.send({embed})
 		
  message.channel.stopTyping()
         }).catch(e => {
             console.log(e)
-            await searchingMsg.delete()
+            searchingMsg.delete()
             message.channel.send(`:x: User **${username}** was not found, please try changing the platform or re-correct the name!\n:information_source: Command usage: ${prefix}ftn \`<username> <platform [pc - xbox - ps]>\` Default platform: PC`)
 message.channel.stopTyping()
         });
