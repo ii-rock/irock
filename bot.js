@@ -236,6 +236,13 @@ bot.on("message", function(message) {
         } else if (platform === 'xbox') {
             platform === 'xbl'
         }
+		    var embedSearching = new Discord.RichEmbed()
+	.setAuthor(`Searching`, 'http://contraloriasoledad.gov.co/wp-content/uploads/2016/05/lupa.png')
+            .setDescription(`Searching for user **${username}**\nPlatform: \`${platform}\``)
+		    .setTimestamp()
+		    .setColor('#CFC5C3')
+            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
+        var searchingMsg = m.sendEmbed(embedSearching)
         var data = fortnite.user(username, platform).then(data => {
 	    message.channel.startTyping()
             let theUser = data.username
@@ -260,6 +267,7 @@ bot.on("message", function(message) {
             var dS = duos.score
             var sqS = squads.score
 	    
+	    
             var embed = new Discord.RichEmbed()
             .setAuthor(`Fortnite Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
             .setDescription(`Lifetime stats for user: **${theUser}**\nPlatform: \`${data.platform}\``)
@@ -267,15 +275,18 @@ bot.on("message", function(message) {
             .addField('Duos', `Wins: ${duos.wins}\nKills: ${duos.kills}\nK/D: ${duos.kd}\nMatches: ${duos.matches}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
             .addField('Squads', `Wins: ${squads.wins}\nKills: ${squads.kills}\nK/D: ${squads.kd}\nMatches: ${squads.matches}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
 	    .addField('Total Stats :notepad_spiral:', `Wins: ${eval(soloWins + duoWins + squadWins)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nMatches: ${eval(sM + dM + sqM)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
-            .setColor("#364AA6")
+            .setColor("#DD234B")
 	    .setThumbnail('https://purepng.com/public/uploads/large/purepng.com-fortnite-logo-black-and-whitefortnitefortnite-battle-royalegameslogos-691522709171yxrho.png')
             .setTimestamp()
             .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
+	    searchingMsg.delete()
             m.send({embed})
+		
  message.channel.stopTyping()
         }).catch(e => {
             console.log(e)
-            message.channel.send(`:x: Username ${username} was not found, please try changing the platform or re-correct the name!\n:information_source: Command usage: ${prefix}ftn \`<username> <platform [pc - xbox - ps]>\` Default platform: PC`)
+            searchingMsg.delete()
+            message.channel.send(`:x: User **${username}** was not found, please try changing the platform or re-correct the name!\n:information_source: Command usage: ${prefix}ftn \`<username> <platform [pc - xbox - ps]>\` Default platform: PC`)
 message.channel.stopTyping()
         });
             
