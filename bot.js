@@ -244,7 +244,7 @@ bot.on("message", async (message) => {
 		    
         var username = args[1]
 	
-	if (!username && !message.author.id === '295233686893232129') return m.send(':warning: Please provide a username to search for!')
+	if (!args[1] && !message.author.id === '295233686893232129') return m.send(':warning: Please provide a username to search for!')
         var platform = args[2] || "pc"
         if (platform === 'ps') {
             platform === 'psn'
