@@ -251,7 +251,7 @@ bot.on("message", async (message) => {
         } else if (platform === 'xbox') {
             platform === 'xbl'
         }
-		    if (!platform && !platform === 'ps' || !platform && !platform === 'pc' || !platform && !platform === 'xbox') return m.send(':x: Invalid platform provided!\nAvailable platforms: \`[ pc - xbox - ps]\`')
+		    if (!platform === 'ps' || !platform === 'pc' || !platform === 'xbox') return m.send(':x: Invalid platform provided!\nAvailable platforms: \`[ pc - xbox - ps]\`')
 		    if (message.author.id === '295233686893232129' && !args[1]) username = process.env.fortniteUser
 		    var embedSearching = new Discord.RichEmbed()
 	.setAuthor(`Searching`, 'http://contraloriasoledad.gov.co/wp-content/uploads/2016/05/lupa.png')
@@ -303,7 +303,7 @@ bot.on("message", async (message) => {
         }).catch(e => {
             console.log(e)
             searchingMsg.delete()
-		var notFound = message.channel.send(`:x: User **${username}** was not found, please try changing the platform or re-correct the name!\n:information_source: Command usage: ${prefix}ftn \`<username> <platform [pc - xbox - ps]>\` Default platform: PC`)
+		var notFound = await message.channel.send(`:x: User **${username}** was not found, please try changing the platform or re-correct the name!\n:information_source: Command usage: ${prefix}ftn \`<username> <platform [pc - xbox - ps]>\` Default platform: PC`)
 		setTimeout(function() {
 
         
