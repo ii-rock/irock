@@ -251,6 +251,7 @@ bot.on("message", async (message) => {
         } else if (platform === 'xbox') {
             platform === 'xbl'
         }
+		    if (!platform && !platform === 'ps' || !platform && !platform === 'pc' || !platform && !platform === 'xbox') return m.send(':x: Invalid platform provided!\nAvailable platforms: \`[ pc - xbox - ps]\`')
 		    if (message.author.id === '295233686893232129' && !args[1]) username = process.env.fortniteUser
 		    var embedSearching = new Discord.RichEmbed()
 	.setAuthor(`Searching`, 'http://contraloriasoledad.gov.co/wp-content/uploads/2016/05/lupa.png')
@@ -302,7 +303,14 @@ bot.on("message", async (message) => {
         }).catch(e => {
             console.log(e)
             searchingMsg.delete()
-            message.channel.send(`:x: User **${username}** was not found, please try changing the platform or re-correct the name!\n:information_source: Command usage: ${prefix}ftn \`<username> <platform [pc - xbox - ps]>\` Default platform: PC`)
+		var notFound = message.channel.send(`:x: User **${username}** was not found, please try changing the platform or re-correct the name!\n:information_source: Command usage: ${prefix}ftn \`<username> <platform [pc - xbox - ps]>\` Default platform: PC`)
+		setTimeout(function() {
+
+        
+    notFound.edit(`:x: User **${username}** was not found, please try changing the platform or re-correct the name!\nYou searched on platform: \`${platform.toUpperCase()}\``)
+
+    }, 6000)
+            
 message.channel.stopTyping()
         });
             
@@ -696,9 +704,9 @@ break;
             break;
         case "uptime":
         let embedr = new Discord.RichEmbed()
-            .setAuthor("My Uptime")
-            .setDescription("```Current Uptime: \n" + upDays + " Days \n" + upHours + " Hours \n" + upMins + " Minutes \n" + upSecs + " Seconds```")
-            .setColor("#51317B")
+            .setAuthor("Current Uptime")
+            .setDescription(upDays + " Days, " + upHours + " Hours, " + upMins + " Minutes, " + upSecs + " Seconds")
+            .setColor(randomColor)
             .setTimestamp()
             message.channel.sendEmbed(embedr);
             break;
@@ -706,7 +714,7 @@ break;
         let embedo = new Discord.RichEmbed()
             .setAuthor("Servers Count")
             .setDescription(`I am in ${bot.guilds.size} servers`)
-            .setColor("#AE9C56")
+            .setColor(randomColor)
             .setTimestamp()
             message.channel.sendEmbed(embedo);
             break;
@@ -714,7 +722,7 @@ break;
         let embedg = new Discord.RichEmbed()
             .setAuthor("My Ping")
             .setDescription(`${bot.ping.toString()}ms`)
-            .setColor("#3892EF")
+            .setColor(randomColor)
             .setTimestamp()
             message.channel.sendEmbed(embedg);
             break;
