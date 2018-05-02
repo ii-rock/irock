@@ -304,7 +304,7 @@ bot.on("message", async (message) => {
 	    } else if (platform === 'xbl') {
 		    embed.setDescription(`Lifetime stats for user: **${theUser}**\nPlatform: \`${data.platform}\` :video_game:`)
 	    } else {
-		    embed.setDescription(`Lifetime stats for user: **${theUser}**\nPlatform: \`${data.platform}\`)
+		    embed.setDescription(`Lifetime stats for user: **${theUser}**\nPlatform: \`${data.platform}\``)
 	    }
 	    searchingMsg.delete()
             m.send({embed})
