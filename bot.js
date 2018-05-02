@@ -299,9 +299,9 @@ bot.on("message", async (message) => {
             .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 	    if (platform === 'pc') {
 		    embed.setDescription(`Lifetime stats for user: **${theUser}**\nPlatform: \`${data.platform}\` :desktop:`)
-	    } else if (platform === 'psn') {
+	    } else if (platform === 'ps') {
 		    embed.setDescription(`Lifetime stats for user: **${theUser}**\nPlatform: \`${data.platform}\` :video_game:`)
-	    } else if (platform === 'xbl') {
+	    } else if (platform === 'xbox') {
 		    embed.setDescription(`Lifetime stats for user: **${theUser}**\nPlatform: \`${data.platform}\` :video_game:`)
 	    } else {
 		    embed.setDescription(`Lifetime stats for user: **${theUser}**\nPlatform: \`${data.platform}\``)
