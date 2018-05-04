@@ -758,6 +758,10 @@ break;
 
 bot.on('message', async msg => {
     if (!msg.content.startsWith(prefix)) return;
+	if (message.author.bot) return;
+	
+    if (!message.author.equals(bot.user))
+
     var arg = msg.content.substring(prefix.length).split(" ");
 	
     const searchString = arg.slice(1).join(' ');
@@ -1136,6 +1140,7 @@ function playit(guild, song) {
 }
 bot.on('message', async (message) => {
 	if (!message.content.startsWith(prefix)) return;
+
 	var WholeMsg = message.content.split(" ").slice(1)
         var theMsg = WholeMsg.join(" ")
 	var args = message.content.substring(prefix.length).split(" ");
@@ -1148,7 +1153,10 @@ bot.on('message', async (message) => {
             .setColor("#FF0000")
             .setTimestamp()
             .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+	if (message.author.bot) return;
 	
+    if (!message.author.equals(bot.user))
+
 switch (args[0].toLowerCase()) {  
 	case "vckick":
 		if (!message.member.hasPermission('MOVE_MEMBERS')) return m.send(":no_entry: You do not have permission `Move Members` to use this command.")
