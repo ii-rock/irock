@@ -758,9 +758,9 @@ break;
 
 bot.on('message', async msg => {
     if (!msg.content.startsWith(prefix)) return;
-	if (message.author.bot) return;
+	if (msg.author.bot) return;
 	
-    if (!message.author.equals(bot.user))
+    if (!msg.author.equals(bot.user))
 
     var arg = msg.content.substring(prefix.length).split(" ");
 	
