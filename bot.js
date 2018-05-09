@@ -243,10 +243,8 @@ bot.on("message", async (message) => {
 		            case "ftn":
 		    message.channel.startTyping()
         var username = theMsg
-	if (message.author.id === '295233686893232129' && !theMsg) {
-			    username = process.env.fortniteUser
-		    } else {
-	if (!theMsg && !message.author.id === '295233686893232129') return m.send(':warning: Please provide a username to search for!')
+
+	if (!theMsg) return m.send(':warning: Please provide a username to search for!')
 
 		    
 			    
@@ -385,14 +383,14 @@ bot.on("message", async (message) => {
 	}).catch (e => {
             console.log(e)
             searchingMsg.delete()
-		message.channel.send(`:x: User **${username}** does not exist!`)
+		message.channel.send(`:negative_squared_cross_mark:  Player **${username}** was not found!`)
 		
             })
 	}) 
 		message.channel.stopTyping()
 	
  });
-		    }
+		    
         break;
 	    case "dm":
 		    if (!mentioned) return m.send('Comon, that\'s not possible, you have to mention a user!')
