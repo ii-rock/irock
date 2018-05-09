@@ -390,9 +390,9 @@ bot.on("message", async (message) => {
             })
 	}) 
 		message.channel.stopTyping()
-	}
+	
  });
-            
+		    }
         break;
 	    case "dm":
 		    if (!mentioned) return m.send('Comon, that\'s not possible, you have to mention a user!')
