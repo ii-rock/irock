@@ -251,7 +251,7 @@ bot.on("message", async (message) => {
 		    
 		    var embedSearching = new Discord.RichEmbed()
 	.setAuthor(`Searching`, 'http://contraloriasoledad.gov.co/wp-content/uploads/2016/05/lupa.png')
-            .setDescription(`Searching for user **${username}**\nPlatform: \`All-Platforms\``)
+            .setDescription(`Searching for user **${username}**\nPlatform: \`[PC - PS4 - Xbox]\``)
 		    .setTimestamp()
 		    .setColor(randomColor)
             .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
@@ -282,9 +282,9 @@ bot.on("message", async (message) => {
 	    
 	    
             var embed = new Discord.RichEmbed()
-            .setAuthor(`Fortnite Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
+            .setAuthor(`Fortnite Player Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
 	   
-            .setDescription(`Lifetime stats for user: ${data.username}\nPlatform: PC :desktop:`)
+            .setDescription(`Username: **${data.username}**\nPlatform: \`PC\` :desktop:`)
             .addField('Solo', `Wins: ${solo.wins}\nKills: ${solo.kills}\nK/D: ${solo.kd}\nMatches: ${solo.matches}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
             .addField('Duos', `Wins: ${duos.wins}\nKills: ${duos.kills}\nK/D: ${duos.kd}\nMatches: ${duos.matches}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
             .addField('Squads', `Wins: ${squads.wins}\nKills: ${squads.kills}\nK/D: ${squads.kd}\nMatches: ${squads.matches}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
@@ -325,9 +325,9 @@ bot.on("message", async (message) => {
 	    
 	    
             var embed = new Discord.RichEmbed()
-            .setAuthor(`Fortnite Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
+            .setAuthor(`Fortnite Player Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
 	   
-            .setDescription(`Lifetime stats for user: ${data.username}\nPlatform: PlayStation :video_game:`)
+            .setDescription(`Username: **${data.username}**\nPlatform: \`PlayStation 4\` :video_game:`)
             .addField('Solo', `Wins: ${solo.wins}\nKills: ${solo.kills}\nK/D: ${solo.kd}\nMatches: ${solo.matches}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
             .addField('Duos', `Wins: ${duos.wins}\nKills: ${duos.kills}\nK/D: ${duos.kd}\nMatches: ${duos.matches}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
             .addField('Squads', `Wins: ${squads.wins}\nKills: ${squads.kills}\nK/D: ${squads.kd}\nMatches: ${squads.matches}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
@@ -366,9 +366,9 @@ bot.on("message", async (message) => {
 	    
 	    
             var embed = new Discord.RichEmbed()
-            .setAuthor(`Fortnite Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
+            .setAuthor(`Fortnite Player Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
 	   
-            .setDescription(`Lifetime stats for user: ${data.username}\nPlatform: Xbox :video_game:`)
+            .setDescription(`Username: **${data.username}**\nPlatform: \`Xbox\` :video_game:`)
             .addField('Solo', `Wins: ${solo.wins}\nKills: ${solo.kills}\nK/D: ${solo.kd}\nMatches: ${solo.matches}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
             .addField('Duos', `Wins: ${duos.wins}\nKills: ${duos.kills}\nK/D: ${duos.kd}\nMatches: ${duos.matches}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
             .addField('Squads', `Wins: ${squads.wins}\nKills: ${squads.kills}\nK/D: ${squads.kd}\nMatches: ${squads.matches}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
