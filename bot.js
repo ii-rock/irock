@@ -241,7 +241,7 @@ bot.on("message", async (message) => {
 
     switch (args[0].toLowerCase()) {
 		            case "ftn":
-		    message.channel.startTyping()
+		   
         var username = theMsg
 
 	if (!theMsg) return m.send(':warning: Please provide a username to search for!')
@@ -387,7 +387,7 @@ bot.on("message", async (message) => {
 		
             })
 	}) 
-		message.channel.stopTyping()
+	
 	
  });
 		    
