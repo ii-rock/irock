@@ -389,7 +389,6 @@ bot.on("message", async (message) => {
 		message.channel.stopTyping()
             })
 	}) 
-    })
  });
             
         break;
