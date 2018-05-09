@@ -383,7 +383,7 @@ bot.on("message", async (message) => {
 	}).catch (e => {
             console.log(e)
             searchingMsg.delete()
-		message.channel.send(`:negative_squared_cross_mark:  Player **${username}** was not found!`)
+		message.channel.send(`:negative_squared_cross_mark: Player **${username}** was not found!`)
 		
             })
 	}) 
