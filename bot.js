@@ -290,7 +290,7 @@ bot.on("message", async (message) => {
             .addField('Squads', `Wins: ${squads.wins}\nKills: ${squads.kills}\nK/D: ${squads.kd}\nMatches: ${squads.matches}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
 	    .addField('Total Stats :notepad_spiral:', `Wins: ${eval(soloWins + duoWins + squadWins)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nMatches: ${eval(sM + dM + sqM)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
             .setColor(randomColor)
-	    .setThumbnail('https://purepng.com/public/uploads/large/purepng.com-fortnite-logo-black-and-whitefortnitefortnite-battle-royalegameslogos-691522709171yxrho.png')
+	    .setThumbnail('https://orig00.deviantart.net/e454/f/2018/073/5/8/fortnite___dock_icon_by_kom_a-dc5vmno.png')
             .setTimestamp()
             .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 
