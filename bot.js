@@ -1015,7 +1015,7 @@ bot.on('message', async msg => {
                       return msg.channel.sendEmbed(embedd);
                   }
                   const videoIndex = parseInt(response.first().content);
-                  var video = await youtube.getVideoByID(videos[videoIndex  1].id);
+                  var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
                 } catch (err) {
                     console.error(err);
                     return msg.channel.send('🆘 I could not obtain any search results.');
