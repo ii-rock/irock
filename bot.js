@@ -204,7 +204,7 @@ bot.on("message", async (message) => {
 		    .setTimestamp()
        bot.channels.get("405872224806109185").sendEmbed(pvtEmbed)
 	    
-	    })
+
 
 }
 
