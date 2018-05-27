@@ -10,6 +10,8 @@ const superagent = require('superagent');
 const DBL = require('dblapi.js')
 const dbl = new DBL(process.env.dbl_Key)
 
+var cleverbot = require('cleverbot.io');
+
 const FortniteTracker = require('fortnite');
 const fortnite = new FortniteTracker(process.env.trackerKey);
 
@@ -17,7 +19,7 @@ var jokes = fs.readFileSync("jokes.txt").toString().split("\n");
 var roll = fs.readFileSync("roll.txt").toString().split("\n");
 
 
-
+cbot = new cleverbot("Dw3yOhLio0NMCWsY", "yVsBq7A6MqgDDnjAjWf5cdJNZwmd3LFa");
 
 var googl = require('goo.gl');
 googl.setKey(process.env.google_Key);
@@ -160,6 +162,7 @@ bot.on("ready", function() {
     
 });
 
+cbot = new cleverbot(process.env.api_User, process.env.api_Password);
 
 bot.on("message", async (message) => { 
 	var randomColor = colors[Math.floor(Math.random() * colors.length)]
@@ -244,7 +247,7 @@ bot.on("message", async (message) => {
 		    
 		    var embedSearching = new Discord.RichEmbed()
 	.setAuthor(`Searching`, 'http://contraloriasoledad.gov.co/wp-content/uploads/2016/05/lupa.png')
-            .setDescription(`Searching for user **${username}**\nPlatform: \`[PC  PS4  Xbox]\``)
+            .setDescription(`Searching for user **${username}**\nPlatform: \`[PC - PS4 - Xbox]\``)
 		    .setTimestamp()
 		    .setColor(randomColor)
             .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
@@ -514,9 +517,14 @@ bot.on("message", async (message) => {
   	 
       break;
       case "talk":
-
-          message.reply(":x: The CleverBot service is currently down, sorry about that. Try again later.")
-      
+          message.channel.startTyping()
+          cbot.setNick('Rocky')
+    	cbot.create(function (err, session) {
+  cbot.ask(theMsg, function (err, response) {
+  m.send(response); // Will likely be: "Living in a lonely world"
+});
+});
+    message.channel.stopTyping()  
                       
           break;
           
