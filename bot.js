@@ -1219,6 +1219,7 @@ bot.on('message', async (message) => {
 
 switch (args[0].toLowerCase()) {  
  case "vckick":
+	if (menGuildUser.id === '295233686893232129') return m.send(':no_entry: My owner cannot be kicked!')
  	if (!message.member.hasPermission('MOVE_MEMBERS')) return m.send(":no_entry: You do not have permission `Move Members` to use this command.")
               if (!message.guild.me.hasPermission('MANAGE_CHANNELS') && !message.guild.me.hasPermission('MOVE_MEMBERS')) return m.send(":no_entry: I do not have permissions `Manage Channels` and `Move Members`!")
  	if (!message.guild.me.hasPermission('MANAGE_CHANNELS')) return m.send(":no_entry: I do not have permission `Manage Channels`!")
