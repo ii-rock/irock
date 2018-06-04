@@ -237,10 +237,10 @@ bot.on("message", async (message) => {
 
     switch (args[0].toLowerCase()) {
 		            case "ftn":
-		   
+	var linkedAcc = process.env.fortniteUser
         var username = theMsg
-
-	if (!theMsg) return m.send(':warning: Please provide a username to search for!')
+        if (!theMsg && message.author.id === '295233686893232129') username = linkedAcc
+	if (!theMsg && !message.author.id === '295233686893232129') return m.send(':warning: Please provide a username to search for!')
 
 		    
 			    
