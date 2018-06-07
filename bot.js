@@ -236,10 +236,17 @@ bot.on("message", async (message) => {
     var args = message.content.substring(prefix.length).split(" ");
 
     switch (args[0].toLowerCase()) {
+	    case "calc":
+		    if (!theMsg) return m.send(':warning: Please provide numbers to calculate')
+		    if (isNaN(theMsg) && !theMsg.includes('+' || '-' || '*' || '/')) return m.send('Please provide numbers to calculate!')
+		    m.send(eval(theMsg))
+		    break;
 		            case "ftn":
 	var linkedAcc = process.env.fortniteUser
+	var linkedAcc2 = process.env.linkedAcc2
         var username = theMsg
         if (!theMsg && message.author.id === '295233686893232129') username = linkedAcc
+	if (theMsg === '.' && message.author.id === '327191040547356672') username = linkedAcc2
 	if (!theMsg && !message.author.id === '295233686893232129') return m.send(':warning: Please provide a username to search for!')
 
 		    
