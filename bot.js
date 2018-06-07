@@ -238,7 +238,7 @@ bot.on("message", async (message) => {
     switch (args[0].toLowerCase()) {
 	    case "calc":
 		    if (!theMsg) return m.send(':warning: Please provide numbers to calculate')
-		    if (isNaN(theMsg) && !theMsg.includes('+' || '-' || '*' || '/')) return m.send('Please provide numbers to calculate!')
+		    if (isNaN(theMsg)) return m.send('Please provide numbers to calculate!')
 		    m.send(eval(theMsg))
 		    break;
 		            case "ftn":
