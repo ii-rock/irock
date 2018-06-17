@@ -242,8 +242,12 @@ bot.on("message", async (message) => {
         var username = theMsg
 	if (args[1] === 'wins') {
 		if (isNaN(args[2])) return message.reply('Your wins must be a number!')
+		try {
 		message.member.setNickname(`${message.author.username} 🏆 ${args[2]}`)
-		m.reply(':white_check_mark: Your wins has been added to your nickname.')
+		message.reply('Your wins has been added to your nickname :white_check_mark:')
+		} catch (err) {
+		message.reply(err.message)
+		}
 	} else {
         if (!theMsg && message.author.id === '295233686893232129') username = linkedAcc
 	if (theMsg === '.' && message.author.id === '327191040547356672') username = linkedAcc2
