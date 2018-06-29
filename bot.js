@@ -318,8 +318,6 @@ requestFortnite(options, (error, response, body) => {
             var dS = duos.score
             var sqS = squads.score
 	    
-	    var stats = data.lifetimeStats;
-          var kd = stats.find(s => s.stat == 'kd')
             var embed = new Discord.RichEmbed()
             .setAuthor(`Fortnite Player Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
 	   
@@ -327,7 +325,7 @@ requestFortnite(options, (error, response, body) => {
             .addField('Solo', `Matches: ${solo.matches}\nKills: ${solo.kills}\nWins: ${solo.wins}\nK/D: ${solo.kd}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
             .addField('Duos', `Matches: ${duos.matches}\nKills: ${duos.kills}\nWins: ${duos.wins}\nK/D: ${duos.kd}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
             .addField('Squads', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
-	    .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nK/D: ${kd.value}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
+	    .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
             .setColor(randomColor)
 	    .setThumbnail('https://orig00.deviantart.net/e454/f/2018/073/5/8/fortnite___dock_icon_by_kom_a-dc5vmno.png')
             .setTimestamp()
@@ -361,8 +359,7 @@ requestFortnite(options, (error, response, body) => {
             var sS = solo.score
             var dS = duos.score
             var sqS = squads.score
-	    var stats = data.lifetimeStats;
-          var kd = stats.find(s => s.stat == 'kd')
+
 	    
            var embed = new Discord.RichEmbed()
              .setAuthor(`Fortnite Player Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
@@ -371,7 +368,7 @@ requestFortnite(options, (error, response, body) => {
           .addField('Solo', `Matches: ${solo.matches}\nKills: ${solo.kills}\nWins: ${solo.wins}\nK/D: ${solo.kd}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
           .addField('Duos', `Matches: ${duos.matches}\nKills: ${duos.kills}\nWins: ${duos.wins}\nK/D: ${duos.kd}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
           .addField('Squads', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
-     .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nK/D: ${kd.value}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
+     .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
           .setColor(randomColor)
 	    .setThumbnail('https://orig00.deviantart.net/e454/f/2018/073/5/8/fortnite___dock_icon_by_kom_a-dc5vmno.png')
           .setTimestamp()
@@ -403,8 +400,7 @@ requestFortnite(options, (error, response, body) => {
           var sS = solo.score
           var dS = duos.score
           var sqS = squads.score
-          var stats = data.lifetimeStats;
-          var kd = stats.find(s => s.stat == 'kd')
+
      
           var embed = new Discord.RichEmbed()
           .setAuthor(`Fortnite Player Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
@@ -413,7 +409,7 @@ requestFortnite(options, (error, response, body) => {
           .addField('Solo', `Matches: ${solo.matches}\nKills: ${solo.kills}\nWins: ${solo.wins}\nK/D: ${solo.kd}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
           .addField('Duos', `Matches: ${duos.matches}\nKills: ${duos.kills}\nWins: ${duos.wins}\nK/D: ${duos.kd}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
           .addField('Squads', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
-     .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nK/D: ${kd.value}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
+     .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
           .setColor(randomColor)
      .setThumbnail('https://orig00.deviantart.net/e454/f/2018/073/5/8/fortnite___dock_icon_by_kom_a-dc5vmno.png')
           .setTimestamp()
@@ -424,7 +420,6 @@ requestFortnite(options, (error, response, body) => {
  }).catch (e => {
           console.log(e)
           searchingMsg.delete()
-	bot.users.get('295233686893232129').send(`FTN ERROR: ${e.message}`)
  	message.channel.send(`:negative_squared_cross_mark: Player **${username}** was not found!`)
  	
           })
