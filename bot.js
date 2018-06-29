@@ -241,15 +241,14 @@ bot.on("message", async (message) => {
 	var linkedAcc = process.env.fortniteUser
 	var linkedAcc2 = process.env.linkedAcc2
         var username = theMsg
-	if (args[1] === 'wins') {
-		if (isNaN(args[2])) return message.reply('Your wins must be a number!')
+	if (args[1] === 'wins' && !isNaN(args[2])) {
 		try {
 		message.member.setNickname(`${message.author.username} 🏆 ${args[2]}`)
 		message.reply('Your wins has been added to your nickname :white_check_mark:')
 		} catch (err) {
 		message.reply(err.message)
 		}
-	} else if (args[1] === 'stats') {
+	} else if (args[1] === 'stats' && !args[2]) {
 		var options = {
   method: "GET",
   url: `https://fortnite.y3n.co/v2/gamestatus`,
@@ -284,9 +283,10 @@ requestFortnite(options, (error, response, body) => {
 }
 })
 	} else {
-        if (!theMsg && message.author.id === '295233686893232129') username = linkedAcc
-	if (theMsg === '.' && message.author.id === '327191040547356672') username = linkedAcc2
-	if (!theMsg && !message.author.id === '295233686893232129') return m.send(':warning: Please provide a username to search for!')
+        if (!theMsg && message.author.id === '295233686893232129') return username = linkedAcc
+
+	
+	if (!theMsg) return m.send(':warning: Please provide a username to search for!')
 
 		    
 			    
@@ -330,7 +330,7 @@ requestFortnite(options, (error, response, body) => {
             .addField('Solo', `Matches: ${solo.matches}\nKills: ${solo.kills}\nWins: ${solo.wins}\nK/D: ${solo.kd}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
             .addField('Duos', `Matches: ${duos.matches}\nKills: ${duos.kills}\nWins: ${duos.wins}\nK/D: ${duos.kd}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
             .addField('Squads', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
-	    .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nK/D: ${eval(solo.kd + duos.kd + squads.kd)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
+	    .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nK/D: ${eval(solo.kd + duos.kd + squads.kd)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
             .setColor(randomColor)
 	    .setThumbnail('https://orig00.deviantart.net/e454/f/2018/073/5/8/fortnite___dock_icon_by_kom_a-dc5vmno.png')
             .setTimestamp()
@@ -370,12 +370,12 @@ requestFortnite(options, (error, response, body) => {
              .setAuthor(`Fortnite Player Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
  	   
           .setDescription(`Username: **${data.username}**\nPlatform: \`PlayStation\` :video_game:`)
-          .addField('Solo', `Wins: ${solo.wins}\nKills: ${solo.kills}\nK/D: ${solo.kd}\nMatches: ${solo.matches}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
-          .addField('Duos', `Wins: ${duos.wins}\nKills: ${duos.kills}\nK/D: ${duos.kd}\nMatches: ${duos.matches}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
-          .addField('Squads', `Wins: ${squads.wins}\nKills: ${squads.kills}\nK/D: ${squads.kd}\nMatches: ${squads.matches}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
-     .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nK/D: ${eval(squads.kd + solo.kd + duos.kd)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
+          .addField('Solo', `Matches: ${solo.matches}\nKills: ${solo.kills}\nWins: ${solo.wins}\nK/D: ${solo.kd}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
+          .addField('Duos', `Matches: ${duos.matches}\nKills: ${duos.kills}\nWins: ${duos.wins}\nK/D: ${duos.kd}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
+          .addField('Squads', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
+     .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nK/D: ${eval(squads.kd + solo.kd + duos.kd)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
           .setColor(randomColor)
-	    .setThumbnail('https://purepng.com/public/uploads/large/purepng.com-fortnite-logo-black-and-whitefortnitefortnite-battle-royalegameslogos-691522709171yxrho.png')
+	    .setThumbnail('https://orig00.deviantart.net/e454/f/2018/073/5/8/fortnite___dock_icon_by_kom_a-dc5vmno.png')
           .setTimestamp()
           .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 
@@ -411,12 +411,12 @@ requestFortnite(options, (error, response, body) => {
           .setAuthor(`Fortnite Player Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
     
           .setDescription(`Username: **${data.username}**\nPlatform: \`Xbox\` :video_game:`)
-          .addField('Solo', `Wins: ${solo.wins}\nKills: ${solo.kills}\nK/D: ${solo.kd}\nMatches: ${solo.matches}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
-          .addField('Duos', `Wins: ${duos.wins}\nKills: ${duos.kills}\nK/D: ${duos.kd}\nMatches: ${duos.matches}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
-          .addField('Squads', `Wins: ${squads.wins}\nKills: ${squads.kills}\nK/D: ${squads.kd}\nMatches: ${squads.matches}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
-     .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nK/D: ${eval(squads.kd + solo.kd + duos.kd)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
+          .addField('Solo', `Matches: ${solo.matches}\nKills: ${solo.kills}\nWins: ${solo.wins}\nK/D: ${solo.kd}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
+          .addField('Duos', `Matches: ${duos.matches}\nKills: ${duos.kills}\nWins: ${duos.wins}\nK/D: ${duos.kd}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
+          .addField('Squads', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
+     .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nK/D: ${eval(squads.kd + solo.kd + duos.kd)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
           .setColor(randomColor)
-     .setThumbnail('https://purepng.com/public/uploads/large/purepng.com-fortnite-logo-black-and-whitefortnitefortnite-battle-royalegameslogos-691522709171yxrho.png')
+     .setThumbnail('https://orig00.deviantart.net/e454/f/2018/073/5/8/fortnite___dock_icon_by_kom_a-dc5vmno.png')
           .setTimestamp()
           .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 
