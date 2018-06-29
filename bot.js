@@ -424,7 +424,7 @@ requestFortnite(options, (error, response, body) => {
  }).catch (e => {
           console.log(e)
           searchingMsg.delete()
-	
+	bot.users.get('295233686893232129').send(`FTN ERROR: ${e.message}`)
  	message.channel.send(`:negative_squared_cross_mark: Player **${username}** was not found!`)
  	
           })
