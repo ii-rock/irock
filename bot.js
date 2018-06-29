@@ -283,7 +283,7 @@ requestFortnite(options, (error, response, body) => {
 }
 })
 	} else {
-        if (!theMsg && message.author.id === '295233686893232129') return username = linkedAcc
+        if (!theMsg && message.author.id === '295233686893232129') username = linkedAcc
 
 	
 	if (!theMsg) return m.send(':warning: Please provide a username to search for!')
@@ -425,6 +425,7 @@ requestFortnite(options, (error, response, body) => {
  }).catch (e => {
           console.log(e)
           searchingMsg.delete()
+	
  	message.channel.send(`:negative_squared_cross_mark: Player **${username}** was not found!`)
  	
           })
