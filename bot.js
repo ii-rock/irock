@@ -254,9 +254,8 @@ bot.on("message", async (message) => {
     'User-Agent': 'nodejs request',
     'X-Key': `${process.env.fnbrKey}`
   }
-}
-
-requestFortnite(options, (error, response, body) => {
+		}
+			requestFortnite(options, (error, response, body) => {
   if (!error && response.statusCode == 200) {
     var stats = JSON.parse(body);
     if (stats.status === 'UP') {
@@ -267,6 +266,15 @@ requestFortnite(options, (error, response, body) => {
 	            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 		    .setColor('#008000')
     m.sendEmbed(embedOnline)
+		
+} else if (args[1] === 'shop' && !args[2]) {
+			var embedShop = new Discord.RichEmbed()
+            .setAuthor(`Fortnite Item Shop`, 'https://png.icons8.com/color/1600/fortnite.png')
+            .setImage(`http://orcz.com/images/c/cc/FortniteBattleRoyaleItemShopScreen.jpg`)
+	    .setColor(randomColor)
+	    .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
+            m.sendEmbed(embedShop)
+
 } else {
 	var embedOffline = new Discord.RichEmbed()
 	.setAuthor(`Fortnite Status`, 'https://png.icons8.com/color/1600/fortnite.png')
