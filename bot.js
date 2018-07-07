@@ -251,7 +251,7 @@ bot.on("message", async (message) => {
 		var dd = today.getDate();
 		var mm = today.getMonth()+1;
 		var yyyy = today.getFullYear();
-		var date === `${dd}/${mm}/${yyyy}`
+		var date = `${dd}/${mm}/${yyyy}`
 			var embedShop = new Discord.RichEmbed()	
             .setAuthor(`Fortnite Item Shop`, 'https://png.icons8.com/color/1600/fortnite.png')		
 	    .setDescription(date)
