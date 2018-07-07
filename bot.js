@@ -249,6 +249,7 @@ bot.on("message", async (message) => {
 	} else if (args[1] === 'shop' && !args[2]) {
 			var embedShop = new Discord.RichEmbed()
             .setAuthor(`Fortnite Item Shop`, 'https://png.icons8.com/color/1600/fortnite.png')
+	    .setDescription('Current Shop')
             .setImage(`http://orcz.com/images/c/cc/FortniteBattleRoyaleItemShopScreen.jpg`)
 	    .setColor(randomColor)
 	    .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
