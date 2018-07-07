@@ -246,6 +246,17 @@ bot.on("message", async (message) => {
 		} catch (err) {
 		message.reply(err.message)
 		}
+	} else if (args[1] === 'shop' && !args[2]) {	
+		var sdf = new SimpleDateFormat("dd/MM/yyyy");
+            var date = sdf.format(new Date()); 
+			var embedShop = new Discord.RichEmbed()	
+            .setAuthor(`Fortnite Item Shop`, 'https://png.icons8.com/color/1600/fortnite.png')		
+	    .setDescription(date)
+            .setImage(`https://fortniteinsider.com/wp-content/uploads/2018/07/Fortnite-Item-Shop-Fortnite-Featured-Daily-Item-July-6th-July-7th-e1530921735932.png`)	
+	    .setColor(randomColor)	
+	    .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)	
+	    .setTimestamp()	
+            m.sendEmbed(embedShop)
 	} else if (args[1] === 'stats' && !args[2]) {
 		var options = {
   method: "GET",
