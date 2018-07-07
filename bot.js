@@ -23,7 +23,7 @@ var roll = fs.readFileSync("roll.txt").toString().split("\n");
 cbot = new cleverbot("Dw3yOhLio0NMCWsY", "yVsBq7A6MqgDDnjAjWf5cdJNZwmd3LFa");
 
 var googl = require('goo.gl');
-googl.setKey(process.env.google_Key);
+googl.setKey(process.env.shortenerKey);
 
 const GoogleImages = require('google-images');
 const img = new GoogleImages(process.env.engineID, process.env.google_Key);
@@ -246,15 +246,6 @@ bot.on("message", async (message) => {
 		} catch (err) {
 		message.reply(err.message)
 		}
-	} else if (args[1] === 'shop' && !args[2]) {
-			var embedShop = new Discord.RichEmbed()
-            .setAuthor(`Fortnite Item Shop`, 'https://png.icons8.com/color/1600/fortnite.png')
-	    .setDescription('Current Shop')
-            .setImage(`http://orcz.com/images/c/cc/FortniteBattleRoyaleItemShopScreen.jpg`)
-	    .setColor(randomColor)
-	    .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
-	    .setTimestamp()
-            m.sendEmbed(embedShop)
 	} else if (args[1] === 'stats' && !args[2]) {
 		var options = {
   method: "GET",
