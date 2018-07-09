@@ -646,6 +646,7 @@ bot.on("message", async (message) => {
               .setAuthor("About Me", bot.user.displayAvatarURL)
               .setDescription("A few information about me and my owner.")
               .addField("My Owner", `${owner}`, inline = true)
+	      .addField("About Me", `I can play music, moderate your server, get images from google, shorten links, get fortnite players stats and more!`)
               .addField("Library Used", "Discord.js", inline = true)
               .setColor("#C94830")
               .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
