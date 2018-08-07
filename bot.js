@@ -261,7 +261,7 @@ bot.on("message", async (message) => {
     if (stats.status === 'UP') {
 	    var embedOnline = new Discord.RichEmbed()
 	.setAuthor(`Fortnite Status`, 'https://png.icons8.com/color/1600/fortnite.png')
-            .setDescription(`:signal_strength: Servers are online`)
+            .setDescription(`:**Servers are ONLINE**.`)
 		    .setTimestamp()
 	            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 		    .setColor('#008000')
@@ -270,12 +270,12 @@ bot.on("message", async (message) => {
 } else {
 	var embedOffline = new Discord.RichEmbed()
 	.setAuthor(`Fortnite Status`, 'https://png.icons8.com/color/1600/fortnite.png')
-            .setDescription(`:red_circle: Servers are offline.`)
+            .setDescription(`Servers are currently **OFFLINE**.`)
 		    .setTimestamp()
 	            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 		    .setColor('#ff0000')
     m.sendEmbed(embedOffline)
-	m.sendEmbed(embedOffline)
+
 
   }
 }
@@ -1260,9 +1260,10 @@ bot.on('message', async (message) => {
   if (!message.author.equals(bot.user))
 
 switch (args[0].toLowerCase()) {  
- case "vckick":
-	if (menGuildUser.id === '295233686893232129') return m.send(':no_entry: My owner cannot be kicked!')
+	case "vckick":
  	if (!message.member.hasPermission('MOVE_MEMBERS')) return m.send(":no_entry: You do not have permission `Move Members` to use this command.")
+	if (menGuildUser.id === '295233686893232129') return m.send(':no_entry: My owner cannot be kicked!')
+	if (menGuildUser.id === message.author.id) return m.send(':no_entry: Oops! You cannot kick yourself!')
               if (!message.guild.me.hasPermission('MANAGE_CHANNELS') && !message.guild.me.hasPermission('MOVE_MEMBERS')) return m.send(":no_entry: I do not have permissions `Manage Channels` and `Move Members`!")
  	if (!message.guild.me.hasPermission('MANAGE_CHANNELS')) return m.send(":no_entry: I do not have permission `Manage Channels`!")
  	if (!message.guild.me.hasPermission('MOVE_MEMBERS')) return m.send(":no_entry: I do not have permission `Move Members`!")
@@ -1275,7 +1276,7 @@ switch (args[0].toLowerCase()) {
        
  	var kickedFrom = menGuildUser.voiceChannel.name
  	
- 	await message.guild.createChannel(`Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator}`, 'voice')
+ 	await message.guild.createChannel(`Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator}`, 'voice', "Kicked by " + message.author.username)
               var kickChannel = await message.guild.channels.find('name', `Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator}`)
  	
  	var channelID = kickChannel.id
@@ -1293,7 +1294,7 @@ switch (args[0].toLowerCase()) {
  	} else {
  		var kickedFrom = menGuildUser.voiceChannel.name
  	
- 	await message.guild.createChannel(`Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator}`, 'voice')
+ 	await message.guild.createChannel(`Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator}`, 'voice', "Kicked by " + message.author.username)
               var kickChannel = await message.guild.channels.find('name', `Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator}`)
  	
  	var channelID = kickChannel.id
