@@ -1276,8 +1276,8 @@ switch (args[0].toLowerCase()) {
        
  	var kickedFrom = menGuildUser.voiceChannel.name
  	
- 	await message.guild.createChannel(`Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator}`, 'voice', `Kicked by ${message.author.username}#${message.author.discriminator}`)
-              var kickChannel = await message.guild.channels.find('name', `Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator}`)
+ 	await message.guild.createChannel(`Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator} - Kicked by ${message.author.username}#${message.author.discriminator}`, 'voice')
+              var kickChannel = await message.guild.channels.find('name', `Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator} - Kicked by ${message.author.username}#${message.author.discriminator}`)
  	
  	var channelID = kickChannel.id
         var channel = kickChannel
@@ -1294,8 +1294,8 @@ switch (args[0].toLowerCase()) {
  	} else {
  		var kickedFrom = menGuildUser.voiceChannel.name
  	
- 	await message.guild.createChannel(`Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator}`, 'voice', `Kicked by ${message.author.username}#${message.author.discriminator}`)
-              var kickChannel = await message.guild.channels.find('name', `Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator}`)
+ 	await message.guild.createChannel(`Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator} - Kicked by ${message.author.username}#${message.author.discriminator}`, 'voice')
+              var kickChannel = await message.guild.channels.find('name', `Voice kick: ${mentionedUser.username}#${mentionedUser.discriminator} - Kicked by ${message.author.username}#${message.author.discriminator}`)
  	
  	var channelID = kickChannel.id
          var channel = kickChannel
