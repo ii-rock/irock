@@ -276,6 +276,7 @@ transporter.sendMail(mailOptions, function(error, info){
   }
   } else {
     console.log('Email sent: ' + info.response);
+	  sending.delete()
 	var emailSent = new Discord.RichEmbed()
 	.setAuthor("Email Service")
     .setDescription("Successfully sent an Email")
