@@ -9,6 +9,7 @@ const youtube = new YouTube(GOOGLE_API_KEY);
 const superagent = require('superagent');
 const DBL = require('dblapi.js')
 var requestFortnite = require("request")
+var nodemailer = require("nodemailer")
 const dbl = new DBL(process.env.dbl_Key)
 
 var cleverbot = require('cleverbot.io');
@@ -19,6 +20,13 @@ const fortnite = new FortniteTracker(process.env.trackerKey);
 var jokes = fs.readFileSync("jokes.txt").toString().split("\n");
 var roll = fs.readFileSync("roll.txt").toString().split("\n");
 
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: `${process.env.gmEm}`,
+    pass: `${process.env.gmPw}`
+  }
+});
 
 cbot = new cleverbot("Dw3yOhLio0NMCWsY", "yVsBq7A6MqgDDnjAjWf5cdJNZwmd3LFa");
 
@@ -237,6 +245,51 @@ bot.on("message", async (message) => {
     var args = message.content.substring(prefix.length).split(" ");
 
     switch (args[0].toLowerCase()) {
+		    case "email":
+			 if (!args[1]) return m.send(':warning: Please provide an Email!')
+			 if (!theMsg.replace(args[1], "")) return m.send(':warning: Please provide a message to send!')
+			 var mailOptions = {
+  from: 'glorydiscordbot@gmail.com',
+  to: args[1],
+  subject: `Message from ${message.author.username}`,
+  text: `${theMsg.replace(args[1], "")}`
+};
+var emailSending = new Discord.RichEmbed()
+	.setAuthor("Email Service")
+    .setDescription("[Pending] Please wait, we are currently sending your Email.")
+    .setColor("#2772C6")
+	.setTimestamp()
+    .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
+
+     var sending = await message.channel.send(emailSending);
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+  if (error.message === "No recipients defined") {
+  sending.delete()
+  message.channel.send(':warning: Invalid Email submitted! Please try another one.')
+  } else {
+  sending.delete()
+  message.channel.send(error.message)
+  
+  console.log(error);
+  }
+  } else {
+    console.log('Email sent: ' + info.response);
+	var emailSent = new Discord.RichEmbed()
+	.setAuthor("Email Service")
+    .setDescription("Successfully sent an Email")
+    .setColor("#2772C6")
+    .addField("Sent by", message.author.username + "#" + message.author.discriminator, inline = true)
+    .addField("Sent to", args[1], inline = true)
+    .addField("Message", theMsg.replace(args[1], ""), inline = true)
+	.setTimestamp()
+    .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
+
+     message.channel.send(emailSent);
+  }
+});
+			 break;
 		            case "ftn":
         var username = theMsg
 	if (args[1] === 'wins' && !isNaN(args[2])) {
