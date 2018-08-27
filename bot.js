@@ -374,13 +374,14 @@ transporter.sendMail(mailOptions, function(error, info){
 	    
             var embed = new Discord.RichEmbed()
             .setAuthor(`Fortnite Player Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
-	    
+	    .addField("Username", `**${data.username}**`)
+	    .addField("Platform", `PC :computer:`)
             .addField('Solo Mode', `Matches: ${solo.matches}\nKills: ${solo.kills}\nWins: ${solo.wins}\nK/D: ${solo.kd}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
             .addField('Duos Mode', `Matches: ${duos.matches}\nKills: ${duos.kills}\nWins: ${duos.wins}\nK/D: ${duos.kd}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
             .addField('Squads Mode', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
 	    .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
             .setColor(randomColor)
-	    .setThumbnail('https://fortniteintel.com/wp-content/uploads/2018/07/firefox_2018-07-12_09-26-48-1021x580.png')
+	    .setThumbnail('https://cdn.vox-cdn.com/thumbor/hbh-rk1yJkqtbzyyWlcnmxgjWCQ=/0x0:1920x1080/1200x800/filters:focal(807x387:1113x693)/cdn.vox-cdn.com/uploads/chorus_image/image/60307049/Dhqy1LwX4AAviMD.0.jpg')
             .setTimestamp()
             .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 
@@ -423,7 +424,7 @@ transporter.sendMail(mailOptions, function(error, info){
           .addField('Squads Mode', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
      .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
           .setColor(randomColor)
-	    .setThumbnail('https://fortniteintel.com/wp-content/uploads/2018/07/firefox_2018-07-12_09-26-48-1021x580.png')
+	    .setThumbnail('https://cdn.vox-cdn.com/thumbor/hbh-rk1yJkqtbzyyWlcnmxgjWCQ=/0x0:1920x1080/1200x800/filters:focal(807x387:1113x693)/cdn.vox-cdn.com/uploads/chorus_image/image/60307049/Dhqy1LwX4AAviMD.0.jpg')
           .setTimestamp()
           .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 
@@ -465,7 +466,7 @@ transporter.sendMail(mailOptions, function(error, info){
           .addField('Squads Mode', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
      .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
           .setColor(randomColor)
-     .setThumbnail('https://fortniteintel.com/wp-content/uploads/2018/07/firefox_2018-07-12_09-26-48-1021x580.png')
+     .setThumbnail('https://cdn.vox-cdn.com/thumbor/hbh-rk1yJkqtbzyyWlcnmxgjWCQ=/0x0:1920x1080/1200x800/filters:focal(807x387:1113x693)/cdn.vox-cdn.com/uploads/chorus_image/image/60307049/Dhqy1LwX4AAviMD.0.jpg')
           .setTimestamp()
           .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 
