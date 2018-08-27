@@ -82,7 +82,12 @@ var colors = [
 	"#2F5EC1",
 	"#1D1A1A",
 	"#F1009F",
-        "#83021D"
+        "#83021D",
+	"#818b70",
+	"#ecf8ff",
+	"#ffb6b1",
+	"#efd19f",
+	"#E1EE19"
 ];
 
 var eightBall = [
@@ -342,8 +347,8 @@ transporter.sendMail(mailOptions, function(error, info){
 			    
 		    
 		    var embedSearching = new Discord.RichEmbed()
-	.setAuthor(`Searching`, 'https://fortniteintel.com/wp-content/uploads/2018/07/firefox_2018-07-12_09-26-48-1021x580.png')
-            .setDescription(`Searching for user **${username}**\nPlatform: \`[PC - PS4 - Xbox]\``)
+	.setAuthor(`Searching`, 'https://png.icons8.com/color/1600/fortnite.png')
+            .setDescription(`Searching for player **${username}**\nPlatform: \`PC - Xbox - PlayStation\``)
 		    .setTimestamp()
 		    .setColor(randomColor)
             .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
