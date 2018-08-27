@@ -74,20 +74,20 @@ var upDays = 0;
 var servers = bot.guilds.size
 
 var colors = [
-	"#D10C05",
-	"#23BC8F",
-	"#2F82A4",
-	"#751B9F",
-	"#F1C40F",
-	"#2F5EC1",
-	"#1D1A1A",
 	"#F1009F",
         "#83021D",
 	"#818b70",
 	"#ecf8ff",
 	"#ffb6b1",
 	"#efd19f",
-	"#E1EE19"
+	"#E1EE19",
+	"#D10C05",
+	"#23BC8F",
+	"#2F82A4",
+	"#751B9F",
+	"#F1C40F",
+	"#2F5EC1",
+	"#1D1A1A"
 ];
 
 var eightBall = [
@@ -186,7 +186,7 @@ bot.on("message", async (message) => {
 
     
 	var embedNoPermission = new Discord.RichEmbed()
-            .setAuthor("⛔ No Permission")
+            .setAuthor("⛔ Permission Missing")
             .setDescription("You do not have permission to perform this action.")
             .setColor("#FF0000")
             .setTimestamp()
@@ -201,7 +201,7 @@ bot.on("message", async (message) => {
                 .addField("Cleverbot System (Slow Nowadays)", `${prefix}talk \`<message>\` - talk to the bot and it will reply to you.\n(Direct Messaging): You can chat with the bot privately and it will reply to you asap!\nExample,\nUser: Hey\n${bot.user.username}: Hey, how are you?`)
 	        .addField("Other", `${prefix}sendmail <email address> <message> - send an email to your friends!\n${prefix}8ball - ask a question and the bot will reply with a random answer.\n${prefix}say \`<message>\` - says your message.\n${prefix}cat - sends a random cat picture.\n${prefix}dog - sends a random dog picture.\n${prefix}roll \`<number limit>\` (Default: 100) - rolls a number.\n${prefix}yomama \`<user>\` - joke with the mentioned user using yomama jokes.\n${prefix}dm \`<user> <message>\` - send the mentioned user a direct message.`)
                 .addField("About Bot", `${prefix}ping - shows the time taken for the bot to respond.\n${prefix}uptime - shows the time since the bot has started up.\n${prefix}servers - shows the servers count that the bot has joined.\n${prefix}about  shows information about the bot's owner and the library used to create the bot.\n${prefix}invite - sends my invitation link.\n${prefix}reportbug - report a bug and it will be sent to the owner.`)
-                .setColor("#3C51C3")
+                .setColor("#ffb6b1")
                 .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
                 .setTimestamp()
 	if (!message.guild) {
@@ -379,11 +379,11 @@ transporter.sendMail(mailOptions, function(error, info){
 	    
             var embed = new Discord.RichEmbed()
             .setAuthor(`Fortnite Player Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
-	    .addField("Username", `**${data.username}**`)
+	    .addField("Username", `${data.username}`)
 	    .addField("Platform", `PC :computer:`)
-            .addField('Solo Mode :bust_in_silhouette:', `**Matches:** \`${solo.matches}\`\n**Kills:** \`${solo.kills}\`\n**Wins:** \`${solo.wins}\`\n**K/D:** \`${solo.kd}\`\n**Score:** \`${solo.score}\`\n**Top 3:** \`${solo.top_3}\`\n**Top 5:** \`${solo.top_5}\`\n**Top 12:** \`${solo.top_12}\``, inline = true)
-            .addField('Duos Mode :busts_in_silhouette:', `**Matches:** \`${duos.matches}\`\n**Kills:** \`${duos.kills}\`\n**Wins:** \`${duos.wins}\`\n**K/D:** \`${duos.kd}\`\n**Score:** \`${duos.score}\`\n**Top 3:** \`${duos.top_3}\`\n**Top 5:** \`${duos.top_5}\`\n**Top 12:** \`${duos.top_12}\``, inline = true)
-            .addField('Squads Mode :busts_in_silhouette::busts_in_silhouette:', `**Matches:** \`${squads.matches}\`\n**Kills:** \`${squads.kills}\`\n**Wins:** \`${squads.wins}\`\n**K/D:** \`${squads.kd}\`\n**Score:** \`${squads.score}\`\n**Top 3:** \`${squads.top_3}\`\n**Top 5:** \`${squads.top_5}\`\n**Top 12:** \`${squads.top_12}\``, inline = true)
+            .addField('Solo Mode :bust_in_silhouette:', `**Matches:** \`${solo.matches}\`\n**Kills:** \`${solo.kills}\`\n**Wins:** \`${solo.wins}\`\n**K/D:** \`${solo.kd}\`\n**Score:** \`${solo.score}\`\n**Top 3:** \`${solo.top_3}\`\n**Top 5:** \`${solo.top_5}\``, inline = true)
+            .addField('Duos Mode :busts_in_silhouette:', `**Matches:** \`${duos.matches}\`\n**Kills:** \`${duos.kills}\`\n**Wins:** \`${duos.wins}\`\n**K/D:** \`${duos.kd}\`\n**Score:** \`${duos.score}\`\n**Top 3:** \`${duos.top_3}\`\n**Top 5:** \`${duos.top_5}\``, inline = true)
+            .addField('Squads Mode :busts_in_silhouette::busts_in_silhouette:', `**Matches:** \`${squads.matches}\`\n**Kills:** \`${squads.kills}\`\n**Wins:** \`${squads.wins}\`\n**K/D:** \`${squads.kd}\`\n**Score:** \`${squads.score}\`\n**Top 3:** \`${squads.top_3}\`\n**Top 5:** \`${squads.top_5}\``, inline = true)
 	    .addField('Total Stats :beginner:', `**Matches:** \`${eval(sM + dM + sqM)}\`\n**Kills:** \`${eval(soloKills + duoKills + squadKills)}\`\n**Wins:** \`${eval(soloWins + duoWins + squadWins)}\`\n**Score:** \`${eval(sS + dS + sqS)}\``, inline = true)
             .setColor(randomColor)
 	    .setThumbnail('https://apkplz.com/storage/images/com/wallpaperfort/background/300/fortnite-wallpaper-hd-skins-amp-background.png')
@@ -424,9 +424,9 @@ transporter.sendMail(mailOptions, function(error, info){
              .setAuthor(`Fortnite Player Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
  	  .addField("Username", `${data.username}`)
 	  .addField("Platform", `PlayStation :video_game:`)
-          .addField('Solo Mode :bust_in_silhouette:', `**Matches:** \`${solo.matches}\`\n**Kills:** \`${solo.kills}\`\n**Wins:** \`${solo.wins}\`\n**K/D:** \`${solo.kd}\`\n**Score:** \`${solo.score}\`\n**Top 3:** \`${solo.top_3}\`\n**Top 5:** \`${solo.top_5}\`\n**Top 12:** \`${solo.top_12}\``, inline = true)
-          .addField('Duos Mode :busts_in_silhouette:', `**Matches:** \`${duos.matches}\`\n**Kills:** \`${duos.kills}\`\n**Wins:** \`${duos.wins}\`\n**K/D:** \`${duos.kd}\`\n**Score:** \`${duos.score}\`\n**Top 3:** \`${duos.top_3}\`\n**Top 5:** \`${duos.top_5}\`\n**Top 12:** \`${duos.top_12}\``, inline = true)
-          .addField('Squads Mode :busts_in_silhouette::busts_in_silhouette:', `**Matches:** \`${squads.matches}\`\n**Kills:** \`${squads.kills}\`\n**Wins:** \`${squads.wins}\`\n**K/D:** \`${squads.kd}\`\n**Score:** \`${squads.score}\`\n**Top 3:** \`${squads.top_3}\`\n**Top 5:** \`${squads.top_5}\`\n**Top 12:** \`${squads.top_12}\``, inline = true)
+          .addField('Solo Mode :bust_in_silhouette:', `**Matches:** \`${solo.matches}\`\n**Kills:** \`${solo.kills}\`\n**Wins:** \`${solo.wins}\`\n**K/D:** \`${solo.kd}\`\n**Score:** \`${solo.score}\`\n**Top 3:** \`${solo.top_3}\`\n**Top 5:** \`${solo.top_5}\``, inline = true)
+          .addField('Duos Mode :busts_in_silhouette:', `**Matches:** \`${duos.matches}\`\n**Kills:** \`${duos.kills}\`\n**Wins:** \`${duos.wins}\`\n**K/D:** \`${duos.kd}\`\n**Score:** \`${duos.score}\`\n**Top 3:** \`${duos.top_3}\`\n**Top 5:** \`${duos.top_5}\``, inline = true)
+          .addField('Squads Mode :busts_in_silhouette::busts_in_silhouette:', `**Matches:** \`${squads.matches}\`\n**Kills:** \`${squads.kills}\`\n**Wins:** \`${squads.wins}\`\n**K/D:** \`${squads.kd}\`\n**Score:** \`${squads.score}\`\n**Top 3:** \`${squads.top_3}\`\n**Top 5:** \`${squads.top_5}\``, inline = true)
      .addField('Total Stats :beginner:', `**Matches:** \`${eval(sM + dM + sqM)}\`\n**Kills:** \`${eval(soloKills + duoKills + squadKills)}\`\n**Wins:** \`${eval(soloWins + duoWins + squadWins)}\`\n**Score:** \`${eval(sS + dS + sqS)}\``, inline = true)
           .setColor(randomColor)
 	    .setThumbnail('https://apkplz.com/storage/images/com/wallpaperfort/background/300/fortnite-wallpaper-hd-skins-amp-background.png')
@@ -466,9 +466,9 @@ transporter.sendMail(mailOptions, function(error, info){
     
 	  .addField("Username", `${data.username}`)
 	  .addField("Platform", `Xbox :video_game:`)
-          .addField('Solo Mode :bust_in_silhouette:', `**Matches:** \`${solo.matches}\`\n**Kills:** \`${solo.kills}\`\n**Wins:** \`${solo.wins}\`\n**K/D:** \`${solo.kd}\`\n**Score:** \`${solo.score}\`\n**Top 3:** \`${solo.top_3}\`\n**Top 5:** \`${solo.top_5}\`\n**Top 12:** \`${solo.top_12}\``, inline = true)
-          .addField('Duos Mode :busts_in_silhouette:', `**Matches:** \`${duos.matches}\`\n**Kills:** \`${duos.kills}\`\n**Wins:** \`${duos.wins}\`\n**K/D:** \`${duos.kd}\`\n**Score:** \`${duos.score}\`\n**Top 3:** \`${duos.top_3}\`\n**Top 5:** \`${duos.top_5}\`\n**Top 12:** \`${duos.top_12}\``, inline = true)
-          .addField('Squads Mode :busts_in_silhouette::busts_in_silhouette:', `**Matches:** \`${squads.matches}\`\n**Kills:** \`${squads.kills}\`\n**Wins:** \`${squads.wins}\`\n**K/D:** \`${squads.kd}\`\n**Score:** \`${squads.score}\`\n**Top 3:** \`${squads.top_3}\`\n**Top 5:** \`${squads.top_5}\`\n**Top 12:** \`${squads.top_12}\``, inline = true)
+          .addField('Solo Mode :bust_in_silhouette:', `**Matches:** \`${solo.matches}\`\n**Kills:** \`${solo.kills}\`\n**Wins:** \`${solo.wins}\`\n**K/D:** \`${solo.kd}\`\n**Score:** \`${solo.score}\`\n**Top 3:** \`${solo.top_3}\`\n**Top 5:** \`${solo.top_5}\``, inline = true)
+          .addField('Duos Mode :busts_in_silhouette:', `**Matches:** \`${duos.matches}\`\n**Kills:** \`${duos.kills}\`\n**Wins:** \`${duos.wins}\`\n**K/D:** \`${duos.kd}\`\n**Score:** \`${duos.score}\`\n**Top 3:** \`${duos.top_3}\`\n**Top 5:** \`${duos.top_5}\``, inline = true)
+          .addField('Squads Mode :busts_in_silhouette::busts_in_silhouette:', `**Matches:** \`${squads.matches}\`\n**Kills:** \`${squads.kills}\`\n**Wins:** \`${squads.wins}\`\n**K/D:** \`${squads.kd}\`\n**Score:** \`${squads.score}\`\n**Top 3:** \`${squads.top_3}\`\n**Top 5:** \`${squads.top_5}\``, inline = true)
      .addField('Total Stats :beginner:', `**Matches:** \`${eval(sM + dM + sqM)}\`\n**Kills:** \`${eval(soloKills + duoKills + squadKills)}\`\n**Wins:** \`${eval(soloWins + duoWins + squadWins)}\`\n**Score:** \`${eval(sS + dS + sqS)}\``, inline = true)
           .setColor(randomColor)
      .setThumbnail('https://apkplz.com/storage/images/com/wallpaperfort/background/300/fortnite-wallpaper-hd-skins-amp-background.png')
@@ -490,7 +490,7 @@ transporter.sendMail(mailOptions, function(error, info){
 	}
       break;
      case "dm":
- 	    if (!mentioned) return m.send('Comon, that\'s not possible, you have to mention a user!')
+ 	    if (!mentioned) return m.send('Come on, that\'s not possible, you have to mention a user!')
  	   if (!theMsg.replace(mentioned, '')) return m.send(':poop: Discord does not allow empty messages...')
  	    var embedDm = new Discord.RichEmbed()
      .setAuthor(`Direct Message`, mentioned.displayAvatarURL)
@@ -522,7 +522,7 @@ transporter.sendMail(mailOptions, function(error, info){
  	if (isNaN(args[1])) return msg.channel.send(":x: Please provide a number limit.");
  	var rolls = Math.floor(Math.random() * args[1]) + 1  
       var embedRoll = new Discord.RichEmbed()
-     .setAuthor(`${message.author.username}#${message.author.discriminator} rolls a dice`, message.author.displayAvatarURL)
+     .setAuthor(`${message.author.username}#${message.author.discriminator} rolled a dice`, message.author.displayAvatarURL)
      .setColor('#0000FF')
      .setDescription(`:game_die: ${rolls}`)
      .setTimestamp()
@@ -667,11 +667,11 @@ transporter.sendMail(mailOptions, function(error, info){
    break;
       case "invite":
  	    var embeed = new Discord.RichEmbed()
-              .setAuthor("My Invitation Link")
-              .setDescription(`[Click Here](${process.env.invite})`)
-              .setColor("#C94830")
-              .setThumbnail(bot.user.displayAvatarURL)
+              .setAuthor("My Invitation URL", bot.user.displayAvatarURL)
+              .setDescription(`${process.env.invite}`)
+              .setColor("#888670")
               .setTimestamp()
+	      .setFooter(`Requested by ${message.author.username}#${author.discriminator}`, message.author.displayAvatarURL)
           message.channel.sendEmbed(embeed);
           break;
       case "help":
