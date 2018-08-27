@@ -125,7 +125,7 @@ bot.on("guildCreate", function() {
     
 bot.on('ready', update);
 bot.on('guildDelete', function() {
-	dbl.postStats(bot.guilds.size);
+dbl.postStats(bot.guilds.size);
 });
    
 
@@ -342,7 +342,7 @@ transporter.sendMail(mailOptions, function(error, info){
 			    
 		    
 		    var embedSearching = new Discord.RichEmbed()
-	.setAuthor(`Searching`, 'http://contraloriasoledad.gov.co/wp-content/uploads/2016/05/lupa.png')
+	.setAuthor(`Searching`, 'https://fortniteintel.com/wp-content/uploads/2018/07/firefox_2018-07-12_09-26-48-1021x580.png')
             .setDescription(`Searching for user **${username}**\nPlatform: \`[PC - PS4 - Xbox]\``)
 		    .setTimestamp()
 		    .setColor(randomColor)
@@ -374,14 +374,13 @@ transporter.sendMail(mailOptions, function(error, info){
 	    
             var embed = new Discord.RichEmbed()
             .setAuthor(`Fortnite Player Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
-	   
-            .setDescription(`Username: **${data.username}**\nPlatform: \`PC\` :desktop:`)
-            .addField('Solo', `Matches: ${solo.matches}\nKills: ${solo.kills}\nWins: ${solo.wins}\nK/D: ${solo.kd}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
-            .addField('Duos', `Matches: ${duos.matches}\nKills: ${duos.kills}\nWins: ${duos.wins}\nK/D: ${duos.kd}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
-            .addField('Squads', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
+	    
+            .addField('Solo Mode', `Matches: ${solo.matches}\nKills: ${solo.kills}\nWins: ${solo.wins}\nK/D: ${solo.kd}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
+            .addField('Duos Mode', `Matches: ${duos.matches}\nKills: ${duos.kills}\nWins: ${duos.wins}\nK/D: ${duos.kd}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
+            .addField('Squads Mode', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
 	    .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
             .setColor(randomColor)
-	    .setThumbnail('https://orig00.deviantart.net/e454/f/2018/073/5/8/fortnite___dock_icon_by_kom_a-dc5vmno.png')
+	    .setThumbnail('https://fortniteintel.com/wp-content/uploads/2018/07/firefox_2018-07-12_09-26-48-1021x580.png')
             .setTimestamp()
             .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 
@@ -417,14 +416,14 @@ transporter.sendMail(mailOptions, function(error, info){
 	    
            var embed = new Discord.RichEmbed()
              .setAuthor(`Fortnite Player Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
- 	   
-          .setDescription(`Username: **${data.username}**\nPlatform: \`PlayStation\` :video_game:`)
-          .addField('Solo', `Matches: ${solo.matches}\nKills: ${solo.kills}\nWins: ${solo.wins}\nK/D: ${solo.kd}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
-          .addField('Duos', `Matches: ${duos.matches}\nKills: ${duos.kills}\nWins: ${duos.wins}\nK/D: ${duos.kd}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
-          .addField('Squads', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
+ 	  .addField("Username", `**${data.username}**`)
+	  .addField("Platform", `PlayStation :video_game:`)
+          .addField('Solo Mode', `Matches: ${solo.matches}\nKills: ${solo.kills}\nWins: ${solo.wins}\nK/D: ${solo.kd}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
+          .addField('Duos Mode', `Matches: ${duos.matches}\nKills: ${duos.kills}\nWins: ${duos.wins}\nK/D: ${duos.kd}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
+          .addField('Squads Mode', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
      .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
           .setColor(randomColor)
-	    .setThumbnail('https://orig00.deviantart.net/e454/f/2018/073/5/8/fortnite___dock_icon_by_kom_a-dc5vmno.png')
+	    .setThumbnail('https://fortniteintel.com/wp-content/uploads/2018/07/firefox_2018-07-12_09-26-48-1021x580.png')
           .setTimestamp()
           .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 
@@ -459,13 +458,14 @@ transporter.sendMail(mailOptions, function(error, info){
           var embed = new Discord.RichEmbed()
           .setAuthor(`Fortnite Player Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
     
-          .setDescription(`Username: **${data.username}**\nPlatform: \`Xbox\` :video_game:`)
-          .addField('Solo', `Matches: ${solo.matches}\nKills: ${solo.kills}\nWins: ${solo.wins}\nK/D: ${solo.kd}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
-          .addField('Duos', `Matches: ${duos.matches}\nKills: ${duos.kills}\nWins: ${duos.wins}\nK/D: ${duos.kd}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
-          .addField('Squads', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
+	  .addField("Username", `**${data.username}**`)
+	  .addField("Platform", `Xbox :video_game:`)
+          .addField('Solo Mode', `Matches: ${solo.matches}\nKills: ${solo.kills}\nWins: ${solo.wins}\nK/D: ${solo.kd}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}\nTop 12: ${solo.top_12}\nTop 25: ${solo.top_25}`, inline = true)
+          .addField('Duos Mode', `Matches: ${duos.matches}\nKills: ${duos.kills}\nWins: ${duos.wins}\nK/D: ${duos.kd}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}\nTop 12: ${duos.top_12}\nTop 25: ${duos.top_25}`, inline = true)
+          .addField('Squads Mode', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
      .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
           .setColor(randomColor)
-     .setThumbnail('https://orig00.deviantart.net/e454/f/2018/073/5/8/fortnite___dock_icon_by_kom_a-dc5vmno.png')
+     .setThumbnail('https://fortniteintel.com/wp-content/uploads/2018/07/firefox_2018-07-12_09-26-48-1021x580.png')
           .setTimestamp()
           .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 
