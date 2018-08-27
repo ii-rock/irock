@@ -381,7 +381,7 @@ transporter.sendMail(mailOptions, function(error, info){
             .addField('Squads Mode', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
 	    .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
             .setColor(randomColor)
-	    .setThumbnail('https://cdn.vox-cdn.com/thumbor/hbh-rk1yJkqtbzyyWlcnmxgjWCQ=/0x0:1920x1080/1200x800/filters:focal(807x387:1113x693)/cdn.vox-cdn.com/uploads/chorus_image/image/60307049/Dhqy1LwX4AAviMD.0.jpg')
+	    .setThumbnail('https://apkplz.com/storage/images/com/wallpaperfort/background/300/fortnite-wallpaper-hd-skins-amp-background.png')
             .setTimestamp()
             .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 
@@ -424,7 +424,7 @@ transporter.sendMail(mailOptions, function(error, info){
           .addField('Squads Mode', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
      .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
           .setColor(randomColor)
-	    .setThumbnail('https://cdn.vox-cdn.com/thumbor/hbh-rk1yJkqtbzyyWlcnmxgjWCQ=/0x0:1920x1080/1200x800/filters:focal(807x387:1113x693)/cdn.vox-cdn.com/uploads/chorus_image/image/60307049/Dhqy1LwX4AAviMD.0.jpg')
+	    .setThumbnail('https://apkplz.com/storage/images/com/wallpaperfort/background/300/fortnite-wallpaper-hd-skins-amp-background.png')
           .setTimestamp()
           .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 
@@ -466,7 +466,7 @@ transporter.sendMail(mailOptions, function(error, info){
           .addField('Squads Mode', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}\nTop 12: ${squads.top_12}\nTop 25: ${squads.top_25}`, inline = true)
      .addField('Total Stats :notepad_spiral:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
           .setColor(randomColor)
-     .setThumbnail('https://cdn.vox-cdn.com/thumbor/hbh-rk1yJkqtbzyyWlcnmxgjWCQ=/0x0:1920x1080/1200x800/filters:focal(807x387:1113x693)/cdn.vox-cdn.com/uploads/chorus_image/image/60307049/Dhqy1LwX4AAviMD.0.jpg')
+     .setThumbnail('https://apkplz.com/storage/images/com/wallpaperfort/background/300/fortnite-wallpaper-hd-skins-amp-background.png')
           .setTimestamp()
           .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 
