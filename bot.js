@@ -197,7 +197,7 @@ bot.on("message", async (message) => {
                 .addField("Music", `${prefix}play \`<youtube link/search query>\` - plays a song from youtube in your current voice channel.\n${prefix}stop - stops the player and leaves your current channel.\n${prefix}move  moves me to your current voice channel.\n${prefix}skip - skips your current song and plays the next one in the queue.\n${prefix}pause - pause current song, if any.\n${prefix}resume - resume current song, if any.\n${prefix}volume \`[1-100]\` - changes the volume of the player.\n${prefix}np - shows the current song, if any.\n${prefix}queue - shows the list of the queued songs, if any.`)
 	        .addField("Moderation", `${prefix}userinfo \`<user>\` - shows a few information about the mentioned user.\n${prefix}avatar <user> - displays a user's avatar url.\n${prefix}serverinfo  shows a few information about the current guild.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic \`<mention a channel> <new topic>\` - changes the current or mentioned channel's topic.\n${prefix}purge \`<number of messages (1-100)>\` - deletes a specified amount of messages.\n${prefix}ban \`<user> <reason>\` - bans a user from the server.\n${prefix}unban \`<user id>\` - unban a user by id.\n${prefix}kick \`<user> <reason>\` - kicks a user from the server.\n${prefix}report \`<user> <reason>\` - report a user with a reason and it will be sent in the **reports** channel if found.\n${prefix}announce <message> - send a message to announcements channel if found.\n${prefix}vckick \`<@user>\` - kick the mentioned user from their voice channel.`)
                 .addField("Google", `${prefix}google \`<search query>\` - search something on google and the bot will give you the link.\n${prefix}shortenurl \`<URL/Link>\` - convert a long link to a short one.\n${prefix}image \`<search query>\` - search for an image on google.`)
-	        .addField('Fortnite', `${prefix}ftn \`<username>\` - get lifetime stats for a fortnite player.\n${prefix}ftn wins \`<your wins>\` - adds your wins to your nickname.\n${prefix}ftn stats - get fortnite servers status.`)
+	        .addField('Fortnite', `${prefix}ftn \`<username>\` - get lifetime stats for a fortnite player.\n${prefix}ftn wins \`<your wins>\` - adds your wins to your nickname.\n${prefix}ftn server - get fortnite server status.`)
                 .addField("Cleverbot System (Slow Nowadays)", `${prefix}talk \`<message>\` - talk to the bot and it will reply to you.\n(Direct Messaging): You can chat with the bot privately and it will reply to you asap!\nExample,\nUser: Hey\n${bot.user.username}: Hey, how are you?`)
 	        .addField("Other", `${prefix}sendmail \`<email address>\` \`<message>\` - send an email to your friends!\n${prefix}8ball \`<question>\` - ask a question and the bot will reply with a random answer.\n${prefix}say \`<message>\` - says your message.\n${prefix}cat - sends a random cat picture.\n${prefix}dog - sends a random dog picture.\n${prefix}roll \`<number limit>\` (Default: 100) - rolls a number.\n${prefix}yomama \`<user>\` - joke with the mentioned user using yomama jokes.\n${prefix}dm \`<user> <message>\` - send the mentioned user a direct message.`)
                 .addField("About Bot", `${prefix}ping - shows the time taken for the bot to respond.\n${prefix}uptime - shows the time since the bot has started up.\n${prefix}servers - shows the servers count that the bot has joined.\n${prefix}about  shows information about the bot's owner and the library used to create the bot.\n${prefix}invite - sends my invitation link.\n${prefix}reportbug - report a bug and it will be sent to the owner.`)
@@ -305,7 +305,7 @@ transporter.sendMail(mailOptions, function(error, info){
 		} catch (err) {
 		message.reply(err.message)
 		}
-	} else if (args[1] === 'stats' && !args[2]) {
+	} else if (args[1] === 'server' || args[1] === 'servers' && !args[2]) {
 		var options = {
   method: "GET",
   url: `https://fortnite.y3n.co/v2/gamestatus`,
@@ -319,8 +319,8 @@ transporter.sendMail(mailOptions, function(error, info){
     var stats = JSON.parse(body);
     if (stats.status === 'UP') {
 	    var embedOnline = new Discord.RichEmbed()
-	.setAuthor(`Fortnite Status`, 'https://png.icons8.com/color/1600/fortnite.png')
-            .setDescription(`:**Servers are ONLINE**.`)
+	.setAuthor(`Fortnite Server Status`, 'https://png.icons8.com/color/1600/fortnite.png')
+            .setDescription(`Servers are **ONLINE**.`)
 		    .setTimestamp()
 	            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 		    .setColor('#008000')
@@ -328,7 +328,7 @@ transporter.sendMail(mailOptions, function(error, info){
 		
 } else {
 	var embedOffline = new Discord.RichEmbed()
-	.setAuthor(`Fortnite Status`, 'https://png.icons8.com/color/1600/fortnite.png')
+	.setAuthor(`Fortnite Server Status`, 'https://png.icons8.com/color/1600/fortnite.png')
             .setDescription(`Servers are currently **OFFLINE**.`)
 		    .setTimestamp()
 	            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
@@ -382,7 +382,7 @@ transporter.sendMail(mailOptions, function(error, info){
 	    .addField("Username", `${data.username}`)
 	    .addField("Platform", `PC :computer:`)
             .addField('Solo Mode :bust_in_silhouette:', `Matches: \`${solo.matches}\`\nKills: \`${solo.kills}\`\nWins: \`${solo.wins}\`\nK/D: \`${solo.kd}\`\nScore: \`${solo.score}\`\nTop 3: \`${solo.top_3}\`\nTop 5: \`${solo.top_5}\``, inline = true)
-            .addField('Duos Mode :busts_in_silhouette:', `Matches: \`${duos.matches}\`\n**Kills: \`${duos.kills}\`\nWins: \`${duos.wins}\`\nK/D: \`${duos.kd}\`\nScore: \`${duos.score}\`\nTop 3: \`${duos.top_3}\`\nTop 5: \`${duos.top_5}\``, inline = true)
+            .addField('Duos Mode :busts_in_silhouette:', `Matches: \`${duos.matches}\`\nKills: \`${duos.kills}\`\nWins: \`${duos.wins}\`\nK/D: \`${duos.kd}\`\nScore: \`${duos.score}\`\nTop 3: \`${duos.top_3}\`\nTop 5: \`${duos.top_5}\``, inline = true)
             .addField('Squads Mode :busts_in_silhouette::busts_in_silhouette:', `Matches: \`${squads.matches}\`\nKills: \`${squads.kills}\`\nWins: \`${squads.wins}\`\nK/D: \`${squads.kd}\`\nScore: \`${squads.score}\`\nTop 3: \`${squads.top_3}\`\nTop 5: \`${squads.top_5}\``, inline = true)
 	    .addField('Total Stats :beginner:', `Matches: \`${eval(sM + dM + sqM)}\`\nKills: \`${eval(soloKills + duoKills + squadKills)}\`\nWins: \`${eval(soloWins + duoWins + squadWins)}\`\nScore: \`${eval(sS + dS + sqS)}\``, inline = true)
             .setColor(randomColor)
@@ -469,7 +469,7 @@ transporter.sendMail(mailOptions, function(error, info){
           .addField('Solo Mode :bust_in_silhouette:', `Matches: \`${solo.matches}\`\nKills: \`${solo.kills}\`\nWins: \`${solo.wins}\`\nK/D: \`${solo.kd}\`\nScore: \`${solo.score}\`\nTop 3: \`${solo.top_3}\`\nTop 5: \`${solo.top_5}\``, inline = true)
           .addField('Duos Mode :busts_in_silhouette:', `Matches: \`${duos.matches}\`\nKills: \`${duos.kills}\`\nWins: \`${duos.wins}\`\nK/D: \`${duos.kd}\`\nScore: \`${duos.score}\`\nTop 3: \`${duos.top_3}\`\nTop 5: \`${duos.top_5}\``, inline = true)
           .addField('Squads Mode :busts_in_silhouette::busts_in_silhouette:', `Matches: \`${squads.matches}\`\nKills: \`${squads.kills}\`\nWins: \`${squads.wins}\`\nK/D: \`${squads.kd}\`\nScore: \`${squads.score}\`\nTop 3: \`${squads.top_3}\`\nTop 5: \`${squads.top_5}\``, inline = true)
-     .addField('Total Stats :beginner:', `Matches: \`${eval(sM + dM + sqM)}\`\n**Kills:** \`${eval(soloKills + duoKills + squadKills)}\`\nWins: \`${eval(soloWins + duoWins + squadWins)}\`\nScore: \`${eval(sS + dS + sqS)}\``, inline = true)
+     .addField('Total Stats :beginner:', `Matches: \`${eval(sM + dM + sqM)}\`\nKills: \`${eval(soloKills + duoKills + squadKills)}\`\nWins: \`${eval(soloWins + duoWins + squadWins)}\`\nScore: \`${eval(sS + dS + sqS)}\``, inline = true)
           .setColor(randomColor)
      .setThumbnail('https://apkplz.com/storage/images/com/wallpaperfort/background/300/fortnite-wallpaper-hd-skins-amp-background.png')
           .setTimestamp()
