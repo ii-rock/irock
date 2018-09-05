@@ -1293,9 +1293,10 @@ function playit(guild, song) {
               .addField("Length", `${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}`, inline = true)
               .addField("Uploaded By", `${song.channel.title}`, inline = true)
               .addField("Channel", `${serverQueue.voiceChannel.name}`)
-              .addField(`Users In Channel`, `${eval(`${serverQueue.voiceChannel.members.size}` - 1)}\``)
+              .addField(`Members Listening`, `${eval(`${serverQueue.voiceChannel.members.size}` - 1)}`)
               .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
               .setColor("#D975A1")
+           
               
               
           serverQueue.textChannel.send({embed});
