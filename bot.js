@@ -1097,18 +1097,18 @@ bot.on('message', async msg => {
               var video = await youtube.getVideo(url);
           } catch (error) {
               try {
-                  var videos = await youtube.searchVideos(searchString, 5);
+                  var videos = await youtube.searchVideos(searchString, 8);
                   let index = 0;
                   var embed = new Discord.RichEmbed()
               .setAuthor("Select a video by typing it's number", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
  	.setDescription(`${videos.map(video2 => `**[${++index}](${video2.url}).** ${video2.title}`).join('\n')}`)
  	.setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
-              .setFooter(`Please provide a value to select one of the search results ranging from 1-5, this timeouts in 15 seconds.`)
+              .setFooter(`Please provide a value to select one of the search results ranging from 1-8, this timeouts in 15 seconds.`)
               .setColor("#FF0000")
                   var theMessage = await msg.channel.send({embed});
                   // eslint-disable-next-line max-depth
                   try {
-                      var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 6, {
+                      var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 || msg2.content < 9, {
                           maxMatches: 1,
                           time: 15000,
                           errors: ['time']
@@ -1289,11 +1289,11 @@ function playit(guild, song) {
   
   var embed = new Discord.RichEmbed()
               .setAuthor("Now Playing", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
-              .setDescription(`The player is now playing.`)
-              .addField("Video Name", `${song.title}`)
-              .addField("Duration", `${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}`, inline = true)
+              .addField("Title", `${song.title}`)
+              .addField("Length", `${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}`, inline = true)
               .addField("Uploaded By", `${song.channel.title}`, inline = true)
-              .addField("Voice Channel", `${serverQueue.voiceChannel.name}`)
+              .addField("Channel", `${serverQueue.voiceChannel.name}`)
+              .addField(`Users In Channel`, `${eval(`${serverQueue.voiceChannel.members.size}` - 1)}\``)
               .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
               .setColor("#D975A1")
               
