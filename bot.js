@@ -1186,7 +1186,7 @@ bot.on('message', async msg => {
               .setDescription(`Volume was not updated to **${arg[1]}%**, no reaction detected.`)
               .setFooter(`This was requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
               .setColor(randomColor)
-                      return msg.channel.sendEmbed(embedd);
+                      msg.channel.sendEmbed(embedd);
 	} 
 	} else {
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(arg[1] / 100);
