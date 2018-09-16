@@ -1178,8 +1178,15 @@ bot.on('message', async msg => {
                 .setColor("#FF0000")
                 msg.channel.send({embed});
             serverQueue.volume = arg[1];
+			confirmMsg.delete()
 		} catch (error) {
 	    confirmMsg.delete()
+	    var embedd = new Discord.RichEmbed()
+              .setAuthor("Request Canceled", "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678069-sign-error-256.png")
+              .setDescription(`Volume was not updated to **${arg[1]}%**, no reaction detected.`)
+              .setFooter(`This was requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
+              .setColor(randomColor)
+                      return msg.channel.sendEmbed(embedd);
 	} 
 	} else {
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(arg[1] / 100);
