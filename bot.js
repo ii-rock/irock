@@ -1159,12 +1159,12 @@ bot.on('message', async msg => {
 	if (isNaN(arg[1])) return msg.channel.send(":x: Please provide a value between `[1-100]`");
         if (arg[1] > 100) {
 		try {
- 	    var confirmMsg = await m.send(`:warning: Listening at a higher volume than 100% for a long time may damage your hearing. Reply with \`ok\` to confirm setting the volume at **${arg[1]}%** , or ignore this message to cancel.`)
- 	    var response = await msg.channel.awaitMessages(msg2 => msg2.content === "ok", {
-                          maxMatches: 1,
-                          time: 10000,
-                          errors: ['time']
-                      });
+		
+ 	    var confirmMsg = await m.send(`:warning: Listening at a higher volume than 100% for a long time may damage your hearing. React below to confirm setting the volume at **${arg[1]}%** , or ignore to cancel.`)
+ 	    var filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === msg.author.id
+confirmMsg.awaitReactions(filter, { time: 10000 })
+  .then(collected => console.log(`Collected ${collected.size} reactions`))
+	    
 	
         
         
