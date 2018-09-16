@@ -1181,12 +1181,13 @@ bot.on('message', async msg => {
 			confirmMsg.delete()
 		} catch (error) {
 	    confirmMsg.delete()
-	    var embedd = new Discord.RichEmbed()
+	    var embed = new Discord.RichEmbed()
               .setAuthor("Request Canceled", "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678069-sign-error-256.png")
               .setDescription(`Volume was not updated to **${arg[1]}%**, no reaction detected.`)
               .setFooter(`This was requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
-              .setColor(randomColor)
-                      msg.channel.sendEmbed(embedd);
+              .setColor("#FF0000")
+                     return msg.channel.send({embed});
+		
 	} 
 	} else {
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(arg[1] / 100);
