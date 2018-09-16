@@ -1158,15 +1158,13 @@ bot.on('message', async msg => {
         if (!serverQueue) return msg.channel.send('There is nothing playing.');
 	if (isNaN(arg[1])) return msg.channel.send(":x: Please provide a value between `[1-100]`");
         if (arg[1] > 100) try {
- 	    var confirmMsg = await m.send(`Listening at a higher volume than 100% for a long time may damage your hearing. Reply with \`y\` to confirm setting the volume at **${arg[1]}%** , or ignore this message to cancel.`)
+ 	    var confirmMsg = await m.send(`:warning: Listening at a higher volume than 100% for a long time may damage your hearing. Reply with \`ok\` to confirm setting the volume at **${arg[1]}%** , or ignore this message to cancel.`)
  	    var response = await msg.channel.awaitMessages(msg2 => msg2.content === "y" || msg2.content === "yes", {
                           maxMatches: 1,
                           time: 10000,
                           errors: ['time']
                       });
-	} catch (error) {
-	    confirmMsg.delete()
-	}
+	
         
         
         serverQueue.connection.dispatcher.setVolumeLogarithmic(arg[1] / 100);
@@ -1181,6 +1179,9 @@ bot.on('message', async msg => {
                 .setColor("#FF0000")
                 msg.channel.send({embed});
             serverQueue.volume = arg[1];
+		} catch (error) {
+	    confirmMsg.delete()
+	}
         break;
         case "np":
         if (!serverQueue) return msg.channel.send('There is nothing playing.');
