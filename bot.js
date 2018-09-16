@@ -1157,9 +1157,10 @@ bot.on('message', async msg => {
 	if (!arg[1]) return msg.channel.send(`The current volume is: **${serverQueue.volume}%**`);
         if (!serverQueue) return msg.channel.send('There is nothing playing.');
 	if (isNaN(arg[1])) return msg.channel.send(":x: Please provide a value between `[1-100]`");
-        if (arg[1] > 100) try {
+        if (arg[1] > 100) {
+		try {
  	    var confirmMsg = await m.send(`:warning: Listening at a higher volume than 100% for a long time may damage your hearing. Reply with \`ok\` to confirm setting the volume at **${arg[1]}%** , or ignore this message to cancel.`)
- 	    var response = await msg.channel.awaitMessages(msg2 => msg2.content === "y" || msg2.content === "yes", {
+ 	    var response = await msg.channel.awaitMessages(msg2 => msg2.content === "ok", {
                           maxMatches: 1,
                           time: 10000,
                           errors: ['time']
@@ -1181,6 +1182,20 @@ bot.on('message', async msg => {
             serverQueue.volume = arg[1];
 		} catch (error) {
 	    confirmMsg.delete()
+	} 
+	} else {
+		serverQueue.connection.dispatcher.setVolumeLogarithmic(arg[1] / 100);
+            var embed = new Discord.RichEmbed()
+                .setAuthor("Volume Updated", bot.user.displayAvatarURL)
+                .setDescription(`The player's volume has been updated.`)
+                .addField("Old Volume", `**${serverQueue.volume}%**`, inline = true)
+                .addField("New Volume", `**${arg[1]}%**`, inline = true)
+                .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
+	        .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
+                .setTimestamp()
+                .setColor("#FF0000")
+                msg.channel.send({embed});
+            serverQueue.volume = arg[1];
 	}
         break;
         case "np":
