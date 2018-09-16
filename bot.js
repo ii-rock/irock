@@ -1161,12 +1161,10 @@ bot.on('message', async msg => {
 		try {
 		
  	    var confirmMsg = await m.send(`:warning: Listening at a higher volume than 100% for a long time may damage your hearing. React below to confirm setting the volume at **${arg[1]}%** , or ignore to cancel.`)
- 	    var filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === msg.author.id
-confirmMsg.awaitReactions(filter, { time: 10000 })
-  .then(collected => console.log(`Collected ${collected.size} reactions`))
-	    
-	
-        
+ 	    confirmMsg.react('✅')
+	    var filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === msg.author.id
+confirmMsg.awaitReactions(filter, { maxMatches: 2, time: 10000, errors: ['time']})
+
         
         serverQueue.connection.dispatcher.setVolumeLogarithmic(arg[1] / 100);
             var embed = new Discord.RichEmbed()
