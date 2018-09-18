@@ -1154,14 +1154,15 @@ bot.on('message', async msg => {
         break;
         case "volume":
         if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
-	if (!arg[1]) return msg.channel.send(`The current volume is: **${serverQueue.volume}%**`);
+	if (!arg[1]) return msg.channel.send(`The current volume is: ( **${serverQueue.volume}** )`);
         if (!serverQueue) return msg.channel.send('There is nothing playing.');
-	if (isNaN(arg[1])) return msg.channel.send(":x: Please provide a value between `[1-100]`");
+	if (isNaN(arg[1])) return msg.channel.send(":information_source: Please provide a value between `[1-100]` (Safe) **OR** `[100-500]` (Risky)`");
+        if (arg[1] > 500) return msg.channel.send(":warning: Volumes above **500** are not available\n:information_source: Please provide a value between `[1-100]` (Safe) **OR** `[100-500]` (Risky)")
 	if (serverQueue.volume === arg[1]) return msg.channel.send(`Cannot update volume to the same number, please re-try with a different number than the current volume ( **${serverQueue.volume}** )`)
         if (arg[1] > 100) {
 		try {
 		
- 	    var confirmMsg = await m.send(`:warning: Listening at a volume over 100% for a long time may damage your hearing. React below to confirm setting the volume at **${arg[1]}%** , or ignore to cancel.`)
+ 	    var confirmMsg = await m.send(`:warning: Listening at a volume over 100 for a long time may damage your hearing. React below to confirm setting the volume at **${arg[1]}%** , or ignore to cancel.`)
  	    confirmMsg.react('✅')
 	    var filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === msg.author.id
             await confirmMsg.awaitReactions(filter, { max: 1, time: 15000, errors: ['time']})
@@ -1178,12 +1179,12 @@ bot.on('message', async msg => {
                 .setColor("#FF0000")
 	    if (serverQueue.volume > arg[1]) {
 		    embed.setAuthor("Volume Lowered", bot.user.displayAvatarURL)
-	        embed.addField("Last Volume", `:loud_sound: **${serverQueue.volume}%**`, inline = true)
-                embed.addField("Updated Volume", `:sound: **${arg[1]}%**`, inline = true)
+	        embed.addField("Last Volume", `( **${serverQueue.volume}** ) :loud_sound:`, inline = true)
+                embed.addField("Updated Volume", `( **${arg[1]}** ) :sound:`, inline = true)
 	    } else if (serverQueue.volume < arg[1]) {
 		    embed.setAuthor("Volume Increased", bot.user.displayAvatarURL)
-			embed.addField("Last Volume", `:sound: **${serverQueue.volume}%**`, inline = true)
-                embed.addField("Updated Volume", `:loud_sound: **${arg[1]}%**`, inline = true)
+			embed.addField("Last Volume", `( **${serverQueue.volume}** ) :sound:`, inline = true)
+                embed.addField("Updated Volume", `( **${arg[1]}** ) :loud_sound:`, inline = true)
 	    }
                 msg.channel.send({embed});
             serverQueue.volume = arg[1];
@@ -1192,7 +1193,7 @@ bot.on('message', async msg => {
 	    confirmMsg.delete()
 	    var embed = new Discord.RichEmbed()
               .setAuthor("Request Canceled", "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678069-sign-error-256.png")
-              .setDescription(`Volume was not updated to **${arg[1]}%**, no reaction detected.`)
+              .setDescription(`Volume was not updated to ( **${arg[1]}** ), no reaction detected.`)
               .setFooter(`This was requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
               .setColor("#FF0000")
                      return msg.channel.send({embed});
@@ -1210,12 +1211,12 @@ bot.on('message', async msg => {
                 .setColor("#FF0000")
 	   if (serverQueue.volume > arg[1]) {
 		    embed.setAuthor("Volume Lowered", bot.user.displayAvatarURL)
-	        embed.addField("Last Volume", `:loud_sound: **${serverQueue.volume}%**`, inline = true)
-                embed.addField("Updated Volume", `:sound: **${arg[1]}%**`, inline = true)
+	        embed.addField("Last Volume", `( **${serverQueue.volume}** ) :loud_sound:`, inline = true)
+                embed.addField("Updated Volume", `( **${arg[1]}** ) :sound:`, inline = true)
 	    } else if (serverQueue.volume < arg[1]) {
 		    embed.setAuthor("Volume Increased", bot.user.displayAvatarURL)
-			embed.addField("Last Volume", `:sound: **${serverQueue.volume}%**`, inline = true)
-                embed.addField("Updated Volume", `:loud_sound: **${arg[1]}%**`, inline = true)
+			embed.addField("Last Volume", `( **${serverQueue.volume}** ) :sound:`, inline = true)
+                embed.addField("Updated Volume", `( **${arg[1]}** ) :loud_sound:`, inline = true)
 	    }
                 msg.channel.send({embed});
             serverQueue.volume = arg[1];
