@@ -1156,13 +1156,13 @@ bot.on('message', async msg => {
         if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
 	if (!arg[1]) return msg.channel.send(`The current volume is: ( **${serverQueue.volume}** )`);
         if (!serverQueue) return msg.channel.send('There is nothing playing.');
-	if (isNaN(arg[1])) return msg.channel.send(":information_source: Please provide a value between `[1-100]` (Safe) **OR** `[100-500]` (Risky)`");
-        if (arg[1] > 500) return msg.channel.send(":warning: Volumes above **500** are not available\n:information_source: Please provide a value between `[1-100]` (Safe) **OR** `[100-500]` (Risky)")
+	if (isNaN(arg[1])) return msg.channel.send(":information_source: Please provide a value between `[1-100]` (Safe) **OR** `[100-350]` (Risky)`");
+        if (arg[1] > 350) return msg.channel.send(":warning: Volumes above **350** are not allowed.\n\n:information_source: Please provide a value between `[1-100]` (Safe) **OR** `[100-500]` (Risky)")
 	if (serverQueue.volume === arg[1]) return msg.channel.send(`Cannot update volume to the same number, please re-try with a different number than the current volume ( **${serverQueue.volume}** )`)
         if (arg[1] > 100) {
 		try {
 		
- 	    var confirmMsg = await m.send(`:warning: Listening at a volume over 100 for a long time may damage your hearing. React below to confirm setting the volume at **${arg[1]}%** , or ignore to cancel.`)
+ 	    var confirmMsg = await m.send(`:warning: Listening at a volume over **100** for a long time may damage your hearing. React below to confirm setting the volume at **${arg[1]}%** , or ignore to cancel.`)
  	    confirmMsg.react('✅')
 	    var filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === msg.author.id
             await confirmMsg.awaitReactions(filter, { max: 1, time: 15000, errors: ['time']})
