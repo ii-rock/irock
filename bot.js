@@ -1157,6 +1157,7 @@ bot.on('message', async msg => {
 	if (!arg[1]) return msg.channel.send(`The current volume is: **${serverQueue.volume}%**`);
         if (!serverQueue) return msg.channel.send('There is nothing playing.');
 	if (isNaN(arg[1])) return msg.channel.send(":x: Please provide a value between `[1-100]`");
+	if (serverQueue.volume === arg[1]) return msg.channel.send(`Cannot update volume to the same number, please re-try with a different number than the current volume ( **${serverQueue.volume}** )`)
         if (arg[1] > 100) {
 		try {
 		
@@ -1168,7 +1169,7 @@ bot.on('message', async msg => {
         
         serverQueue.connection.dispatcher.setVolumeLogarithmic(arg[1] / 100);
             var embed = new Discord.RichEmbed()
-                .setAuthor("Volume Updated", bot.user.displayAvatarURL)
+                
                 .setDescription(`The player's volume has been updated.`)
                 
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
@@ -1176,13 +1177,11 @@ bot.on('message', async msg => {
                 .setTimestamp()
                 .setColor("#FF0000")
 	    if (serverQueue.volume > arg[1]) {
+		    embed.setAuthor("Volume Lowered", bot.user.displayAvatarURL)
 	        embed.addField("Last Volume", `:loud_sound: **${serverQueue.volume}%**`, inline = true)
                 embed.addField("Updated Volume", `:sound: **${arg[1]}%**`, inline = true)
-	    } else if (serverQueue.volume === arg[1]) {
-			 
-	        embed.addField("Last Volume", `:sound: **${serverQueue.volume}%**`, inline = true)
-                embed.addField("Updated Volume", `:sound: **${arg[1]}%**`, inline = true)
 	    } else if (serverQueue.volume < arg[1]) {
+		    embed.setAuthor("Volume Increased", bot.user.displayAvatarURL)
 			embed.addField("Last Volume", `:sound: **${serverQueue.volume}%**`, inline = true)
                 embed.addField("Updated Volume", `:loud_sound: **${arg[1]}%**`, inline = true)
 	    }
@@ -1202,20 +1201,19 @@ bot.on('message', async msg => {
 	} else {
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(arg[1] / 100);
             var embed = new Discord.RichEmbed()
-                .setAuthor("Volume Updated", bot.user.displayAvatarURL)
+                
                 .setDescription(`The player's volume has been updated.`)
                 
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
 	        .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
                 .setTimestamp()
                 .setColor("#FF0000")
-	    if (serverQueue.volume > arg[1]) {
+	   if (serverQueue.volume > arg[1]) {
+		    embed.setAuthor("Volume Lowered", bot.user.displayAvatarURL)
 	        embed.addField("Last Volume", `:loud_sound: **${serverQueue.volume}%**`, inline = true)
                 embed.addField("Updated Volume", `:sound: **${arg[1]}%**`, inline = true)
-	    } else if (serverQueue.volume === arg[1]) {
-	        embed.addField("Last Volume", `:sound: **${serverQueue.volume}%**`, inline = true)
-                embed.addField("Updated Volume", `:sound: **${arg[1]}%**`, inline = true)
 	    } else if (serverQueue.volume < arg[1]) {
+		    embed.setAuthor("Volume Increased", bot.user.displayAvatarURL)
 			embed.addField("Last Volume", `:sound: **${serverQueue.volume}%**`, inline = true)
                 embed.addField("Updated Volume", `:loud_sound: **${arg[1]}%**`, inline = true)
 	    }
