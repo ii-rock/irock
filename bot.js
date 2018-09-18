@@ -1157,7 +1157,7 @@ bot.on('message', async msg => {
 	if (!arg[1]) return msg.channel.send(`The current volume is: ( **${serverQueue.volume}** )`);
         if (!serverQueue) return msg.channel.send('There is nothing playing.');
 	if (isNaN(arg[1])) return msg.channel.send(":information_source: Please provide a value between `[1-100]` (Safe) **OR** `[100-350]` (Risky)`");
-        if (arg[1] > 350) return msg.channel.send(":warning: Volumes above **350** are not allowed.\n\n:information_source: Please provide a value between `[1-100]` (Safe) **OR** `[100-500]` (Risky)")
+        if (arg[1] > 350) return msg.channel.send(":warning: Volumes above **350** are not allowed.\n\n:information_source: Please provide a value between `[1-100]` (Safe) **OR** `[100-350]` (Risky)")
 	if (serverQueue.volume === arg[1]) return msg.channel.send(`Cannot update volume to the same number, please re-try with a different number than the current volume ( **${serverQueue.volume}** )`)
         if (arg[1] > 100) {
 		try {
