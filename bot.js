@@ -1177,15 +1177,14 @@ bot.on('message', async msg => {
                 .setColor("#FF0000")
 	    if (serverQueue.volume > arg[1]) {
 	        embed.addField("Last Volume", `:loud_sound: **${serverQueue.volume}%**`, inline = true)
-                embed.addField("Current Volume", `:sound: **${arg[1]}%**`, inline = true)
-	    }
-			if (serverQueue.volume = arg[1]) {
+                embed.addField("Update Volume", `:sound: **${arg[1]}%**`, inline = true)
+	    } else if (serverQueue.volume = arg[1]) {
+			 
 	        embed.addField("Last Volume", `:sound: **${serverQueue.volume}%**`, inline = true)
-                embed.addField("Current Volume", `:sound: **${arg[1]}%**`, inline = true)
-	    }
-			if (serverQueue.volume < arg[1]) {
+                embed.addField("Update Volume", `:sound: **${arg[1]}%**`, inline = true)
+	    } else if (serverQueue.volume < arg[1]) {
 			embed.addField("Last Volume", `:sound: **${serverQueue.volume}%**`, inline = true)
-                embed.addField("Current Volume", `:loud_sound: **${arg[1]}%**`, inline = true)
+                embed.addField("Update Volume", `:loud_sound: **${arg[1]}%**`, inline = true)
 	    }
                 msg.channel.send({embed});
             serverQueue.volume = arg[1];
@@ -1212,15 +1211,13 @@ bot.on('message', async msg => {
                 .setColor("#FF0000")
 	    if (serverQueue.volume > arg[1]) {
 	        embed.addField("Last Volume", `:loud_sound: **${serverQueue.volume}%**`, inline = true)
-                embed.addField("Current Volume", `:sound: **${arg[1]}%**`, inline = true)
-	    }
-			if (serverQueue.volume = arg[1]) {
+                embed.addField("Updated Volume", `:sound: **${arg[1]}%**`, inline = true)
+	    } else if (serverQueue.volume = arg[1]) {
 	        embed.addField("Last Volume", `:sound: **${serverQueue.volume}%**`, inline = true)
-                embed.addField("Current Volume", `:sound: **${arg[1]}%**`, inline = true)
-	    }
-			if (serverQueue.volume < arg[1]) {
+                embed.addField("Updated Volume", `:sound: **${arg[1]}%**`, inline = true)
+	    } else if (serverQueue.volume < arg[1]) {
 			embed.addField("Last Volume", `:sound: **${serverQueue.volume}%**`, inline = true)
-                embed.addField("Current Volume", `:loud_sound: **${arg[1]}%**`, inline = true)
+                embed.addField("Updated Volume", `:loud_sound: **${arg[1]}%**`, inline = true)
 	    }
                 msg.channel.send({embed});
             serverQueue.volume = arg[1];
