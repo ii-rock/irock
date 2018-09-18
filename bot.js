@@ -1160,22 +1160,33 @@ bot.on('message', async msg => {
         if (arg[1] > 100) {
 		try {
 		
- 	    var confirmMsg = await m.send(`:warning: Listening at a higher volume than 100% for a long time may damage your hearing. React below to confirm setting the volume at **${arg[1]}%** , or ignore to cancel.`)
+ 	    var confirmMsg = await m.send(`:warning: Listening at a volume over 100% for a long time may damage your hearing. React below to confirm setting the volume at **${arg[1]}%** , or ignore to cancel.`)
  	    confirmMsg.react('✅')
 	    var filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === msg.author.id
-            await confirmMsg.awaitReactions(filter, { max: 1, time: 10000, errors: ['time']})
+            await confirmMsg.awaitReactions(filter, { max: 1, time: 15000, errors: ['time']})
 
         
         serverQueue.connection.dispatcher.setVolumeLogarithmic(arg[1] / 100);
             var embed = new Discord.RichEmbed()
                 .setAuthor("Volume Updated", bot.user.displayAvatarURL)
                 .setDescription(`The player's volume has been updated.`)
-                .addField("Old Volume", `**${serverQueue.volume}%**`, inline = true)
-                .addField("New Volume", `**${arg[1]}%**`, inline = true)
+                
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
 	        .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
                 .setTimestamp()
                 .setColor("#FF0000")
+	    if (serverQueue.volume > arg[1]) {
+	        embed.addField("Last Volume", `:loud_sound: **${serverQueue.volume}%**`, inline = true)
+                embed.addField("Current Volume", `:sound: **${arg[1]}%**`, inline = true)
+	    }
+			if (serverQueue.volume = arg[1]) {
+	        embed.addField("Last Volume", `:sound: **${serverQueue.volume}%**`, inline = true)
+                embed.addField("Current Volume", `:sound: **${arg[1]}%**`, inline = true)
+	    }
+			if (serverQueue.volume < arg[1]) {
+			embed.addField("Last Volume", `:sound: **${serverQueue.volume}%**`, inline = true)
+                embed.addField("Current Volume", `:loud_sound: **${arg[1]}%**`, inline = true)
+	    }
                 msg.channel.send({embed});
             serverQueue.volume = arg[1];
 			confirmMsg.delete()
@@ -1194,12 +1205,23 @@ bot.on('message', async msg => {
             var embed = new Discord.RichEmbed()
                 .setAuthor("Volume Updated", bot.user.displayAvatarURL)
                 .setDescription(`The player's volume has been updated.`)
-                .addField("Old Volume", `**${serverQueue.volume}%**`, inline = true)
-                .addField("New Volume", `**${arg[1]}%**`, inline = true)
+                
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
 	        .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
                 .setTimestamp()
                 .setColor("#FF0000")
+	    if (serverQueue.volume > arg[1]) {
+	        embed.addField("Last Volume", `:loud_sound: **${serverQueue.volume}%**`, inline = true)
+                embed.addField("Current Volume", `:sound: **${arg[1]}%**`, inline = true)
+	    }
+			if (serverQueue.volume = arg[1]) {
+	        embed.addField("Last Volume", `:sound: **${serverQueue.volume}%**`, inline = true)
+                embed.addField("Current Volume", `:sound: **${arg[1]}%**`, inline = true)
+	    }
+			if (serverQueue.volume < arg[1]) {
+			embed.addField("Last Volume", `:sound: **${serverQueue.volume}%**`, inline = true)
+                embed.addField("Current Volume", `:loud_sound: **${arg[1]}%**`, inline = true)
+	    }
                 msg.channel.send({embed});
             serverQueue.volume = arg[1];
 	}
