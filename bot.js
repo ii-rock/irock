@@ -1087,9 +1087,9 @@ bot.on('message', async msg => {
  	.setDescription(`Search result for "${theMsg}"`)
         .addField("Title", `${videos.map(video2 => `${video2.title}`).join('\n')}`)
         .addField("Description", `${videos.map(video2 => `${video2.description}`).join('\n')}`)
+        .addField("Uploaded By", `${videos.map(video2 => `${video2.channel}`).join('\n')}`)
 	.addField("Link", `${videos.map(video2 => `${video2.url}`).join('\n')}`)
               .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
-	      .setThumbnail(`${videos.map(video2 => `${video2.thumbnails[0].url}`).join('\n')}`)
 	      .setTimestamp()
               .setColor("#FF0000")
                   msg.channel.send({embed});
