@@ -197,7 +197,9 @@ bot.on("message", async (message) => {
                 .addField("Music", `${prefix}play \`<youtube link/search query>\` - plays a song from youtube in your current voice channel.\n${prefix}stop - stops the player and leaves your current channel.\n${prefix}move  moves me to your current voice channel.\n${prefix}skip - skips your current song and plays the next one in the queue.\n${prefix}pause - pause current song, if any.\n${prefix}resume - resume current song, if any.\n${prefix}volume \`[1-100]\` - changes the volume of the player.\n${prefix}np - shows the current song, if any.\n${prefix}queue - shows the list of the queued songs, if any.`)
 	        .addField("Moderation", `${prefix}userinfo \`<user>\` - shows a few information about the mentioned user.\n${prefix}avatar <user> - displays a user's avatar url.\n${prefix}serverinfo  shows a few information about the current guild.\n${prefix}getinvite - creates an invite for the current or mentioned channel.\n${prefix}settopic \`<mention a channel> <new topic>\` - changes the current or mentioned channel's topic.\n${prefix}purge \`<number of messages (1-100)>\` - deletes a specified amount of messages.\n${prefix}ban \`<user> <reason>\` - bans a user from the server.\n${prefix}unban \`<user id>\` - unban a user by id.\n${prefix}kick \`<user> <reason>\` - kicks a user from the server.\n${prefix}report \`<user> <reason>\` - report a user with a reason and it will be sent in the **reports** channel if found.\n${prefix}announce <message> - send a message to announcements channel if found.\n${prefix}vckick \`<@user>\` - kick the mentioned user from their voice channel.`)
                 .addField("Google", `${prefix}google \`<search query>\` - search something on google and the bot will give you the link.\n${prefix}shortenurl \`<URL/Link>\` - convert a long link to a short one.\n${prefix}image \`<search query>\` - search for an image on google.`)
-	        .addField('Fortnite', `${prefix}ftn \`<username>\` - get lifetime stats for a fortnite player.\n${prefix}ftn wins \`<your wins>\` - adds your wins to your nickname.\n${prefix}ftn server - get fortnite server status.`)
+	        .addField("YouTube", `${prefix}yt \`<search query>\` - search a video on youtube and immediately get the link.`)
+	        .addField('Fortnite: Battle Royale', `${prefix}ftn \`<username>\` - get lifetime stats for any fortnite player.\n${prefix}ftn server - get fortnite server status.`)
+	        .addField('Fortnite: Save The World',`${prefix}vbucks - Shows the daily rewards with V-Bucks (In-game currency).`)
                 .addField("Cleverbot System (Slow Nowadays)", `${prefix}talk \`<message>\` - talk to the bot and it will reply to you.\n(Direct Messaging): You can chat with the bot privately and it will reply to you asap!\nExample,\nUser: Hey\n${bot.user.username}: Hey, how are you?`)
 	        .addField("Other", `${prefix}sendmail \`<email address>\` \`<message>\` - send an email to your friends!\n${prefix}8ball \`<question>\` - ask a question and the bot will reply with a random answer.\n${prefix}say \`<message>\` - says your message.\n${prefix}cat - sends a random cat picture.\n${prefix}dog - sends a random dog picture.\n${prefix}roll \`<number limit>\` (Default: 100) - rolls a number.\n${prefix}yomama \`<user>\` - joke with the mentioned user using yomama jokes.\n${prefix}dm \`<user> <message>\` - send the mentioned user a direct message.`)
                 .addField("About Bot", `${prefix}ping - shows the time taken for the bot to respond.\n${prefix}uptime - shows the time since the bot has started up.\n${prefix}servers - shows the servers count that the bot has joined.\n${prefix}about  shows information about the bot's owner and the library used to create the bot.\n${prefix}invite - sends my invitation link.\n${prefix}reportbug - report a bug and it will be sent to the owner.`)
@@ -250,6 +252,19 @@ bot.on("message", async (message) => {
     var args = message.content.substring(prefix.length).split(" ");
 
     switch (args[0].toLowerCase()) {
+	    
+	    case "vbucks":
+		    var dailyRewards = new Discord.RichEmbed()
+	.setAuthor("V-Bucks Daily Rewards (Save The World)", "https://vignette.wikia.nocookie.net/fortnite/images/5/5a/Icon_VBucks.png/revision/latest/scale-to-width-down/240?cb=20170806013747")
+        .addField("Day", "**11\n28\n35\n49\n56\n70\n77\n84\n91\n98\n105\n112\n119\n126\n133\n140\n147\n154\n161\n168\n175\n182\n189\n196\n203\n210\n217\n224\n231\n238\n245\n252\n25\n266\n273\n280\n287\n294\n301\n308\n315\n322\n329\n336**", inline = true)
+        .addField("Reward","*50 V-Bucks\n300 V-Bucks\n150 V-Bucks\n150 V-Bucks\n300 V-Bucks\n150 V-Bucks\n150 V-Bucks\n300 V-Bucks\n150 V-Bucks\n150 V-Bucks\n150 V-Bucks\n800 V-Bucks\n150 V-Bucks\n150 V-Bucks\n150 V-Bucks\n300 V-Bucks\n150 V-Bucks\n150 V-Bucks\n150 V-Bucks\n300 V-Bucks\n150 V-Bucks\n150 V-Bucks\n150 V-Bucks\n300 V-Bucks\n150 V-Bucks\n150 V-Bucks\n150 V-Bucks\n800 V-Bucks\n150 V-Bucks\n150 V-Bucks\n150 V-Bucks\n300 V-Bucks\n150 V-Bucks\n150 V-Bucks\n150 V-Bucks\n300 V-Bucks\n150 V-Bucks\n150 V-Bucks\n150 V-Bucks\n300 V-Bucks\n150 V-Bucks\n150 V-Bucks\n150 V-Bucks\n1000 V-Bucks*", inline = true)
+    .setColor(randomColor)
+	.setTimestamp()
+    .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
+
+     message.channel.send(dailyRewards);
+
+break;
 		    case "sendmail":
 			 if (!args[1]) return m.send(':warning: Please provide an Email!')
 			 if (!theMsg.replace(args[1], "")) return m.send(':warning: Please provide a message to send!')
@@ -1064,6 +1079,17 @@ bot.on('message', async msg => {
            await bot.user.setGame(`${theMsg}`, `${TWITCH}`);
          }
           break;
+		  case "yt":
+		    var videos = await youtube.searchVideos(theMsg, 1);
+                  var embed = new Discord.RichEmbed()
+              .setAuthor("Youtube Search", "https://cdn1.iconfinder.com/data/icons/logotypes/32/youtube-512.png")
+ 	.setDescription(`Search result for "${theMsg}"`)
+        .addField("Video Title", `${videos.map(video2 => `${video2.title}`).join('\n')}`)
+              .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
+	      .setTimestamp()
+              .setColor("#FF0000")
+                  msg.channel.send({embed});
+		    break;
       case "play":
  var embedError = new Discord.RichEmbed()
               .setAuthor("No URL/Query provided")
