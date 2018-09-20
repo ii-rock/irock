@@ -1080,11 +1080,13 @@ bot.on('message', async msg => {
          }
           break;
 		  case "yt":
+		  if (!theMsg) return msg.reply('please enter a search query!')
 		    var videos = await youtube.searchVideos(theMsg, 1);
                   var embed = new Discord.RichEmbed()
               .setAuthor("Youtube Search", "https://cdn1.iconfinder.com/data/icons/logotypes/32/youtube-512.png")
  	.setDescription(`Search result for "${theMsg}"`)
-        .addField("Video Title", `${videos.map(video2 => `${video2.title}`).join('\n')}`)
+        .addField("Video Title", `${videos.map(video2 => `${video2[0].title}`).join('\n')}`)
+	.addField("Video Link", `${videos.map(video2 => `${video2[0].url}`).join('\n')}`)
               .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
 	      .setTimestamp()
               .setColor("#FF0000")
