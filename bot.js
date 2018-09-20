@@ -1085,9 +1085,11 @@ bot.on('message', async msg => {
                   var embed = new Discord.RichEmbed()
               .setAuthor("Youtube Search", "https://cdn1.iconfinder.com/data/icons/logotypes/32/youtube-512.png")
  	.setDescription(`Search result for "${theMsg}"`)
-        .addField("Video Title", `${videos.map(video2 => `${video2[0].title}`).join('\n')}`)
-	.addField("Video Link", `${videos.map(video2 => `${video2[0].url}`).join('\n')}`)
+        .addField("Title", `${videos.map(video2 => `${video2.title}`).join('\n')}`)
+        .addField("Description", `${videos.map(video2 => `${video2.description}`).join('\n')}`)
+	.addField("Link", `${videos.map(video2 => `${video2.url}`).join('\n')}`)
               .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
+	      .setThumbnail(`${videos.map(video2 => `${video2.thumbnails[0].high}`).join('\n')}`)
 	      .setTimestamp()
               .setColor("#FF0000")
                   msg.channel.send({embed});
