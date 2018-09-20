@@ -1083,16 +1083,7 @@ bot.on('message', async msg => {
 		  if (!theMsg) return msg.reply('please enter a search query!')
 		    var videos = await youtube.searchVideos(theMsg, 1);
                   var embed = new Discord.RichEmbed()
-              .setAuthor("Youtube Search", "https://cdn1.iconfinder.com/data/icons/logotypes/32/youtube-512.png")
- 	.setDescription(`Search result for "${theMsg}"`)
-        .addField("Title", `${videos.map(video2 => `${video2.title}`).join('\n')}`)
-        .addField("Description", `${videos.map(video2 => `${video2.description}`).join('\n')}`)
-        .addField("Uploaded By", `${videos.map(video2 => `${video2.channel}`).join('\n')}`)
-	.addField("Link", `${videos.map(video2 => `${video2.url}`).join('\n')}`)
-              .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
-	      .setTimestamp()
-              .setColor("#FF0000")
-                  msg.channel.send({embed});
+                  msg.reply(`**YouTube**\nSearch result for "${theMsg}"\n\n${videos.map(video2 => `${video2.url}`).join('\n')}`);
 		    break;
       case "play":
  var embedError = new Discord.RichEmbed()
