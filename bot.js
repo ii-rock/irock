@@ -1083,7 +1083,7 @@ bot.on('message', async msg => {
 		  if (!theMsg) return msg.reply('please enter a search query!')
 		    var videos = await youtube.searchVideos(theMsg, 1);
                   var embed = new Discord.RichEmbed()
-                  msg.reply(`**YouTube**\nSearch result for "${theMsg}"\n\n${videos.map(video2 => `${video2.url}`).join('\n')}`);
+                  msg.reply(`Search result for **"${theMsg}"**\n\nLink: ${videos.map(video2 => `*${video2.url}*`).join('\n')}`);
 		    break;
       case "play":
  var embedError = new Discord.RichEmbed()
