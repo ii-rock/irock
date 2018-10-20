@@ -314,7 +314,7 @@ transporter.sendMail(mailOptions, function(error, info){
 			 break;
 		            case "ftn":
         var username = theMsg
-	if (message.guild.id === "295236047317762058" && !message.channel.id === "443383422279352322") {
+	if (!message.channel.id === "443383422279352322" && message.guild.id === "295236047317762058") {
 		message.reply('Please use this command in #battle-royale_chat')
 
 	} else {
