@@ -501,6 +501,7 @@ transporter.sendMail(mailOptions, function(error, info){
 		
  });
 	}
+	}
       break;
      case "dm":
  	    if (!mentioned) return m.send('Come on, that\'s not possible, you have to mention a user!')
