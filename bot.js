@@ -314,14 +314,11 @@ transporter.sendMail(mailOptions, function(error, info){
 			 break;
 		            case "ftn":
         var username = theMsg
-	if (args[1] === 'wins' && !isNaN(args[2])) {
-		try {
-		message.member.setNickname(`${message.author.username} 🏆 ${args[2]}`)
-		message.reply('Your wins has been added to your nickname :white_check_mark:')
-		} catch (err) {
-		message.reply(err.message)
-		}
-	} else if (args[1] === 'server' || args[1] === 'servers' && !args[2]) {
+	if (message.guild.id === "295236047317762058" && !message.channel.id === "443383422279352322") {
+		message.reply('Please use this command in #battle-royale_chat')
+
+	} else {
+		if (args[1] === 'server' || args[1] === 'servers' && !args[2]) {
 		var options = {
   method: "GET",
   url: `https://fortnite.y3n.co/v2/gamestatus`,
