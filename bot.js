@@ -162,10 +162,12 @@ bot.on("ready", function() {
             upMins = upMins + 1
         }
         if (upMins >= 60) {
+		bot.user.setActivity("Music", {type: "LISTENING"})
             upMins = 0
             upHours = upHours + 1
         }
         if (upHours >= 24) {
+		bot.user.setActivity("Games", {type: "PLAYING"})
             upHours = 0
             upDays = upDays + 1
 
