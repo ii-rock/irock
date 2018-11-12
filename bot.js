@@ -399,7 +399,7 @@ transporter.sendMail(mailOptions, function(error, info){
             .addField('Solo Mode :bust_in_silhouette:', `Matches: ${solo.matches}\nKills: ${solo.kills}\nWins: ${solo.wins}\nK/D: ${solo.kd}\nScore: ${solo.score}\nTop 3: ${solo.top_3}\nTop 5: ${solo.top_5}`, inline = true)
             .addField('Duos Mode :busts_in_silhouette:', `Matches: ${duos.matches}\nKills: ${duos.kills}\nWins: ${duos.wins}\nK/D: ${duos.kd}\nScore: ${duos.score}\nTop 3: ${duos.top_3}\nTop 5: ${duos.top_5}`, inline = true)
             .addField('Squads Mode :busts_in_silhouette::busts_in_silhouette:', `Matches: ${squads.matches}\nKills: ${squads.kills}\nWins: ${squads.wins}\nK/D: ${squads.kd}\nScore: ${squads.score}\nTop 3: ${squads.top_3}\nTop 5: ${squads.top_5}`, inline = true)
-	    .addField('Total Stats :beginner:', `Matches: ${eval(sM + dM + sqM)}\`\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
+	    .addField('Total Stats :beginner:', `Matches: ${eval(sM + dM + sqM)}\nKills: ${eval(soloKills + duoKills + squadKills)}\nWins: ${eval(soloWins + duoWins + squadWins)}\nScore: ${eval(sS + dS + sqS)}`, inline = true)
             .setColor(randomColor)
 	    .setThumbnail('https://apkplz.com/storage/images/com/wallpaperfort/background/300/fortnite-wallpaper-hd-skins-amp-background.png')
             .setTimestamp()
