@@ -275,7 +275,7 @@ break;
   from: 'glorydiscordbot@gmail.com',
   to: args[1],
   subject: `[Discord] Rocky - Message from ${message.author.username}#${message.author.discriminator}`,
-  text: `${message.author.username}#${message.author.discriminator} said: ${theMsg.replace(args[1], "")}\n\n\nThis email was sent by using .sendmail command on Discord. You can use it right now too!\n\nInvite me to your server through this link: ${process.env.invite}`
+  text: `${message.author.username}#${message.author.discriminator} said: ${theMsg.replace(args[1], "")}\n\n\nThis email was sent by using .sendmail command on Discord. You can also use it right now!\n\nInvite me to your server through this link: ${process.env.invite}`
 };
 var emailSending = new Discord.RichEmbed()
 	.setAuthor("Email Service")
