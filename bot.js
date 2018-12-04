@@ -1340,7 +1340,7 @@ function playit(guild, song) {
   const serverQueue = queue.get(guild.id);
   if (!song) {
  	serverQueue.voiceChannel.leave();
- 	
+ 	queue.delete(guild.id);
  	return;
  }
   console.log(serverQueue.songs);
