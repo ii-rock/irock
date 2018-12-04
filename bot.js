@@ -1162,7 +1162,7 @@ bot.on('message', async msg => {
         if (!serverQueue) return msg.channel.send('There is nothing playing that I could skip for you.');
 	
         
-     playit(serverQueue.songs[0]);
+     serverQueue.connection.dispatcher.end();
 
         return undefined;
         break;
