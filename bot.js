@@ -1161,7 +1161,8 @@ bot.on('message', async msg => {
         if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
         if (!serverQueue) return msg.channel.send('There is nothing playing that I could skip for you.');
 	
-        serverQueue.connection.dispatcher.end('Skip command has been used!');
+        serverQueue.songs.shift()
+     playit(msg.guild, serverQueue.songs[0]);
 
         return undefined;
         break;
