@@ -1340,7 +1340,7 @@ function playit(guild, song) {
   const serverQueue = queue.get(guild.id);
   if (!song) {
  	serverQueue.voiceChannel.leave();
- 	queue.delete(guild.id);
+ 	
  	return;
  }
   console.log(serverQueue.songs);
@@ -1350,7 +1350,7 @@ function playit(guild, song) {
   const dispatcher = serverQueue.connection.playStream(YTDL(song.url)) 
   
       dispatcher.on('end', function() {
-     serverQueue.songs.shift(1)
+     serverQueue.songs.shift()
      playit(guild, serverQueue.songs[0]);
           
       })
