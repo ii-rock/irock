@@ -12,6 +12,7 @@ var requestFortnite = require("request")
 var nodemailer = require("nodemailer")
 const dbl = new DBL(process.env.dbl_Key)
 
+
 var cleverbot = require('cleverbot.io');
 
 const FortniteTracker = require('fortnite');
@@ -1086,7 +1087,7 @@ bot.on('message', async msg => {
                   var embed = new Discord.RichEmbed()
                   msg.reply(`Search result for **"${theMsg}"**\n\nLink: ${videos.map(video2 => `*${video2.url}*`).join('\n')}`);
 		    break;
-      case "play" && "p":
+      case "play" || "p":
  var embedError = new Discord.RichEmbed()
               .setAuthor("No URL/Query provided")
               .setDescription("Please provide a Link/Search query to play music.")
@@ -1349,8 +1350,8 @@ function playit(guild, song) {
   const dispatcher = serverQueue.connection.playStream(YTDL(song.url)) 
   
       dispatcher.on('end', function() {
-     serverQueue.songs.shift()
-     playit(guild, serverQueue.songs[1]);
+     
+     playit(guild, serverQueue.songs[0]);
           
       })
       dispatcher.on('error', error => console.error(error));
