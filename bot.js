@@ -1350,7 +1350,7 @@ function playit(guild, song) {
   
       dispatcher.on('end', function() {
      serverQueue.songs.shift()
-     playit(guild, serverQueue.songs[0]);
+     playit(guild, serverQueue.songs[1]);
           
       })
       dispatcher.on('error', error => console.error(error));
