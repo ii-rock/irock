@@ -1086,7 +1086,7 @@ bot.on('message', async msg => {
                   var embed = new Discord.RichEmbed()
                   msg.reply(`Search result for **"${theMsg}"**\n\nLink: ${videos.map(video2 => `*${video2.url}*`).join('\n')}`);
 		    break;
-      case "play":
+      case "play" && "p":
  var embedError = new Discord.RichEmbed()
               .setAuthor("No URL/Query provided")
               .setDescription("Please provide a Link/Search query to play music.")
@@ -1119,18 +1119,18 @@ bot.on('message', async msg => {
               var video = await youtube.getVideo(url);
           } catch (error) {
               try {
-                  var videos = await youtube.searchVideos(searchString, 8);
+                  var videos = await youtube.searchVideos(searchString, 6);
                   let index = 0;
                   var embed = new Discord.RichEmbed()
               .setAuthor("Select a video by typing it's number", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
  	.setDescription(`${videos.map(video2 => `**[${++index}](${video2.url}).** ${video2.title}`).join('\n')}`)
  	.setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
-              .setFooter(`Please provide a value to select one of the search results ranging from 1-8, this timeouts in 15 seconds.`)
+              .setFooter(`Please provide a value to select one of the search results ranging from 1-6, this timeouts in 15 seconds.`)
               .setColor("#FF0000")
                   var theMessage = await msg.channel.send({embed});
                   // eslint-disable-next-line max-depth
                   try {
-                      var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 || msg2.content < 9, {
+                      var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 || msg2.content < 7, {
                           maxMatches: 1,
                           time: 15000,
                           errors: ['time']
