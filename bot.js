@@ -111,7 +111,7 @@ var eightBall = [
     "My sources say no",
     "Outlook not so good",
     "Very doubtful",
-    "Needs a lot of thinking :thinking:"
+    "Thinking... :thinking:"
 ];
 
 
@@ -1169,7 +1169,7 @@ bot.on('message', async msg => {
         if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
         if (!serverQueue) return msg.channel.send('There is nothing playing that I could stop for you.');
         if (msg.guild.voiceConnection) {
-            serverQueue.songs = [];
+           
 		    serverQueue.connection.dispatcher.end();
         }
 	        return undefined;
