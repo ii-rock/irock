@@ -396,7 +396,7 @@ transporter.sendMail(mailOptions, function(error, info){
             var totalWins = eval(soloWins + duoWins + squadWins)
 	    var totalKills = eval(soloKills + duoKills + squadKills)
 	    var TW = eval(totalMatches-totalWins)
-            var KD = eval(totalKills-TW)
+            var KD = eval(totalKills/TW)
             var totalKD = KD + " "
             var embed = new Discord.RichEmbed()
             .setAuthor(`Fortnite Player Stats`, 'https://png.icons8.com/color/1600/fortnite.png')
@@ -444,7 +444,7 @@ transporter.sendMail(mailOptions, function(error, info){
             var totalWins = eval(soloWins + duoWins + squadWins)
 	    var totalKills = eval(soloKills + duoKills + squadKills)
 	    var TW = eval(totalMatches-totalWins)
-            var KD = eval(totalKills-TW)
+            var KD = eval(totalKills/TW)
             var totalKD = KD + " "
 	    
            var embed = new Discord.RichEmbed()
@@ -491,7 +491,7 @@ transporter.sendMail(mailOptions, function(error, info){
             var totalWins = eval(soloWins + duoWins + squadWins)
 	    var totalKills = eval(soloKills + duoKills + squadKills)
 	    var TW = eval(totalMatches-totalWins)
-            var KD = eval(totalKills-TW)
+            var KD = eval(totalKills/TW)
             var totalKD = KD + " "
 	    
           var embed = new Discord.RichEmbed()
