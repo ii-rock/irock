@@ -1591,7 +1591,7 @@ switch (args[0].toLowerCase()) {
      let announceChannel = message.guild.channels.find('name', "announcements");
      
      if (!announceChannel) {
-var announceText = theMsg
+var announceText === theMsg
      	var confirmMsg = await m.send("Announcements channel was not found, create one or type `.confirm` to let me create new one. This timeouts in 10 seconds.")
      	try {
      	var response = await message.channel.awaitMessages(msg2 => msg2.content === ".confirm", {
