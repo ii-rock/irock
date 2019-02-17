@@ -1591,6 +1591,7 @@ switch (args[0].toLowerCase()) {
      let announceChannel = message.guild.channels.find('name', "announcements");
      
      if (!announceChannel) {
+var announceText = theMsg
      	var confirmMsg = await m.send("Announcements channel was not found, create one or type `.confirm` to let me create new one. This timeouts in 10 seconds.")
      	try {
      	var response = await message.channel.awaitMessages(msg2 => msg2.content === ".confirm", {
@@ -1604,12 +1605,10 @@ switch (args[0].toLowerCase()) {
      		try {
      			message.guild.createChannel("announcements", 'text')
      			confirmMsg.delete()
-                        if (!theMsg) return m.send(`**announcements** channel has been created. You can now use the announce command.\n\nCommand usage: ${prefix}announce \`<message>\``)
-			if (theMsg.length > 0) {
-     
+                        if (!announceText) return m.send(`**announcements** channel has been created. You can now use the announce command.\n\nCommand usage: ${prefix}announce \`<message>\``)
          var embed = new Discord.RichEmbed()
  	.setAuthor('Announcement', 'http://wfarm1.dataknet.com/static/resources/icons/set108/2f905ab.png')
-         .setDescription(theMsg)
+         .setDescription(announceText)
               .setFooter(`Announcement by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
               .setTimestamp()
  	.setColor('#FF8800')
