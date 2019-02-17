@@ -1604,7 +1604,16 @@ switch (args[0].toLowerCase()) {
      		try {
      			message.guild.createChannel("announcements", 'text')
      			confirmMsg.delete()
-     			m.send("**announcements** channel has been created. You can now use the announce command.")
+                        if (!theMsg) return m.send(`**announcements** channel has been created. You can now use the announce command.\n\nCommand usage: ${prefix}announce \`<message>\``)
+     
+         var embed = new Discord.RichEmbed()
+ 	.setAuthor('Announcement', 'http://wfarm1.dataknet.com/static/resources/icons/set108/2f905ab.png')
+         .setDescription(theMsg)
+              .setFooter(`Announcement by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
+              .setTimestamp()
+ 	.setColor('#FF8800')
+    announceChannel.send({embed})
+     			m.send("**announcements** channel has been created and your announcement has been successfully sent.")
      		} catch (error) {
                   console.log(error)
      		}
@@ -1624,6 +1633,7 @@ switch (args[0].toLowerCase()) {
               .setTimestamp()
  	.setColor('#FF8800')
     announceChannel.send({embed})
+    message.reply('Your announcement has been successfully sent.')
  }
  	break;
      case "report":
