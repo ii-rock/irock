@@ -1604,9 +1604,8 @@ switch (args[0].toLowerCase()) {
      		try {
      			message.guild.createChannel("announcements", 'text')
      			confirmMsg.delete()
-                        if (!theMsg) {
- m.send(`**announcements** channel has been created. You can now use the announce command.\n\nCommand usage: ${prefix}announce \`<message>\``)
-			} else {
+                        if (!theMsg) return m.send(`**announcements** channel has been created. You can now use the announce command.\n\nCommand usage: ${prefix}announce \`<message>\``)
+			if (theMsg.length > 0) {
      
          var embed = new Discord.RichEmbed()
  	.setAuthor('Announcement', 'http://wfarm1.dataknet.com/static/resources/icons/set108/2f905ab.png')
