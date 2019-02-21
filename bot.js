@@ -415,6 +415,10 @@ var embedPs4 = new Discord.RichEmbed()
 
      searchingPs4.delete()
           m.send({embed})
+		    }).catch (e => {
+          console.log(e)
+          searchingPs4.delete()
+ 	message.channel.send(`:negative_squared_cross_mark: Player **${userr}** was not found!`)
 		    })
 								   } else if (args[1] === 'xbox') {
 var embedXbox = new Discord.RichEmbed()
@@ -471,6 +475,10 @@ var embedXbox = new Discord.RichEmbed()
 
      searchingXbox.delete()
           m.send({embed})
+			    }).catch (e => {
+          console.log(e)
+          searchingXbox.delete()
+ 	message.channel.send(`:negative_squared_cross_mark: Player **${username}** was not found!`)
 			    })
 									   } else {
 		    var embedSearching = new Discord.RichEmbed()
