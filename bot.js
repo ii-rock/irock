@@ -358,13 +358,7 @@ transporter.sendMail(mailOptions, function(error, info){
 	} else {
 	
 	if (!theMsg) return m.send(':warning: Please provide a username to search for!')
-		var embedSearching = new Discord.RichEmbed()
-	.setAuthor(`Searching`, 'https://png.icons8.com/color/1600/fortnite.png')
-            .setDescription(`Searching for player **${username}**\nPlatform: \`PC - Xbox - PlayStation\``)
-		    .setTimestamp()
-		    .setColor(randomColor)
-            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
-        var searchingMsg = await m.sendEmbed(embedSearching)
+		
 var userr = theMsg.replace(args[1], "")
         if (args[1] === 'ps4') {
 var embedPs4 = new Discord.RichEmbed()
@@ -421,7 +415,7 @@ var embedPs4 = new Discord.RichEmbed()
 
      searchingPs4.delete()
           m.send({embed})
-		    }
+		    })
 								   } else if (args[1] === 'xbox') {
 var embedXbox = new Discord.RichEmbed()
 	.setAuthor(`Searching`, 'https://png.icons8.com/color/1600/fortnite.png')
@@ -477,9 +471,15 @@ var embedXbox = new Discord.RichEmbed()
 
      searchingXbox.delete()
           m.send({embed})
-			    }
+			    })
 									   } else {
-		    
+		    var embedSearching = new Discord.RichEmbed()
+	.setAuthor(`Searching`, 'https://png.icons8.com/color/1600/fortnite.png')
+            .setDescription(`Searching for player **${username}**\nPlatform: \`PC - Xbox - PlayStation\``)
+		    .setTimestamp()
+		    .setColor(randomColor)
+            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
+        var searchingMsg = await m.sendEmbed(embedSearching)
 		    
         var data = fortnite.user(username, 'pc').then(data => {
 	    
@@ -630,7 +630,7 @@ var embedXbox = new Discord.RichEmbed()
           })
  }) 
  
-		})
+		}
  });
 	}
 	}
