@@ -365,7 +365,7 @@ transporter.sendMail(mailOptions, function(error, info){
 		    .setColor(randomColor)
             .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
         var searchingMsg = await m.sendEmbed(embedSearching)
-var userr === theMsg.replace(args[1], "")
+var userr = theMsg.replace(args[1], "")
         if (args[1] === 'ps4') {
 var embedPs4 = new Discord.RichEmbed()
 	.setAuthor(`Searching`, 'https://png.icons8.com/color/1600/fortnite.png')
