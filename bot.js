@@ -365,7 +365,16 @@ transporter.sendMail(mailOptions, function(error, info){
 		    .setColor(randomColor)
             .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
         var searchingMsg = await m.sendEmbed(embedSearching)
+var userr === theMsg.replace(args[1], "")
         if (args[1] === 'ps4') {
+var embedPs4 = new Discord.RichEmbed()
+	.setAuthor(`Searching`, 'https://png.icons8.com/color/1600/fortnite.png')
+            .setDescription(`Searching for player **${userr}**\nPlatform: \`PlayStation\`:video_game: `)
+		    .setTimestamp()
+		    .setColor(randomColor)
+            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
+        var searchingPs4 = await m.sendEmbed(embedPs4)
+	
 		    var data = fortnite.user(username, 'psn').then(data => {
 	    
             var theUser = data.username
@@ -410,10 +419,17 @@ transporter.sendMail(mailOptions, function(error, info){
           .setTimestamp()
           .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 
-     searchingMsg.delete()
+     searchingPs4.delete()
           m.send({embed})
 		    }
 								   } else if (args[1] === 'xbox') {
+var embedXbox = new Discord.RichEmbed()
+	.setAuthor(`Searching`, 'https://png.icons8.com/color/1600/fortnite.png')
+            .setDescription(`Searching for player **${userr}**\nPlatform: \`Xbox\` :video_game:`)
+		    .setTimestamp()
+		    .setColor(randomColor)
+            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
+        var searchingXbox = await m.sendEmbed(embedXbox)
 			    var data = fortnite.user(username, 'xbl').then(data => {
      
           var theUser = data.username
@@ -459,7 +475,7 @@ transporter.sendMail(mailOptions, function(error, info){
           .setTimestamp()
           .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
 
-     searchingMsg.delete()
+     searchingXbox.delete()
           m.send({embed})
 			    }
 									   } else {
@@ -614,7 +630,7 @@ transporter.sendMail(mailOptions, function(error, info){
           })
  }) 
  
-		}
+		})
  });
 	}
 	}
