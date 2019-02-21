@@ -420,7 +420,8 @@ var embedPs4 = new Discord.RichEmbed()
           searchingPs4.delete()
  	message.channel.send(`:negative_squared_cross_mark: Player **${userr}** was not found!`)
 		    })
-								   } else if (args[1] === 'xbox') {
+	} 
+ if (args[1] === 'xbox') {
 var embedXbox = new Discord.RichEmbed()
 	.setAuthor(`Searching`, 'https://png.icons8.com/color/1600/fortnite.png')
             .setDescription(`Searching for player **${userr}**\nPlatform: \`Xbox\` :video_game:`)
@@ -480,7 +481,8 @@ var embedXbox = new Discord.RichEmbed()
           searchingXbox.delete()
  	message.channel.send(`:negative_squared_cross_mark: Player **${username}** was not found!`)
 			    })
-									   } else {
+			    }
+					if (!args[1] === 'ps4' || !args[1] === 'xbox')				   
 		    var embedSearching = new Discord.RichEmbed()
 	.setAuthor(`Searching`, 'https://png.icons8.com/color/1600/fortnite.png')
             .setDescription(`Searching for player **${username}**\nPlatform: \`PC - Xbox - PlayStation\``)
@@ -636,7 +638,7 @@ var embedXbox = new Discord.RichEmbed()
  	message.channel.send(`:negative_squared_cross_mark: Player **${username}** not found!`)
  	
           })
-		}
+		
  }) 
  
 
