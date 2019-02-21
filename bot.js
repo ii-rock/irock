@@ -359,7 +359,8 @@ transporter.sendMail(mailOptions, function(error, info){
 	
 	if (!theMsg) return m.send(':warning: Please provide a username to search for!')
 		
-var userr = theMsg.replace(args[1], "")
+var userr = message.content.substring(args[1]).split(" ")
+
         if (args[1] === 'ps4') {
 var embedPs4 = new Discord.RichEmbed()
 	.setAuthor(`Searching`, 'https://png.icons8.com/color/1600/fortnite.png')
@@ -418,7 +419,7 @@ var embedPs4 = new Discord.RichEmbed()
 		    }).catch (e => {
           console.log(e)
           searchingPs4.delete()
- 	message.channel.send(`:negative_squared_cross_mark: Player **${userr}** was not found!`)
+ 	message.channel.send(`:negative_squared_cross_mark: Player **${userr}** not found!`)
 		    })
 	} 
  if (args[1] === 'xbox') {
@@ -479,10 +480,10 @@ var embedXbox = new Discord.RichEmbed()
 			    }).catch (e => {
           console.log(e)
           searchingXbox.delete()
- 	message.channel.send(`:negative_squared_cross_mark: Player **${username}** was not found!`)
+ 	message.channel.send(`:negative_squared_cross_mark: Player **${userr}** not found!`)
 			    })
 			    }
-					if (!args[1] === 'ps4' || !args[1] === 'xbox')				   
+					if (!args[1] === 'ps4' && !args[1] === 'xbox')				   
 		    var embedSearching = new Discord.RichEmbed()
 	.setAuthor(`Searching`, 'https://png.icons8.com/color/1600/fortnite.png')
             .setDescription(`Searching for player **${username}**\nPlatform: \`PC - Xbox - PlayStation\``)
