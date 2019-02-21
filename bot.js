@@ -359,7 +359,8 @@ transporter.sendMail(mailOptions, function(error, info){
 	
 	if (!theMsg) return m.send(':warning: Please provide a username to search for!')
 		
-var userr = theMsg.replace(args[1], "")
+var usah = theMsg.replace(args[1], "")
+var userr = usah.length - 1
 
 
         if (args[1] === 'ps4') {
@@ -420,7 +421,7 @@ var embedPs4 = new Discord.RichEmbed()
 		    }).catch (e => {
           console.log(e)
           searchingPs4.delete()
- 	message.channel.send(`:negative_squared_cross_mark: Player**${userr}** not found!`)
+ 	message.channel.send(`:negative_squared_cross_mark: Player **${userr}** not found!`)
 		    })
 	} 
  if (args[1] === 'xbox') {
@@ -481,7 +482,7 @@ var embedXbox = new Discord.RichEmbed()
 			    }).catch (e => {
           console.log(e)
           searchingXbox.delete()
- 	message.channel.send(`:negative_squared_cross_mark: Player**${userr}** not found!`)
+ 	message.channel.send(`:negative_squared_cross_mark: Player **${userr}** not found!`)
 			    })
 			    }
 					if (!args[1] === 'ps4' && !args[1] === 'xbox')				   
