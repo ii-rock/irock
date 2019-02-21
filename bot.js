@@ -638,7 +638,7 @@ var embedXbox = new Discord.RichEmbed()
           })
  }) 
  
-		})
+
  });
 	}
 	}
