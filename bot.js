@@ -28,7 +28,7 @@ var transporter = nodemailer.createTransport({
     pass: `${process.env.gmPw}`
   }
 });
-
+ 
 cbot = new cleverbot("Dw3yOhLio0NMCWsY", "yVsBq7A6MqgDDnjAjWf5cdJNZwmd3LFa");
 
 var googl = require('goo.gl');
