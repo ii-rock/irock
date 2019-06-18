@@ -88,7 +88,8 @@ var colors = [
 	"#751B9F",
 	"#F1C40F",
 	"#2F5EC1",
-	"#1D1A1A"
+	"#1D1A1A",
+	"#efd19f"
 ];
 
 var eightBall = [
