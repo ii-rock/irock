@@ -339,7 +339,7 @@ transporter.sendMail(mailOptions, function(error, info){
 	.setAuthor(`Fortnite Server Status`, 'https://png.icons8.com/color/1600/fortnite.png')
             .setDescription(`Servers are **ONLINE**.`)
 		    .setTimestamp()
-	            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
+	            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator + ' • Item shop code: Metalhead', message.author.displayAvatarURL)
 		    .setColor('#008000')
     m.sendEmbed(embedOnline)
 		
@@ -348,7 +348,7 @@ transporter.sendMail(mailOptions, function(error, info){
 	.setAuthor(`Fortnite Server Status`, 'https://png.icons8.com/color/1600/fortnite.png')
             .setDescription(`Servers are currently **OFFLINE**.`)
 		    .setTimestamp()
-	            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
+	            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator + ' • Item shop code: Metalhead', message.author.displayAvatarURL)
 		    .setColor('#ff0000')
     m.sendEmbed(embedOffline)
 
@@ -365,7 +365,7 @@ transporter.sendMail(mailOptions, function(error, info){
             .setDescription(`Searching for player **${username}**\nPlatform: \`PC - Xbox - PlayStation\``)
 		    .setTimestamp()
 		    .setColor(randomColor)
-            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
+            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator + ' • Item shop code: Metalhead', message.author.displayAvatarURL)
         var searchingMsg = await m.sendEmbed(embedSearching)
 		    
         var data = fortnite.user(username, 'pc').then(data => {
@@ -408,7 +408,7 @@ transporter.sendMail(mailOptions, function(error, info){
             .setColor(randomColor)
 	    .setThumbnail('https://apkplz.com/storage/images/com/wallpaperfort/background/300/fortnite-wallpaper-hd-skins-amp-background.png')
             .setTimestamp()
-            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
+            .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator + ' • Item shop code: Metalhead', message.author.displayAvatarURL)
 
 	    searchingMsg.delete()
             m.send({embed})
@@ -457,7 +457,7 @@ transporter.sendMail(mailOptions, function(error, info){
           .setColor(randomColor)
 	    .setThumbnail('https://apkplz.com/storage/images/com/wallpaperfort/background/300/fortnite-wallpaper-hd-skins-amp-background.png')
           .setTimestamp()
-          .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
+          .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator + ' • Item shop code: Metalhead', message.author.displayAvatarURL)
 
      searchingMsg.delete()
           m.send({embed})
@@ -505,7 +505,7 @@ transporter.sendMail(mailOptions, function(error, info){
           .setColor(randomColor)
      .setThumbnail('https://apkplz.com/storage/images/com/wallpaperfort/background/300/fortnite-wallpaper-hd-skins-amp-background.png')
           .setTimestamp()
-          .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
+          .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator + ' • Item shop code: Metalhead', message.author.displayAvatarURL)
 
      searchingMsg.delete()
           m.send({embed})
