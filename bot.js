@@ -1384,15 +1384,15 @@ function playit(guild, song) {
   var embed = new Discord.RichEmbed()
               .setAuthor("Now Playing", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
               .addField("Title", `${song.title}`)
-if (hours.length == 1 && minutes.length == 1 && seconds.length == 1) {
+if (hours.length == 1 & minutes.length == 1 & seconds.length == 1) {
               embed.addField("Length", `0${song.duration.hours}:0${song.duration.minutes}:0${song.duration.seconds}`, inline = true)
-} else if (hours.length > 1 && minutes.length > 1 && seconds.length > 1) {
+} else if (hours.length > 1 & minutes.length > 1 & seconds.length > 1) {
 embed.addField("Length", `${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}`, inline = true)
-} else if (hours.length = 1 && minutes.length > 1 && seconds.length > 1) {
+} else if (hours.length == 1 & minutes.length > 1 & seconds.length > 1) {
 embed.addField("Length", `0${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}`, inline = true)
-} else if (hours.length > 1 && minutes.length = 1 && seconds.length > 1) {
+} else if (hours.length > 1 & minutes.length == 1 & seconds.length > 1) {
 embed.addField("Length", `${song.duration.hours}:0${song.duration.minutes}:${song.duration.seconds}`, inline = true)
-} else if (hours.length > 1 && minutes.length > 1 && seconds.length = 1) {
+} else if (hours.length > 1 & minutes.length > 1 & seconds.length == 1) {
 embed.addField("Length", `${song.duration.hours}:${song.duration.minutes}:0${song.duration.seconds}`, inline = true)
 
 	   }
@@ -1718,28 +1718,6 @@ switch (args[0].toLowerCase()) {
        message.channel.send(`No results were found for query: ${theMsg}`)
        }
 			break;
-    	case "dog":
-	   var { body } = await superagent.get('https://dog.ceo/api/breeds/image/random');
-   var embed = new Discord.RichEmbed()
-   .setColor('#BD1608')
-	   .setTitle(":dog: Pow")
-	   .setImage(body.message)
-	   .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
-	   .setTimestamp()
-	   message.channel.send({embed})
-    	break;
-    	case "cat":
-       var { body } = await superagent
-	   .get('http://random.cat/meow');
-	    var embed = new Discord.RichEmbed()
-	   .setColor('#BD1608')
-	   .setTitle("Meow :cat:")
-	   .setImage(body.file)
-   .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
-    .setTimestamp()
-	   message.channel.send({embed})
-  	break;
-}
 });
 
 bot.login(process.env.TOKEN);
