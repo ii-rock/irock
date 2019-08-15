@@ -189,9 +189,9 @@ bot.on("ready", function() {
 });
 
 cbot = new cleverbot(process.env.api_User, process.env.api_Password);
-
+var randomColor = colors[Math.floor(Math.random() * colors.length)]
 bot.on("message", async (message) => { 
-	var randomColor = colors[Math.floor(Math.random() * colors.length)]
+	
     if (message.author.bot) return;
 	
     if (!message.author.equals(bot.user))
