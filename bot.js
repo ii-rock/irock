@@ -1230,7 +1230,7 @@ m.send(`:warning: WARNING: Listening at a volume over **100** for a long time ma
                 msg.channel.send({embed});
             serverQueue.volume = arg[1];
 			confirmMsg.delete()
-		} catch (error) {
+
 	    confirmMsg.delete()
 	    var embed = new Discord.RichEmbed()
               .setAuthor("Request Canceled", "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678069-sign-error-256.png")
@@ -1239,7 +1239,7 @@ m.send(`:warning: WARNING: Listening at a volume over **100** for a long time ma
               .setColor("#FF0000")
                      return msg.channel.send({embed});
 		
-	} 
+	
 	} else {
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(arg[1] / 100);
             var embed = new Discord.RichEmbed()
