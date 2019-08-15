@@ -1201,8 +1201,8 @@ theMessage.delete();
         if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
 	if (!arg[1]) return msg.channel.send(`The current volume is: ( **${serverQueue.volume}** )`);
         if (!serverQueue) return msg.channel.send('There is nothing playing.');
-	if (isNaN(arg[1])) return msg.channel.send(":information_source: Please provide a value between `[1-100]` (Safe) **OR** `[100-300]` (Risky)`");
-        if (arg[1] > 300) return msg.channel.send(":warning: Volumes above **300** are not allowed.\n\n:information_source: Please provide a value between `[1-100]` (Safe) **OR** `[100-350]` (Risky)")
+	if (isNaN(arg[1])) return msg.channel.send(":information_source: Please provide a value between `[1-100]` **OR** `[100-300]` (Risky)`");
+        if (arg[1] > 300) return msg.channel.send(":warning: Volumes above **300** are not allowed.\n\n:information_source: Please provide a value between `[1-100]` **OR** `[100-300]` (Risky)")
 	if (serverQueue.volume === arg[1]) return msg.channel.send(`Cannot update volume to the same number, please re-try with a different number than the current volume ( **${serverQueue.volume}** )`)
         if (arg[1] > 100) {
 
@@ -1214,28 +1214,20 @@ theMessage.delete();
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
 	        .setThumbnail("http://l7mobile.com/musictube_assets/icon_app.png?v=1.0")
                 .setTimestamp()
-                .setColor("#FF0000")
+                .setColor(randomColor)
 	    if (serverQueue.volume > arg[1]) {
 		    embed.setAuthor("Volume Decreased", bot.user.displayAvatarURL)
 	        embed.addField("Previous Volume", `( **${serverQueue.volume}** ) :loud_sound:`, inline = true)
                 embed.addField("Current Volume", `( **${arg[1]}** ) :sound:`, inline = true)
-embed.addField(`WARNING`, `:warning: WARNING: Listening at a volume over **100** for a long time may damage your hearing.`)
+embed.addField(`WARNING`, `Listening at a volume over **100** for a long time may damage your hearing.`)
 	    } else if (serverQueue.volume < arg[1]) {
 		    embed.setAuthor("Volume Increased", bot.user.displayAvatarURL)
 			embed.addField("Previous Volume", `( **${serverQueue.volume}** ) :sound:`, inline = true)
                 embed.addField("Current Volume", `( **${arg[1]}** ) :loud_sound:`, inline = true)
-embed.addField(`WARNING`, `:warning: WARNING: Listening at a volume over **100** for a long time may damage your hearing.`)
+embed.addField(`WARNING`, `Listening at a volume over **100** for a long time may damage your hearing.`)
 	    }
                 msg.channel.send({embed});
             serverQueue.volume = arg[1];
-
-	    var embed = new Discord.RichEmbed()
-              .setAuthor("Request Canceled", "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678069-sign-error-256.png")
-              .setDescription(`Volume was not updated to ( **${arg[1]}** ), no reaction detected.`)
-              .setFooter(`This was requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
-              .setColor("#FF0000")
-                     return msg.channel.send({embed});
-		
 	
 	} else {
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(arg[1] / 100);
