@@ -587,7 +587,7 @@ req.end(function (res) {
   .setDescription(`Your URL has been shortened.`)
   .setColor("#166338")
   .addField("Original URL", `${args[1]}`)
-  .addField("Shortened URL", res.body)
+  .addField("Shortened URL", res.body.properties.result_url)
   .setFooter(`Shortened by ${author.username}#${author.discriminator}`, author.displayAvatarURL)
   .setTimestamp()
 
