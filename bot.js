@@ -576,7 +576,7 @@ transporter.sendMail(mailOptions, function(error, info){
       break;
       case "shortenurl":
   	req.form({
-	"url": {args[1]}
+	"url": args[1]
 });
 
 req.end(function (res) {
