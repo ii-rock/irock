@@ -941,8 +941,8 @@ break;
       case "restart":
       if (!config.admins.includes(message.author.id)) return m.send("You do not have permissions to perform this action.")
          message.channel.sendMessage("Alright, i will restart asap...");
-          bot.destroy()
-          bot.login(process.env.TOKEN);
+          await bot.destroy()
+          await bot.login(process.env.TOKEN);
           message.channel.sendMessage("I've successfully restarted.");
           
          break;
