@@ -1113,7 +1113,7 @@ bot.on('message', async msg => {
               .setDescription("Please provide a Link/Search query to play music.")
               .addField("Usage", `${prefix}play <youtube link / search query>`)
               .setColor("#0000FF")
-              .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
+              .setThumbnail("http://l7mobile.com/musictube_assets/icon_app.png?v=1.0")
               .setTimestamp()
           
  if (!theMsg) return msg.channel.sendEmbed(embedError);
@@ -1145,7 +1145,7 @@ bot.on('message', async msg => {
                   var embed = new Discord.RichEmbed()
               .setAuthor("Select a video by typing it's number", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
  	.setDescription(`${videos.map(video2 => `**[${++index}](${video2.url}).** ${video2.title}`).join('\n')}`)
- 	.setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
+ 	.setThumbnail("http://l7mobile.com/musictube_assets/icon_app.png?v=1.0")
               .setFooter(`Please provide a value to select one of the search results ranging from 1-6, this timeouts in 15 seconds.`)
               .setColor("#FF0000")
                   var theMessage = await msg.channel.send({embed});
@@ -1201,35 +1201,31 @@ theMessage.delete();
         if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
 	if (!arg[1]) return msg.channel.send(`The current volume is: ( **${serverQueue.volume}** )`);
         if (!serverQueue) return msg.channel.send('There is nothing playing.');
-	if (isNaN(arg[1])) return msg.channel.send(":information_source: Please provide a value between `[1-100]` (Safe) **OR** `[100-350]` (Risky)`");
-        if (arg[1] > 350) return msg.channel.send(":warning: Volumes above **350** are not allowed.\n\n:information_source: Please provide a value between `[1-100]` (Safe) **OR** `[100-350]` (Risky)")
+	if (isNaN(arg[1])) return msg.channel.send(":information_source: Please provide a value between `[1-100]` (Safe) **OR** `[100-300]` (Risky)`");
+        if (arg[1] > 300) return msg.channel.send(":warning: Volumes above **300** are not allowed.\n\n:information_source: Please provide a value between `[1-100]` (Safe) **OR** `[100-350]` (Risky)")
 	if (serverQueue.volume === arg[1]) return msg.channel.send(`Cannot update volume to the same number, please re-try with a different number than the current volume ( **${serverQueue.volume}** )`)
         if (arg[1] > 100) {
-		try {
-		
- 	    var confirmMsg = await m.send(`:warning: Listening at a volume over **100** for a long time may damage your hearing. React below to confirm setting the volume at **${arg[1]}%** , or ignore to cancel.`)
- 	    confirmMsg.react('✅')
-	    var filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === msg.author.id
-            await confirmMsg.awaitReactions(filter, { max: 1, time: 15000, errors: ['time']})
 
+m.send(`:warning: WARNING: Listening at a volume over **100** for a long time may damage your hearing.`)
         
         serverQueue.connection.dispatcher.setVolumeLogarithmic(arg[1] / 100);
             var embed = new Discord.RichEmbed()
                 
-                .setDescription(`The player's volume has been updated.`)
-                
+                .setAuthor(`Volume Updated`,bot.user.displayAvatarURL)
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
-	        .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
+	        .setThumbnail("http://l7mobile.com/musictube_assets/icon_app.png?v=1.0")
                 .setTimestamp()
                 .setColor("#FF0000")
 	    if (serverQueue.volume > arg[1]) {
 		    embed.setAuthor("Volume Decreased", bot.user.displayAvatarURL)
-	        embed.addField("Last Volume", `( **${serverQueue.volume}** ) :loud_sound:`, inline = true)
-                embed.addField("Updated Volume", `( **${arg[1]}** ) :sound:`, inline = true)
+	        embed.addField("Previous Volume", `( **${serverQueue.volume}** ) :loud_sound:`, inline = true)
+                embed.addField("Current Volume", `( **${arg[1]}** ) :sound:`, inline = true)
+.addField(`WARNING`, `:warning: WARNING: Listening at a volume over **100** for a long time may damage your hearing.`)
 	    } else if (serverQueue.volume < arg[1]) {
 		    embed.setAuthor("Volume Increased", bot.user.displayAvatarURL)
-			embed.addField("Last Volume", `( **${serverQueue.volume}** ) :sound:`, inline = true)
-                embed.addField("Updated Volume", `( **${arg[1]}** ) :loud_sound:`, inline = true)
+			embed.addField("Previous Volume", `( **${serverQueue.volume}** ) :sound:`, inline = true)
+                embed.addField("Current Volume", `( **${arg[1]}** ) :loud_sound:`, inline = true)
+.addField(`WARNING`, `:warning: WARNING: Listening at a volume over **100** for a long time may damage your hearing.`)
 	    }
                 msg.channel.send({embed});
             serverQueue.volume = arg[1];
@@ -1248,20 +1244,20 @@ theMessage.delete();
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(arg[1] / 100);
             var embed = new Discord.RichEmbed()
                 
-                .setDescription(`The player's volume has been updated.`)
+                .setAuthor("Volume Updated",bot.user.displayAvatarURL)
                 
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
-	        .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
+	        .setThumbnail("http://l7mobile.com/musictube_assets/icon_app.png?v=1.0")
                 .setTimestamp()
-                .setColor("#FF0000")
+                .setColor(randomColor)
 	   if (serverQueue.volume > arg[1]) {
-		    embed.setAuthor("Volume Lowered", bot.user.displayAvatarURL)
-	        embed.addField("Last Volume", `( **${serverQueue.volume}** ) :loud_sound:`, inline = true)
-                embed.addField("Updated Volume", `( **${arg[1]}** ) :sound:`, inline = true)
+		    embed.setAuthor("Volume Decreased", bot.user.displayAvatarURL)
+	        embed.addField("Previous Volume", `( **${serverQueue.volume}** ) :loud_sound:`, inline = true)
+                embed.addField("Current Volume", `( **${arg[1]}** ) :sound:`, inline = true)
 	    } else if (serverQueue.volume < arg[1]) {
 		    embed.setAuthor("Volume Increased", bot.user.displayAvatarURL)
-			embed.addField("Last Volume", `( **${serverQueue.volume}** ) :sound:`, inline = true)
-                embed.addField("Updated Volume", `( **${arg[1]}** ) :loud_sound:`, inline = true)
+			embed.addField("Previous Volume", `( **${serverQueue.volume}** ) :sound:`, inline = true)
+                embed.addField("Current Volume", `( **${arg[1]}** ) :loud_sound:`, inline = true)
 	    }
                 msg.channel.send({embed});
             serverQueue.volume = arg[1];
@@ -1273,9 +1269,9 @@ theMessage.delete();
                 .setAuthor("Now Playing", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
                 .setDescription(`I am currently playing **${serverQueue.songs[0].title}**`)
                 .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
-	        .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
+	        .setThumbnail("http://l7mobile.com/musictube_assets/icon_app.png?v=1.0")
                 .setTimestamp()
-                .setColor("#FF0000")
+                .setColor(randomColor)
                 msg.channel.send({embed});
         break;
         case "queue":
@@ -1287,9 +1283,9 @@ theMessage.delete();
               .addField("Now Playing", `**${serverQueue.songs[0].title}**`)
               .addField("Queue", `${serverQueue.songs.map(song => `**${++list} -** ${song.title}`).join('\n')}`)
               .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
-         .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
+         .setThumbnail("http://l7mobile.com/musictube_assets/icon_app.png?v=1.0")
               .setTimestamp()
-              .setColor("#FF0000")
+              .setColor(randomColor)
               msg.channel.send({embed});
       break;
       case "pause":
@@ -1384,7 +1380,7 @@ function playit(guild, song) {
   var embed = new Discord.RichEmbed()
               .setAuthor("Now Playing", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
               .addField("Title", `${song.title}`)
-if (hours.length == 1 & minutes.length == 1 & seconds.length == 1) {
+if (hours.toString().length == 1 & minutes.toString().length == 1 & seconds.toString().length == 1) {
               embed.addField("Length", `0${song.duration.hours}:0${song.duration.minutes}:0${song.duration.seconds}`, inline = true)
 } else if (hours.toString().length > 1 && minutes.toString().length > 1 && seconds.toString().length > 1) {
 embed.addField("Length", `${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}`, inline = true)
@@ -1413,8 +1409,8 @@ if (totalMembers == 0) {
 } else {
 embed.addField(`Members Listening`, `${eval(`${serverQueue.voiceChannel.members.size}` - 1)}`)
 }
-              embed.setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
-              embed.setColor("#D975A1")
+              embed.setThumbnail("http://l7mobile.com/musictube_assets/icon_app.png?v=1.0")
+              embed.setColor(randomColor)
            
               
               
