@@ -580,14 +580,14 @@ transporter.sendMail(mailOptions, function(error, info){
 });
 
 req.end(function (res) {
-	if (res.error) throw new Error(res.error);
+	if (res.error) return m.send(res.error);
  	    
   	var embed = new Discord.RichEmbed()
   .setAuthor("URL Shortened", "https://cdn.pixabay.com/photo/2015/10/31/12/56/google-1015752_960_720.png")
   .setDescription(`Your URL has been shortened.`)
   .setColor("#166338")
   .addField("Original URL", `${args[1]}`)
-  .addField("Shortened URL", res.body.properties.result_url)
+  .addField("Shortened URL", res.body.result_url)
   .setFooter(`Shortened by ${author.username}#${author.discriminator}`, author.displayAvatarURL)
   .setTimestamp()
 
