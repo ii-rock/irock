@@ -1384,7 +1384,7 @@ function playit(guild, song) {
   var embed = new Discord.RichEmbed()
               .setAuthor("Now Playing", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
               .addField("Title", `${song.title}`)
-if (hours.length = 1 && minutes.length = 1 && seconds.length = 1) {
+if (hours.length == 1 && minutes.length == 1 && seconds.length == 1) {
               embed.addField("Length", `0${song.duration.hours}:0${song.duration.minutes}:0${song.duration.seconds}`, inline = true)
 } else if (hours.length > 1 && minutes.length > 1 && seconds.length > 1) {
 embed.addField("Length", `${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}`, inline = true)
