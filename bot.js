@@ -1165,13 +1165,14 @@ bot.on('message', async msg => {
               .setDescription(`You did not choose, the request was canceled.`)
               .setFooter(`This was requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.displayAvatarURL)
               .setColor("#0000FF")
+theMessage.delete();
                       return msg.channel.sendEmbed(embedd);
                   }
                   const videoIndex = parseInt(response.first().content);
                   var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
                 } catch (err) {
                     console.error(err);
-                    return msg.channel.send('🆘 I could not obtain any search results.');
+                    return msg.channel.send(':warning: I could not obtain any search results.\n:information_source: Please try again.');
                 }
             }
             
@@ -1383,12 +1384,27 @@ function playit(guild, song) {
   var embed = new Discord.RichEmbed()
               .setAuthor("Now Playing", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
               .addField("Title", `${song.title}`)
-              .addField("Length", `${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}`, inline = true)
-              .addField("Uploaded By", `${song.channel.title}`, inline = true)
-              .addField("Channel", `${serverQueue.voiceChannel.name}`)
-              .addField(`Members Listening`, `${eval(`${serverQueue.voiceChannel.members.size}` - 1)}`)
-              .setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
-              .setColor("#D975A1")
+if (hours.length = 1 && minutes.length = 1 && seconds.length = 1) {
+              embed.addField("Length", `0${song.duration.hours}:0${song.duration.minutes}:0${song.duration.seconds}`, inline = true)
+} else if (hours.length > 1 && minutes.length > 1 && seconds.length > 1) {
+embed.addField("Length", `${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}`, inline = true)
+} else if (hours.length = 1 && minutes.length > 1 && seconds.length > 1)
+embed.addField("Length", `0${song.duration.hours}:${song.duration.minutes}:${song.duration.seconds}`, inline = true)
+} else if (hours.length > 1 && minutes.length = 1 && seconds.length > 1)
+embed.addField("Length", `${song.duration.hours}:0${song.duration.minutes}:${song.duration.seconds}`, inline = true)
+} else if (hours.length > 1 && minutes.length > 1 && seconds.length = 1)
+embed.addField("Length", `${song.duration.hours}:${song.duration.minutes}:0${song.duration.seconds}`, inline = true)
+	   }
+              embed.addField("Uploaded By", `${song.channel.title}`, inline = true)
+              embed.addField("Channel", `${serverQueue.voiceChannel.name}`)
+var totalMembers = serverQueue.voiceChannel.members.size -1
+if (totalMembers = 0) {
+              embed.addField(`Members Listening`, `${eval(`${serverQueue.voiceChannel.members.size}` + 1)}`)
+} else {
+embed.addField(`Members Listening`, `${eval(`${serverQueue.voiceChannel.members.size}` - 1)}`)
+}
+              embed.setThumbnail("https://images.vexels.com/media/users/3/136461/isolated/preview/d8279505f7fa8e7cd761c755be58f0b7-colorful-music-note-icon-by-vexels.png")
+              embed.setColor("#D975A1")
            
               
               
