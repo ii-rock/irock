@@ -1146,14 +1146,14 @@ bot.on('message', async msg => {
               .setAuthor("Select a video by typing it's number", "http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c545.png")
  	.setDescription(`${videos.map(video2 => `**[${++index}](${video2.url}).** ${video2.title}`).join('\n')}`)
  	.setThumbnail("http://l7mobile.com/musictube_assets/icon_app.png?v=1.0")
-              .setFooter(`Please provide a value to select one of the search results ranging from 1-6, this timeouts in 15 seconds.`)
+              .setFooter(`Please provide a value to select one of the search results ranging from 1-6, this timeouts in 20 seconds.`)
               .setColor("#FF0000")
                   var theMessage = await msg.channel.send({embed});
                   // eslint-disable-next-line max-depth
                   try {
                       var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 || msg2.content < 7, {
                           maxMatches: 1,
-                          time: 15000,
+                          time: 20000,
                           errors: ['time']
                       });
  		    msg.member.voiceChannel.join();
@@ -1206,7 +1206,6 @@ theMessage.delete();
 	if (serverQueue.volume === arg[1]) return msg.channel.send(`Cannot update volume to the same number, please re-try with a different number than the current volume ( **${serverQueue.volume}** )`)
         if (arg[1] > 100) {
 
-m.send(`:warning: WARNING: Listening at a volume over **100** for a long time may damage your hearing.`)
         
         serverQueue.connection.dispatcher.setVolumeLogarithmic(arg[1] / 100);
             var embed = new Discord.RichEmbed()
@@ -1220,18 +1219,16 @@ m.send(`:warning: WARNING: Listening at a volume over **100** for a long time ma
 		    embed.setAuthor("Volume Decreased", bot.user.displayAvatarURL)
 	        embed.addField("Previous Volume", `( **${serverQueue.volume}** ) :loud_sound:`, inline = true)
                 embed.addField("Current Volume", `( **${arg[1]}** ) :sound:`, inline = true)
-.addField(`WARNING`, `:warning: WARNING: Listening at a volume over **100** for a long time may damage your hearing.`)
+embed.addField(`WARNING`, `:warning: WARNING: Listening at a volume over **100** for a long time may damage your hearing.`)
 	    } else if (serverQueue.volume < arg[1]) {
 		    embed.setAuthor("Volume Increased", bot.user.displayAvatarURL)
 			embed.addField("Previous Volume", `( **${serverQueue.volume}** ) :sound:`, inline = true)
                 embed.addField("Current Volume", `( **${arg[1]}** ) :loud_sound:`, inline = true)
-.addField(`WARNING`, `:warning: WARNING: Listening at a volume over **100** for a long time may damage your hearing.`)
+embed.addField(`WARNING`, `:warning: WARNING: Listening at a volume over **100** for a long time may damage your hearing.`)
 	    }
                 msg.channel.send({embed});
             serverQueue.volume = arg[1];
-			confirmMsg.delete()
 
-	    confirmMsg.delete()
 	    var embed = new Discord.RichEmbed()
               .setAuthor("Request Canceled", "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678069-sign-error-256.png")
               .setDescription(`Volume was not updated to ( **${arg[1]}** ), no reaction detected.`)
