@@ -18,6 +18,17 @@ var cleverbot = require('cleverbot.io');
 const FortniteTracker = require('fortnite');
 const fortnite = new FortniteTracker(process.env.trackerKey);
 
+
+var unirest = require("unirest");
+
+var req = unirest("POST", "https://url-shortener-service.p.rapidapi.com/shorten");
+
+req.headers({
+	"x-rapidapi-host": "url-shortener-service.p.rapidapi.com",
+	"x-rapidapi-key": "4ee17abf7emsh5d65101e15f2412p11eab2jsn67e7fdd4b3c5",
+	"content-type": "application/x-www-form-urlencoded"
+});
+
 var jokes = fs.readFileSync("jokes.txt").toString().split("\n");
 var roll = fs.readFileSync("roll.txt").toString().split("\n");
 
@@ -564,26 +575,21 @@ transporter.sendMail(mailOptions, function(error, info){
  }
       break;
       case "shortenurl":
-  	googl.getKey();
-  	googl.shorten(args[1])
+  	req.form({
+	"url": {args[1]}
+});
+
+req.end(function (res) {
+	if (res.error) throw new Error(res.error);
  	    
-  .then(function (shortUrl) {
   	var embed = new Discord.RichEmbed()
   .setAuthor("URL Shortened", "https://cdn.pixabay.com/photo/2015/10/31/12/56/google-1015752_960_720.png")
   .setDescription(`Your URL has been shortened.`)
   .setColor("#166338")
   .addField("Original URL", `${args[1]}`)
-  .addField("Shortened URL", shortUrl)
+  .addField("Shortened URL", res.body)
   .setFooter(`Shortened by ${author.username}#${author.discriminator}`, author.displayAvatarURL)
   .setTimestamp()
-
-      m.send({embed});
-  })
-  .catch(function (err) {
-  	var embed = new Discord.RichEmbed()
-  .setAuthor("ERROR")
-  .setDescription(`${err.message}`)
-  .setColor("#FF0000")
 
       m.send({embed});
   });
