@@ -42,9 +42,6 @@ var transporter = nodemailer.createTransport({
  
 cbot = new cleverbot("Dw3yOhLio0NMCWsY", "yVsBq7A6MqgDDnjAjWf5cdJNZwmd3LFa");
 
-var googl = require('goo.gl');
-googl.setKey(process.env.shortenerKey);
-
 const GoogleImages = require('google-images');
 const img = new GoogleImages(process.env.engineID, process.env.google_Key);
 
