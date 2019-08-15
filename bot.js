@@ -1398,7 +1398,7 @@ embed.addField("Length", `${song.duration.hours}:${song.duration.minutes}:0${son
 	   }
               embed.addField("Uploaded By", `${song.channel.title}`, inline = true)
               embed.addField("Channel", `${serverQueue.voiceChannel.name}`)
-var totalMembers = serverQueue.voiceChannel.members.size -1
+var totalMembers = serverQueue.voiceChannel.members.size -1;
 if (totalMembers = 0) {
               embed.addField(`Members Listening`, `${eval(`${serverQueue.voiceChannel.members.size}` + 1)}`)
 } else {
