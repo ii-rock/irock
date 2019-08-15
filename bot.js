@@ -1718,6 +1718,7 @@ switch (args[0].toLowerCase()) {
        message.channel.send(`No results were found for query: ${theMsg}`)
        }
 			break;
+}
 });
 
 bot.login(process.env.TOKEN);
