@@ -1222,7 +1222,7 @@ bot.on('message', async msg => {
                 .setTimestamp()
                 .setColor("#FF0000")
 	    if (serverQueue.volume > arg[1]) {
-		    embed.setAuthor("Volume Lowered", bot.user.displayAvatarURL)
+		    embed.setAuthor("Volume Decreased", bot.user.displayAvatarURL)
 	        embed.addField("Last Volume", `( **${serverQueue.volume}** ) :loud_sound:`, inline = true)
                 embed.addField("Updated Volume", `( **${arg[1]}** ) :sound:`, inline = true)
 	    } else if (serverQueue.volume < arg[1]) {
