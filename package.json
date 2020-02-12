@@ -15,7 +15,7 @@
     "https": "^1.0.0",
     "request": "^2.81.0",
     "ytdl-core": "^0.29.5",
-    "nodemailer": "^4.6.8",
+    "nodemailer": "^6.4.2",
     "cleverbot-node": "^0.3.11",
     "opusscript": "^0.0.7",
     "simple-youtube-api": "^5.0.1",
