@@ -531,8 +531,6 @@ bot.on('message', async (message) => {
  
   if (!message.author.equals(bot.user))
 
-		
-}
 });
 
 bot.login(process.env.TOKEN);
