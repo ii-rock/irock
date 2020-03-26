@@ -532,7 +532,7 @@ bot.on('message', async (message) => {
   if (!message.author.equals(bot.user))
 }
 break;
-}
+
 });
 
 bot.login(process.env.TOKEN);
