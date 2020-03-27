@@ -512,6 +512,7 @@ bot.on('message', async msg => {
            await bot.user.setGame(`${theMsg}`, `${TWITCH}`);
          }
           break;
+  }
 });
 
 	
