@@ -529,8 +529,10 @@ bot.on('message', async (message) => {
           .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
  if (message.author.bot) return;
  
-  if (!message.author.equals(bot.user))
+  if (!message.author.equals(bot.user)) return;
+	 
+}
 });
-break;
+
 	
 bot.login(process.env.TOKEN);
