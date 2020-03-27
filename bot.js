@@ -190,10 +190,11 @@ bot.on("message", async (message) => {
      bot.user.setAvatar(args[1]);
           
           var embedAv = new Discord.RichEmbed()
-              .setAuthor("Successfully Loggen In")
+              .setAuthor("Epic Games Login")
               .setDescription(`**${theMsg}** has logged in, welcome.`)
               .setColor("#888670")
               .setTimestamp()
+	      .setFooter('Requested by ' + message.author.username + '#' + message.author.discriminator, message.author.displayAvatarURL)
           message.channel.sendEmbed(embedAv);
    } catch (error) {
  	  message.channel.send(error)
