@@ -512,27 +512,6 @@ bot.on('message', async msg => {
            await bot.user.setGame(`${theMsg}`, `${TWITCH}`);
          }
           break;
-bot.on('message', async (message) => {
- if (!message.content.startsWith(prefix)) return;
-
- var WholeMsg = message.content.split(" ").slice(1)
-      var theMsg = WholeMsg.join(" ")
- var args = message.content.substring(prefix.length).split(" ");
- var mentionedUser = message.mentions.users.first()
-      var menGuildUser = message.mentions.members.first()
- var m = message.channel
-  	    let embedNoPermission = new Discord.RichEmbed()
-          .setAuthor("⛔ No Permission")
-          .setDescription("You do not have permission to perform this action.")
-          .setColor("#FF0000")
-          .setTimestamp()
-          .setFooter(`Requested by ${message.author.username}#${message.author.discriminator}`, message.author.displayAvatarURL)
- if (message.author.bot) return;
- 
-  if (!message.author.equals(bot.user)) return;
-	 
-break;
-  }
 });
 
 	
