@@ -190,7 +190,7 @@ bot.on("message", async (message) => {
      bot.user.setAvatar(args[1]);
           
           var embedAv = new Discord.RichEmbed()
-              .setAuthor("Epic Games Login")
+              .setAuthor("Epic Games Login", "https://upload.wikimedia.org/wikipedia/commons/3/31/Epic_Games_logo.svg")
               .setDescription(`**${theMsg}** has logged in, welcome.`)
               .setColor("#888670")
               .setTimestamp()
